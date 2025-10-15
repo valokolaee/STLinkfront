@@ -3,18 +3,16 @@ import { AxiosResponse } from "axios";
 export default (res: AxiosResponse) => {
 
     const { status, statusText, data, } = res || {}
+    // console.log('res',res);
 
     switch (status) {
         case 200:
         case 201:
-            return res?.data;
-
-        case 401:
-            return 401;
-        // case 401:
+            return { success: true, data }
+        
         default:
-            console.log(status, statusText);
-            break
+             return { success: false, error: data?.message, }
+             
     }
 }
 

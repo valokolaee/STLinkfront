@@ -1,15 +1,35 @@
+import IDevice from '../../../intrfaceces/IDevice';
+import IDeviceEarning from '../../../intrfaceces/IDeviceEarning';
 import IUser from '../../../intrfaceces/IUser';
 import { IBank, IPool } from '../../../intrfaceces/types';
 import { ModelApi } from '../ModelApi';
+import ApiObjectGenerator, {  IApiObject } from './ApiObjectGenerator';
+import IDeviceReqRes from './IDeviceApi';
 import ILoginReq from './ILogin';
 import IRegisterReq from './IRegister';
+import IReqRes from './IReqRes';
+import IResponse from './IResponse';
+
+
+
+
+
+
+export const devices = ApiObjectGenerator<IDevice>('devices')
+export const earnings = ApiObjectGenerator<IDeviceEarning>('device-earnings')
+
+
+
+
+
 
 export default {
 
   auth: {
     folderUrl: 'auth',
     login(body: ILoginReq) { return mdlr({ axiosType: 'post', apiUrl: 'login', folderUrl: 'auth', body }) },
-    // registerUser(body: IRegisterReq) { return mdlr({ axiosType: 'post', apiUrl: 'registerUser', folderUrl: 'auth', body }) },
+
+
     register(body: IRegisterReq) { return mdlr({ axiosType: 'post', apiUrl: 'register', folderUrl: 'auth', body }) },
     getMe: mdlr({ axiosType: 'get', apiUrl: 'me', folderUrl: 'auth', }),
     mail: mdlr({ axiosType: 'get', apiUrl: 'mail', folderUrl: 'auth', }),
@@ -28,21 +48,24 @@ export default {
     updateLogo(body: any) { return mdlr({ axiosType: 'put', apiUrl: 'logo', folderUrl: 'users', body }) },
   },
 
-  pools: {
-    folderUrl: 'pools',
-    services(poolId: number) { return mdlr({ axiosType: 'get', apiUrl: poolId, apiUrl2: 'services', folderUrl: this.folderUrl, }) },
-    getAll() { return mdlr({ axiosType: 'get', folderUrl: 'pools', }) },
-    update(body:Partial <IPool>) { return mdlr({ axiosType: 'put', folderUrl: 'pools',body }) }
-    
+
+
+  devices: {
+ 
+  },
+  earnings: {
+    folderUrl: 'earnings',
+
+    getAll() { return mdlr({ axiosType: 'get', folderUrl: this.folderUrl, }) },
+
+    create(body: any) { return mdlr({ axiosType: 'post', folderUrl: this.folderUrl, body }) },
+    delete(body: { deviceId: number; }) { return mdlr({ axiosType: 'delete', apiUrl: '', folderUrl: this.folderUrl, body }) },
+    update(body: { deviceId: number; name?: string; serial?: string; }) { return mdlr({ axiosType: 'put', apiUrl: '', folderUrl: this.folderUrl, body }) },
+    getOne(body: { deviceId: number; }) { return mdlr({ axiosType: 'get', apiUrl: '', folderUrl: this.folderUrl, body }) },
+
   },
 
-  banks: {
-    folderUrl: 'banks',
-    getAll() { return mdlr({ axiosType: 'get', folderUrl: this.folderUrl }) },
-    services(bankId: number) { return mdlr({ axiosType: 'get', apiUrl: bankId, apiUrl2: 'services', folderUrl: this.folderUrl, }) },
-    update(body: Partial<IBank>) { return mdlr({ axiosType: 'put', folderUrl: this.folderUrl, body }) }
 
-  }
 
 
 };

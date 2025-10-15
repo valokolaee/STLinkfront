@@ -57,7 +57,7 @@ const Row2: React.FC = () => (
                         // x:'band'
                     }}
                     xAxis={[
-                        { dataKey: 'year', valueFormatter: (value: number) => value.toString() },
+                        { dataKey: 'year', valueFormatter: (value: number) => value?.toString() },
                     ]}
                     // yAxis={[{ width: 50 }]}
                     series={Object.keys(keyToLabel).map((key) => ({

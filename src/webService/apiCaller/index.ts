@@ -59,6 +59,7 @@ export default async (apiModel: ModelApi,) => {
 
 
     } catch (error: any) {
+        
         // copy([JSON.stringify(error)])
         // copy
 

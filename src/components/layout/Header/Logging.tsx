@@ -26,8 +26,8 @@ const Logging: React.FC = () => {
 
 
     const _logOut = () => {
-        setUserTotal({})
-        // setUserAvatar('')
+        // setUserTotal({})
+        _login()
     }
 
     const _log = !!!_user.token ? {
@@ -38,7 +38,7 @@ const Logging: React.FC = () => {
         extra: '⌘S',
     } : {
         key: '4',
-        label: 'logout',
+        label: 'switch user',
         icon: <LogoutOutlined />,
         onClick: _logOut,
         extra: '⌘S',
@@ -75,10 +75,10 @@ const Logging: React.FC = () => {
     ];
     return (
         <Dropdown menu={{ items }} >
-             <Space>
+            <Space>
                 <CAvatar url={_user.profileImage!} />
             </Space>
-         </Dropdown>
+        </Dropdown>
     );
 }
 export default Logging;

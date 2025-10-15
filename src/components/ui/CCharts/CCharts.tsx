@@ -192,8 +192,8 @@ function BarLabelAtBase(props: BarLabelProps) {
             createInterpolator: interpolateObject,
             transformProps: (p) => p,
             applyProps: (element: SVGTextElement, p) => {
-                element.setAttribute('x', p.x.toString());
-                element.setAttribute('y', p.y.toString());
+                element.setAttribute('x', p.x?.toString());
+                element.setAttribute('y', p.y?.toString());
             },
             skip: skipAnimation,
         },

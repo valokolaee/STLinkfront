@@ -1,21 +1,19 @@
 // src/pages/Login.tsx
-import { useRef, useState } from "react";
-import { loginUser } from "../features/auth/authSlice";
-import { Router, useNavigate } from "react-router-dom";
+import { useEffect, useRef } from "react";
+import { useNavigate } from "react-router-dom";
 
 import type { FormProps } from 'antd';
 import { Checkbox, Form, Input } from 'antd';
 import CButton from '../components/ui/CButton';
 import CLink from "../components/ui/CLink";
 import CText from "../components/ui/CText";
-import WebService, { IWebService, IWebServiceFuncs } from "../webService";
-import apis from "../webService/ApiUrls/apis";
-import PrimaryButton from "../components/ui/PrimaryButton";
-import ILoginReq, { ILoginRes } from "../webService/ApiUrls/apis/ILogin";
-import { useAppSelector } from "../redux/hooks";
-import { useAppDispatch } from "../hooks";
 import IUser from "../intrfaceces/IUser";
 import { setUser, setUserAvatar } from "../redux/actions";
+import { useAppSelector } from "../redux/hooks";
+import WebService, { IWebServiceFuncs } from "../webService";
+import apis, { devices, earnings as deviceEarnings } from "../webService/ApiUrls/apis";
+import ILoginReq, { ILoginRes } from "../webService/ApiUrls/apis/ILogin";
+import IDeviceReqRes from "../webService/ApiUrls/apis/IDeviceApi";
 // import Background from "../components/ui/Background";
 
 const Login = () => {
@@ -28,7 +26,6 @@ const Login = () => {
     remember?: boolean;
 
   };
-  // console.log('user', _savedUser);
 
   const onFinish: FormProps<FieldType>['onFinish'] = async (values) => {
     const v = { ...values, remember: undefined }
@@ -37,11 +34,9 @@ const Login = () => {
 
     if (x?.success) {
       var u: IUser = x.data as IUser;
-
       if (values.remember) {
         u.pass = values.password
       }
-
 
       setUser(u)
       setUserAvatar(u.profileImage + '?a=' + new Date())
@@ -49,22 +44,33 @@ const Login = () => {
     }
   };
 
-  const onFinishFailed: FormProps<FieldType>['onFinishFailed'] = (errorInfo) => {
-    console.log('Failed:', errorInfo);
-  };
+
+  // useEffect(() => {
+  //   _try()
+  // }, [])
+
+  const _try = async () => {
+    // const x = await refWebService?.current?.callApi<IDeviceReqRes['getAll']['res']>(devices.create!({deviceModel:'weee',deviceName:'cccc',imei:'yessssssss'}))
+    // const x = await refWebService?.current?.callApi<IDeviceReqRes['getAll']['res']>(earnings.create({ amount: 1500, currency: 'ttr', deviceId: 3, isSettled:true}))
+    const x = await refWebService?.current?.callApi<IDeviceReqRes['getOne']['res']>(deviceEarnings.getOne(1))
+
+    // const x = await refWebService?.current?.callApi<ILoginRes>(apis.earnings.create({ deviceName: 'ccc', imei: 'yessss3709', deviceModel:'deviceModel' }))
+    console.log('xxx', x?.data);
+  }
+
+
 
 
   return (
 
     <div >
 
-      <h2>login</h2>
-
+      <h2 onClick={_try}>login</h2>
 
       <Form
         name="login"
         onFinish={onFinish}
-        onFinishFailed={onFinishFailed}
+        // onFinishFailed={onFinishFailed}
         labelCol={{ span: 5 }}
         wrapperCol={{ span: '30%' }}
         layout="horizontal"
