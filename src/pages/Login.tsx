@@ -7,15 +7,16 @@ import { Checkbox, Form, Input } from 'antd';
 import CButton from '../components/ui/CButton';
 import CLink from "../components/ui/CLink";
 import CText from "../components/ui/CText";
-import IUser from "../intrfaceces/IUser";
+import IUser from "../interfaces/IUser";
 import { setUser, setUserAvatar } from "../redux/actions";
 import { useAppSelector } from "../redux/hooks";
 import WebService, { IWebServiceFuncs } from "../webService";
-import apis, { devices, earnings as deviceEarnings } from "../webService/ApiUrls/apis";
+import apis, { miningDevices, deviceEarnings as deviceEarnings, miningWallet, withdrawalRequest, deviceAlertRequest, deviceSpecificationRequest, miningSessionRequest, permissionRequest, rolePermissionRequest, roleRequest, userSessionRequest } from "../webService/ApiUrls/apis";
 import ILoginReq, { ILoginRes } from "../webService/ApiUrls/apis/ILogin";
 import IDeviceReqRes from "../webService/ApiUrls/apis/IDeviceApi";
-// import Background from "../components/ui/Background";
-
+import { v4 } from "uuid";
+import IReqRes from "../webService/ApiUrls/apis/IReqRes";
+import IWithdrawalRequest from "../interfaces/IWithdrawalRequest";
 const Login = () => {
   const refWebService = useRef<IWebServiceFuncs>()
 
@@ -40,7 +41,7 @@ const Login = () => {
 
       setUser(u)
       setUserAvatar(u.profileImage + '?a=' + new Date())
-      navigate('/')
+      // navigate('/')
     }
   };
 
@@ -50,12 +51,64 @@ const Login = () => {
   // }, [])
 
   const _try = async () => {
-    // const x = await refWebService?.current?.callApi<IDeviceReqRes['getAll']['res']>(devices.create!({deviceModel:'weee',deviceName:'cccc',imei:'yessssssss'}))
-    // const x = await refWebService?.current?.callApi<IDeviceReqRes['getAll']['res']>(earnings.create({ amount: 1500, currency: 'ttr', deviceId: 3, isSettled:true}))
-    const x = await refWebService?.current?.callApi<IDeviceReqRes['getOne']['res']>(deviceEarnings.getOne(1))
+    await refWebService?.current?.callApi<IReqRes<IWithdrawalRequest>['getOneByID']['res']>(deviceAlertRequest.getAll())
+    await refWebService?.current?.callApi<IReqRes<IWithdrawalRequest>['getOneByID']['res']>(deviceSpecificationRequest.getAll())
+    await refWebService?.current?.callApi<IReqRes<IWithdrawalRequest>['getOneByID']['res']>(miningSessionRequest.getAll())
+    await refWebService?.current?.callApi<IReqRes<IWithdrawalRequest>['getOneByID']['res']>(permissionRequest.getAll())
+    await refWebService?.current?.callApi<IReqRes<IWithdrawalRequest>['getOneByID']['res']>(rolePermissionRequest.getAll())
+    await refWebService?.current?.callApi<IReqRes<IWithdrawalRequest>['getOneByID']['res']>(roleRequest.getAll())
+    await refWebService?.current?.callApi<IReqRes<IWithdrawalRequest>['getOneByID']['res']>(userSessionRequest.getAll())
 
-    // const x = await refWebService?.current?.callApi<ILoginRes>(apis.earnings.create({ deviceName: 'ccc', imei: 'yessss3709', deviceModel:'deviceModel' }))
-    console.log('xxx', x?.data);
+    // const res = await refWebService?.current?.callApi<IReqRes<IWithdrawalRequest>['create']['res']>(withdrawalRequest.create({ amount: 10, currency: 'cbtw', walletAddress: '100oidytf' }))
+    // await refWebService?.current?.callApi<IReqRes<IWithdrawalRequest>['getOneByID']['res']>(withdrawalRequest.update({ id: res?.data?.id, walletAddress: '20cc1250y0', currency: 'ddd', amount: 100000 }))
+
+    // await refWebService?.current?.callApi<IReqRes<IWithdrawalRequest>['getOneByID']['res']>(withdrawalRequest.getOneByID(1))
+    // await refWebService?.current?.callApi<IReqRes<IWithdrawalRequest>['getOneByID']['res']>(withdrawalRequest.delete(1))
+
+
+
+    // await refWebService?.current?.callApi<IDeviceReqRes['getOneByID']['res']>(miningDevices.create({ deviceModel: 'wbc', deviceName: 'scv', imei: new Date().getTime().toString() }))
+    // await refWebService?.current?.callApi<IDeviceReqRes['getOneByID']['res']>(deviceEarnings.create({ amount: 32, currency: 'eew', deviceId: 1, isSettled: true, userId: 1 }))
+    // await refWebService?.current?.callApi<IDeviceReqRes['getOneByID']['res']>(deviceEarnings.getAll())
+    // amount
+    // await refWebService?.current?.callApi<IDeviceReqRes['getOneByID']['res']>(miningWallet.create({ userId: _savedUser.id!, walletAddress: v4() }))
+    // await refWebService?.current?.callApi<IDeviceReqRes['getOneByID']['res']>(miningWallet.update({ id: 4, userId: _savedUser.id!, walletAddress: '2000', withdrawnAmount: 220002 }))
+
+    // await refWebService?.current?.callApi<IDeviceReqRes['getOneByID']['res']>(miningWallet.getAll())
+
+
+    // await refWebService?.current?.callApi<IDeviceReqRes['getOneByID']['res']>(miningDevices.create({ deviceModel: 'wbc', deviceName: 'scv', imei: new Date().getTime().toString() }))
+    // await refWebService?.current?.callApi<IDeviceReqRes['getOneByID']['res']>(deviceEarnings.create({  amount:32,currency:'eew',deviceId:1,isSettled:true}))
+
+
+
+    // await refWebService?.current?.callApi<IDeviceReqRes['getOneByID']['res']>(miningDevices.getAll())
+    // await refWebService?.current?.callApi<IDeviceReqRes['getOneByID']['res']>(deviceEarnings.getAll())
+
+
+
+    // await refWebService?.current?.callApi<IDeviceReqRes['getOneByID']['res']>(deviceEarnings.create({  amount: 3200 ,deviceId:1,currency:'ccc',isSettled:true}))
+    // await refWebService?.current?.callApi<IDeviceReqRes['getOneByID']['res']>(deviceEarnings.getOneByID(1))
+    // await refWebService?.current?.callApi<IDeviceReqRes['getOneByID']['res']>(deviceEarnings.getAllBy({ deviceId: 1 }))
+
+    // await refWebService?.current?.callApi<IDeviceReqRes['getOneByID']['res']>(deviceEarnings.delete(1))
+
+
+    // await refWebService?.current?.callApi<IDeviceReqRes['getOneByID']['res']>(miningDevices.getAll())
+    // await refWebService?.current?.callApi<IDeviceReqRes['getOneByID']['res']>(miningDevices.getOneByID(1))
+    // await refWebService?.current?.callApi<IDeviceReqRes['getOneByID']['res']>(miningDevices.getAllBy({ userId: _savedUser.id }))
+
+    // await refWebService?.current?.callApi<IDeviceReqRes['getOneByID']['res']>(miningDevices.update({ id: 1, deviceName: 'cccv2' }))
+    // await refWebService?.current?.callApi<IDeviceReqRes['getOneByID']['res']>(miningDevices.delete(1))
+
+
+
+    // await refWebService?.current?.callApi<IDeviceReqRes['getOneByID']['res']>(miningDevices.getAllBy({ userId: _savedUser.id }))
+
+
+    // await refWebService?.current?.callApi<IDeviceReqRes['getOneByID']['res']>(deviceEarnings.getAllBy({ deviceId: 1 }))
+
+
   }
 
 
@@ -65,7 +118,7 @@ const Login = () => {
 
     <div >
 
-      <h2 onClick={_try}>login</h2>
+      <h2 onClick={_try} className="cursor-auto">login</h2>
 
       <Form
         name="login"

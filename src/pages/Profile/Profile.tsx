@@ -11,7 +11,7 @@ import { useNavigate } from 'react-router-dom';
 import CButton from '../../components/ui/CButton';
 import CLink from '../../components/ui/CLink';
 import CText from '../../components/ui/CText';
-import IUser from '../../intrfaceces/IUser';
+import IUser from '../../interfaces/IUser';
 import { setUser, setUserAvatar, setUserLogo } from '../../redux/actions';
 import WebService, { IWebServiceFuncs } from '../../webService';
 import apis from '../../webService/ApiUrls/apis';
@@ -105,7 +105,7 @@ const Profile: React.FC = () => {
           <Flex align='baseline'>
 
             <AvatarUploader
-              
+
               avatar={{
                 url: _user?.profileImage! + '&a=' + new Date(),
                 size: 150,

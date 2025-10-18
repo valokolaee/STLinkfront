@@ -33,7 +33,7 @@ export default async (apiModel: ModelApi,) => {
                     res = await axios.put(ApiUrlService(apiModel, null), body, config);
                     break;
                 case 'delete':
-                    res = await axios.delete(ApiUrlService(apiModel, null), config);
+                    res = await axios.delete(ApiUrlService(apiModel, body), config);
                     break;
                 // case 'file':
                 //     // const formData = new FormData();

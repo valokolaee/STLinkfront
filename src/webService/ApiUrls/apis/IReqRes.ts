@@ -1,13 +1,16 @@
-import IDevice from "../../../intrfaceces/IDevice";
+import IDevice from "../../../interfaces/IDevice";
 import IResponse from "./IResponse";
 
-export default interface IReqRes<Q > {
-    getAll: TReqRes<Partial<Q>, IResponse<Q[]>>;
-    getOne: TReqRes<number, IResponse<Q>>;
+export default interface IReqRes<Q> {
+    getAll: TReqRes<never, IResponse<Q[]>>;
+    getOneByID: TReqRes<number, IResponse<Q>>;
+    getOneByObject: TReqRes<number, IResponse<Q>>;
+    getAllBy: TReqRes<Partial<Q>, IResponse<Q[]>>;
+    search: TReqRes<Partial<Q>, IResponse<Q[]>>;
+
     create: TReqRes<Q, IResponse<Q>>;
     update: TReqRes<Partial<Q>, IResponse<Q>>;
-    delete: TReqRes<number, never>;
-
+    delete: TReqRes<number, IResponse>;
 }
 
 

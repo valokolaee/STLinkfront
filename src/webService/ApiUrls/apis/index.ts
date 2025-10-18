@@ -1,22 +1,19 @@
-import IDevice from '../../../intrfaceces/IDevice';
-import IDeviceEarning from '../../../intrfaceces/IDeviceEarning';
-import IUser from '../../../intrfaceces/IUser';
-import { IBank, IPool } from '../../../intrfaceces/types';
-import { ModelApi } from '../ModelApi';
-import ApiObjectGenerator, {  IApiObject } from './ApiObjectGenerator';
-import IDeviceReqRes from './IDeviceApi';
+import IDevice from '../../../interfaces/IDevice';
+import IDeviceAlert from '../../../interfaces/IDeviceAlert';
+import IDeviceEarning from '../../../interfaces/IDeviceEarning';
+import IDeviceSpecification from '../../../interfaces/IDeviceSpecification';
+import IMiningSession from '../../../interfaces/IMiningSession';
+import IMiningWallet from '../../../interfaces/IMiningWallet';
+import IPermission from '../../../interfaces/IPermission';
+import IRole from '../../../interfaces/IRole';
+import IRolePermission from '../../../interfaces/IRolePermission';
+import IUser from '../../../interfaces/IUser';
+import IUserSession from '../../../interfaces/IUserSession';
+import IWithdrawalRequest from '../../../interfaces/IWithdrawalRequest';
+import ApiObjectGenerator from './ApiObjectGenerator';
 import ILoginReq from './ILogin';
 import IRegisterReq from './IRegister';
-import IReqRes from './IReqRes';
-import IResponse from './IResponse';
-
-
-
-
-
-
-export const devices = ApiObjectGenerator<IDevice>('devices')
-export const earnings = ApiObjectGenerator<IDeviceEarning>('device-earnings')
+import mdlr from './ModelApiGenerator';
 
 
 
@@ -28,8 +25,6 @@ export default {
   auth: {
     folderUrl: 'auth',
     login(body: ILoginReq) { return mdlr({ axiosType: 'post', apiUrl: 'login', folderUrl: 'auth', body }) },
-
-
     register(body: IRegisterReq) { return mdlr({ axiosType: 'post', apiUrl: 'register', folderUrl: 'auth', body }) },
     getMe: mdlr({ axiosType: 'get', apiUrl: 'me', folderUrl: 'auth', }),
     mail: mdlr({ axiosType: 'get', apiUrl: 'mail', folderUrl: 'auth', }),
@@ -48,31 +43,21 @@ export default {
     updateLogo(body: any) { return mdlr({ axiosType: 'put', apiUrl: 'logo', folderUrl: 'users', body }) },
   },
 
-
-
-  devices: {
- 
-  },
-  earnings: {
-    folderUrl: 'earnings',
-
-    getAll() { return mdlr({ axiosType: 'get', folderUrl: this.folderUrl, }) },
-
-    create(body: any) { return mdlr({ axiosType: 'post', folderUrl: this.folderUrl, body }) },
-    delete(body: { deviceId: number; }) { return mdlr({ axiosType: 'delete', apiUrl: '', folderUrl: this.folderUrl, body }) },
-    update(body: { deviceId: number; name?: string; serial?: string; }) { return mdlr({ axiosType: 'put', apiUrl: '', folderUrl: this.folderUrl, body }) },
-    getOne(body: { deviceId: number; }) { return mdlr({ axiosType: 'get', apiUrl: '', folderUrl: this.folderUrl, body }) },
-
-  },
-
-
-
-
 };
 
 
 
+export const miningDevices = ApiObjectGenerator<IDevice>('mining-devices')
+export const deviceEarnings = ApiObjectGenerator<IDeviceEarning>('device-earnings')
+export const miningWallet = ApiObjectGenerator<IMiningWallet>('mining-wallet')
+export const withdrawalRequest = ApiObjectGenerator<IWithdrawalRequest>('withdrawal-request')
 
-export function mdlr<T = any>(model: ModelApi<T>) {
-  return model;
-}
+export const deviceAlertRequest = ApiObjectGenerator<IDeviceAlert>('device-alert')
+export const deviceSpecificationRequest = ApiObjectGenerator<IDeviceSpecification>('device-specification')
+export const miningSessionRequest = ApiObjectGenerator<IMiningSession>('mining-session')
+export const permissionRequest = ApiObjectGenerator<IPermission>('permission')
+export const rolePermissionRequest = ApiObjectGenerator<IRolePermission>('role-permission')
+export const roleRequest = ApiObjectGenerator<IRole>('role')
+export const userSessionRequest = ApiObjectGenerator<IUserSession>('user-session')
+
+

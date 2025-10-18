@@ -10,7 +10,7 @@ import { useNavigate } from 'react-router-dom';
 import CButton from '../components/ui/CButton';
 import CLink from '../components/ui/CLink';
 import CText from '../components/ui/CText';
-import IUser from '../intrfaceces/IUser';
+import IUser from '../interfaces/IUser';
 import { setUser, setUserAvatar } from '../redux/actions';
 import WebService, { IWebServiceFuncs } from '../webService';
 import apis from '../webService/ApiUrls/apis';
@@ -39,9 +39,10 @@ const FormDisabledDemo: React.FC = () => {
     if (x?.success) {
       setUser(x.data as IUser)
       setUserAvatar('')
-      navigate('/account')
+      navigate('/login')
     } else {
-      openNotification(x?.message || 'Registration failed') }
+      openNotification(x?.message || 'Registration failed')
+    }
 
 
   };
@@ -51,14 +52,14 @@ const FormDisabledDemo: React.FC = () => {
   };
 
 
-   const [api, contextHolder] = notification.useNotification();
+  const [api, contextHolder] = notification.useNotification();
 
-  const openNotification = (message:string) => {
-     
+  const openNotification = (message: string) => {
+
     api.info({
       message,
       // description:`yesterday you said tomorrow, so just do it!`,
-      placement:'topRight',
+      placement: 'topRight',
       showProgress: true,
       pauseOnHover: true,
     });
@@ -197,7 +198,7 @@ const FormDisabledDemo: React.FC = () => {
 
 
       </Form>
-      
+
     </div>
   );
 };

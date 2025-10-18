@@ -1,4 +1,4 @@
-import IUser from "../../../intrfaceces/IUser";
+import IUser from "../../../interfaces/IUser";
 import ILoginReq from "./ILogin";
 import IResponse from "./IResponse";
 
@@ -9,5 +9,5 @@ export default interface IRegisterReq extends ILoginReq {
 }
 
 export interface IRegisterRes extends IResponse<IUser> {
-     
+
 }

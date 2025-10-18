@@ -1,16 +1,16 @@
-  
-import IUser from '../../intrfaceces/IUser';
+
+import IUser from '../../interfaces/IUser';
 import { SET_USER, SET_USER_AVATAR, SET_USER_LOGO } from '../slice/userSlice';
 import { appDispatch } from '../store';
 
 
 
-export const setUserTotal = (data: IUser|undefined) => {
+export const setUserTotal = (data: IUser | undefined) => {
     appDispatch(SET_USER(data!));
-         setUserAvatar(data?.profileImage!)
-         setUserLogo(data?.logoUrl!)
- };
-export const setUser = (data: IUser|undefined) => {
+    setUserAvatar(data?.profileImage!)
+    setUserLogo(data?.logoUrl!)
+};
+export const setUser = (data: IUser | undefined) => {
     appDispatch(SET_USER(data!));
     if (data?.profileImage) {
         setUserAvatar(data.profileImage)
@@ -18,11 +18,11 @@ export const setUser = (data: IUser|undefined) => {
 };
 
 export const setUserAvatar = (data: string) => {
-    appDispatch(SET_USER_AVATAR(data ));
+    appDispatch(SET_USER_AVATAR(data));
 };
 
 export const setUserLogo = (data: string) => {
-    appDispatch(SET_USER_LOGO(data ));
+    appDispatch(SET_USER_LOGO(data));
 };
 
 // export const setLanguage = (data: ILang | undefined) => { appDispatch(SET_LANGUAGE(data!)); };

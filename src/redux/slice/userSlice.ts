@@ -3,7 +3,7 @@ import {
   createSlice,
   PayloadAction,
 } from '@reduxjs/toolkit';
-import IUser from '../../intrfaceces/IUser';
+import IUser from '../../interfaces/IUser';
 
 
 const initialState: IUser = {
@@ -29,17 +29,17 @@ const userSlice = createSlice({
       state.createdAt = action.payload.createdAt;
       state.pass = action.payload.pass;
     },
-    SET_USER_LOGO: (state, action: PayloadAction<string>) => { 
+    SET_USER_LOGO: (state, action: PayloadAction<string>) => {
       state.logoUrl = action.payload;
 
     },
     SET_USER_AVATAR: (state, action: PayloadAction<string>) => {
-      
+
       state.profileImage = action.payload;
     },
   },
 });
 
-export const { SET_USER ,SET_USER_AVATAR,SET_USER_LOGO} = userSlice.actions;
+export const { SET_USER, SET_USER_AVATAR, SET_USER_LOGO } = userSlice.actions;
 const userReducer = userSlice.reducer;
 export default userReducer;

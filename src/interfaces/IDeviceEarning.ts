@@ -1,5 +1,5 @@
- 
-export default interface IDeviceEarning   {
+
+export default interface IDeviceEarning {
     id?: number;
     deviceId: number;
     miningSessionId?: number | null;
@@ -7,7 +7,8 @@ export default interface IDeviceEarning   {
     currency: string;
     earningDate?: Date;
     calculatedAt?: Date;
-    isSettled : boolean;
+    userId: number;
+    isSettled: boolean;
     transactionHash?: string | null;
     exchangeRate?: number | null;
 }
