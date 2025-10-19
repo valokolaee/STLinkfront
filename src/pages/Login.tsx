@@ -1,5 +1,5 @@
 // src/pages/Login.tsx
-import { useEffect, useRef } from "react";
+import { useRef } from "react";
 import { useNavigate } from "react-router-dom";
 
 import type { FormProps } from 'antd';
@@ -8,15 +8,13 @@ import CButton from '../components/ui/CButton';
 import CLink from "../components/ui/CLink";
 import CText from "../components/ui/CText";
 import IUser from "../interfaces/IUser";
+import IWithdrawalRequest from "../interfaces/IWithdrawalRequest";
 import { setUser, setUserAvatar } from "../redux/actions";
 import { useAppSelector } from "../redux/hooks";
 import WebService, { IWebServiceFuncs } from "../webService";
-import apis, { miningDevices, deviceEarnings as deviceEarnings, miningWallet, withdrawalRequest, deviceAlertRequest, deviceSpecificationRequest, miningSessionRequest, permissionRequest, rolePermissionRequest, roleRequest, userSessionRequest } from "../webService/ApiUrls/apis";
+import apis, { deviceAlertRequest, deviceSpecificationRequest, miningSessionRequest, permissionRequest, rolePermissionRequest, roleRequest, userSessionRequest } from "../webService/ApiUrls/apis";
 import ILoginReq, { ILoginRes } from "../webService/ApiUrls/apis/ILogin";
-import IDeviceReqRes from "../webService/ApiUrls/apis/IDeviceApi";
-import { v4 } from "uuid";
 import IReqRes from "../webService/ApiUrls/apis/IReqRes";
-import IWithdrawalRequest from "../interfaces/IWithdrawalRequest";
 const Login = () => {
   const refWebService = useRef<IWebServiceFuncs>()
 

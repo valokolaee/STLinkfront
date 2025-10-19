@@ -22,6 +22,7 @@ export default () => {
             <Box card>
                 <Wallet />
             </Box>
+            
             <Box card>
                 <Withdraw />
             </Box>
