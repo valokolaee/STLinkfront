@@ -4,6 +4,7 @@ import React from 'react';
 import Devices from './devices';
 import CWhiteLabel from '../../components/ui/CWhiteLabel';
 import Withdraw from './withdraw';
+import Wallet from './wallet';
 
 const App: React.FC = () => {
 
@@ -16,7 +17,7 @@ const App: React.FC = () => {
         {
             label: <CWhiteLabel txt='wallets' />,
             key: '2',
-            children: <Devices />,
+            children: <Wallet />,
 
         },
         {
