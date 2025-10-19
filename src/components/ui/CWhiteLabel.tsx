@@ -1,0 +1,1 @@
+export default ({txt }:{txt?:string}) => <label style={{ color: "white" }}>{txt}</label>

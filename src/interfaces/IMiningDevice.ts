@@ -1,4 +1,4 @@
-export default interface MiningDevice   {
+export default interface IMiningDevice   {
     id?: number;
     userId?: number;
     deviceName?: string;

@@ -73,7 +73,7 @@ const FormDisabledDemo: React.FC = () => {
 
       <Form
         name="Register"
-
+        preserve={false} 
         onFinish={onFinish}
         onFinishFailed={onFinishFailed}
         labelCol={{ span: 5 }}
