@@ -1,6 +1,6 @@
 export default interface IMiningWallet   {
    id?: number;
-   userId: number;
+   userId?: number;
    totalEarnings?: number;
    withdrawnAmount?: number;
    availableBalance?: number;

@@ -16,16 +16,18 @@ export default () => {
     } else {
 
         return <Flex>
+
             <Box card>
                 <Devices />
             </Box>
+            
             <Box card>
                 <Wallet />
             </Box>
-            
-            <Box card>
+
+            {/* <Box card>
                 <Withdraw />
-            </Box>
+            </Box> */}
 
         </Flex>
     }

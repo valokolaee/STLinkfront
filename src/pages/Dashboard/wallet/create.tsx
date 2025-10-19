@@ -10,17 +10,20 @@ import { miningDevices, miningWallet } from '../../../webService/ApiUrls/apis';
 import IDeviceReqRes from '../../../webService/ApiUrls/apis/IDeviceApi';
 import CWhiteLabel from '../../../components/ui/CWhiteLabel';
 import IMiningWallet from '../../../interfaces/IMiningWallet';
+import { useAppSelector } from '../../../redux/hooks';
 
 export default ({ onSucceed }: { onSucceed?: (res: any) => void }) => {
   const refWebService = useRef<IWebServiceFuncs>()
+  const _savedUser = useAppSelector((s) => s.userSlice)
 
 
   interface FieldType extends IMiningWallet {
   };
 
   const onFinish: FormProps<FieldType>['onFinish'] = async (values) => {
-    const res = await refWebService?.current?.callApi<IDeviceReqRes['create']['res']>(miningWallet.create(values as IMiningWallet ))
-   
+    values = { userId: _savedUser.id!, ...values }
+    const res = await refWebService?.current?.callApi<IDeviceReqRes['create']['res']>(miningWallet.create(values as IMiningWallet))
+
     if (res?.success) {
       onSucceed!(res.data)
     } else {
@@ -34,8 +37,8 @@ export default ({ onSucceed }: { onSucceed?: (res: any) => void }) => {
 
   return (
     <div>
- 
-      <h2 className='text-white' >Add Mining Device</h2>
+
+      <h2 className='text-white' >Add Mining Wallet</h2>
 
       <Form
         name="createDevice"
@@ -49,50 +52,24 @@ export default ({ onSucceed }: { onSucceed?: (res: any) => void }) => {
       >
 
         <Form.Item
-          label={<CWhiteLabel txt='Name' />}
-          name="deviceName"
+          label={<CWhiteLabel txt='Address' />}
+          name="walletAddress"
           rules={[
             {
               required: true,
-              message: 'Please input your Device Name!',
+              message: 'Please input your Wallet Address!',
             }]}
         >
           <Input />
         </Form.Item>
-
         <Form.Item
-          label={<CWhiteLabel txt='IMEI' />}
+          label={<CWhiteLabel txt='currency' />}
+          name="currency"
 
-          name="imei"
-          rules={[
-            {
-              required: true,
-              message: 'Please input IMEI!',
-            }]}
         >
           <Input />
         </Form.Item>
 
-        <Form.Item
-          label={<CWhiteLabel txt='Model' />}
-          name="deviceModel"
-          rules={[
-            {
-              required: true,
-              message: 'Please input Model!',
-            }]}
-        // hasFeedback
-        >
-          <Input />
-        </Form.Item>
-
-        <Form.Item
-          name="serialNumber"
-          label={<CWhiteLabel txt='Serial Number' />}
-        // hasFeedback
-        >
-          <Input />
-        </Form.Item>
 
         <Form.Item label={null} className='none'>
           <CButton title='Submit' />

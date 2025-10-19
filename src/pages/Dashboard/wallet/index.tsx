@@ -14,7 +14,7 @@ import IMiningWallet from "../../../interfaces/IMiningWallet"
 export default () => {
     const refWebService = useRef<IWebServiceFuncs>()
     const _savedUser = useAppSelector((s) => s.userSlice)
-    const [_devices, set_devices] = useState<IMiningDevice[]>([])
+    const [_devices, set_devices] = useState<IMiningWallet[]>([])
     const [_open, set_open] = useState<boolean>(false)
 
     const _loadWallets = async () => {
@@ -37,7 +37,7 @@ export default () => {
         set_open(true)
     }
 
-    const _newCreated = (nd: IMiningDevice) => {
+    const _newCreated = (nd: IMiningWallet) => {
         set_devices([nd, ..._devices])
         _hide()
     }
@@ -49,7 +49,7 @@ export default () => {
                     <Create onSucceed={_newCreated}/>
                 </CModal>}
                 <div className="m-3 w-full bg-gray-500 p-2 rounded-lg">
-                    {`${_devices?.length} devices`}
+                    {`${_devices?.length} wallets`}
                 </div>
             </Flex>
             {_devices?.map((item) => <Item {...item} key={item.id} />)}
