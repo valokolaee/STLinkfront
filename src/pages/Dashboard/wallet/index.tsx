@@ -44,7 +44,7 @@ export default () => {
     return (
         <div className="w-full">
             <Flex className="w-full">
-                <PlusCircleOutlined style={{ fontSize: '200%' }} onClick={_show} />
+                <PlusCircleOutlined style={{ fontSize: '200%', color: 'white' }} onClick={_show} />
                 {_open && <CModal onClose={_hide} open>
                     <Create onSucceed={_newCreated}/>
                 </CModal>}

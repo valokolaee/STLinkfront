@@ -17,17 +17,17 @@ export default () => {
 
         return <Flex>
 
-            <Box card>
+            {/* <Box card>
                 <Devices />
-            </Box>
+            </Box> */}
             
             <Box card>
                 <Wallet />
             </Box>
 
-            {/* <Box card>
+            <Box card>
                 <Withdraw />
-            </Box> */}
+            </Box>
 
         </Flex>
     }

@@ -28,7 +28,7 @@ const App: React.FC = () => {
     ]
     return (
         <Tabs
-            defaultActiveKey="2"
+            defaultActiveKey="1"
             centered
 
             color='white'

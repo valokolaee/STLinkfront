@@ -10,15 +10,16 @@ import { miningDevices, withdrawalRequest } from "../../../webService/ApiUrls/ap
 import Item from "./item"
 import IReqRes from "../../../webService/ApiUrls/apis/IReqRes"
 import IMiningWallet from "../../../interfaces/IMiningWallet"
+import IWithdrawalRequest from "../../../interfaces/IWithdrawalRequest"
 
 export default () => {
     const refWebService = useRef<IWebServiceFuncs>()
     const _savedUser = useAppSelector((s) => s.userSlice)
-    const [_devices, set_devices] = useState<IMiningDevice[]>([])
+    const [_devices, set_devices] = useState<IWithdrawalRequest[]>([])
     const [_open, set_open] = useState<boolean>(false)
 
     const _loadWallets = async () => {
-        const res = await refWebService?.current?.callApi<IReqRes<IMiningWallet>['getAllBy']['res']>(withdrawalRequest.getAllBy({ userId: _savedUser.id! }))
+        const res = await refWebService?.current?.callApi<IReqRes<IWithdrawalRequest>['getAllBy']['res']>(withdrawalRequest.getAllBy({ userId: _savedUser.id! }))
         if (res?.success) {
             set_devices(res?.data!)
         }
@@ -37,19 +38,19 @@ export default () => {
         set_open(true)
     }
 
-    const _newCreated = (nd: IMiningDevice) => {
+    const _newCreated = (nd: IWithdrawalRequest) => {
         set_devices([nd, ..._devices])
         _hide()
     }
     return (
         <div className="w-full">
             <Flex className="w-full">
-                <PlusCircleOutlined style={{ fontSize: '200%' }} onClick={_show} />
+                <PlusCircleOutlined style={{ fontSize: '200%', color: 'white' }} onClick={_show} />
                 {_open && <CModal onClose={_hide} open>
                     <Create onSucceed={_newCreated}/>
                 </CModal>}
                 <div className="m-3 w-full bg-gray-500 p-2 rounded-lg">
-                    {`${_devices?.length} devices`}
+                    {`${_devices?.length} withdraws`}
                 </div>
             </Flex>
             {_devices?.map((item) => <Item {...item} key={item.id} />)}
