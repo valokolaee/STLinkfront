@@ -19,7 +19,7 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
         </main>
       </div>
 
-      <MobileNav />
+      {/* <MobileNav /> */}
     </div>
   );
 };

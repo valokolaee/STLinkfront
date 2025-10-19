@@ -9,10 +9,9 @@ export default (res: AxiosResponse) => {
         case 200:
         case 201:
             return { success: true, data }
-        
+
         default:
-             return { success: false, error: data?.message, }
-             
+            return { success: false, error: data?.message, }
     }
 }
 

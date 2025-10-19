@@ -5,9 +5,7 @@ import Box from './Box';
 import ContentBox from './ContentBox';
 import svgList from '../../../../assets/icons/svgList';
 
-
-
-const Row1: React.FC = () => (
+export default ({totalEarning,currency  }:   IR1 ) => (
 
 
     <RowFrame
@@ -16,7 +14,7 @@ const Row1: React.FC = () => (
                 <ContentBox
                     fontSize={6}
                     color={{ name: 'green', num: 500 }}
-                    title='Local Uptime' value={'1.66 days'} />
+                    title='Local Uptime' value={`${ (parseFloat(( totalEarning||0.00).toString())).toFixed(2)} ${currency||''}`} />
             </Box>,
             <Box flex={2} card>
                 <ContentBox
@@ -122,6 +120,7 @@ const Row1: React.FC = () => (
 
 
 );
-
-export default Row1;
-
+export interface IR1{
+    totalEarning?: number;
+    currency?:string
+}

@@ -7,9 +7,8 @@ import Devices from "./devices"
 import Wallet from "./wallet"
 import Withdraw from "./withdraw"
 
-
 export default () => {
-    const _isMobile = useIsMobile();
+    const _isMobile = useIsMobile(900);
 
     if (_isMobile) {
         return <Mobile />
@@ -17,10 +16,10 @@ export default () => {
 
         return <Flex>
 
-            {/* <Box card>
+            <Box card>
                 <Devices />
-            </Box> */}
-            
+            </Box>
+
             <Box card>
                 <Wallet />
             </Box>

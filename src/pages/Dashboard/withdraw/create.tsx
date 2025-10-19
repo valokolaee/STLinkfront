@@ -12,11 +12,6 @@ import CWhiteLabel from '../../../components/ui/CWhiteLabel';
 import IWithdrawalRequest from '../../../interfaces/IWithdrawalRequest';
 import IReqRes from '../../../webService/ApiUrls/apis/IReqRes';
 
-
-
-
-
-
 export default ({ onSucceed }: { onSucceed?: (res: any) => void }) => {
   const refWebService = useRef<IWebServiceFuncs>()
 
@@ -37,6 +32,9 @@ export default ({ onSucceed }: { onSucceed?: (res: any) => void }) => {
   const onFinishFailed: FormProps<FieldType>['onFinishFailed'] = (errorInfo) => {
     console.log('Failed:', errorInfo);
   };
+
+  
+  // TODO list of wallets
 
   return (
     <div>

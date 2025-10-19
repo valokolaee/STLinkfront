@@ -1,7 +1,5 @@
-// src/pages/Login.tsx
 import { useRef } from "react";
 import { useNavigate } from "react-router-dom";
-
 import type { FormProps } from 'antd';
 import { Checkbox, Form, Input } from 'antd';
 import CButton from '../components/ui/CButton';
@@ -12,7 +10,7 @@ import IWithdrawalRequest from "../interfaces/IWithdrawalRequest";
 import { setUser, setUserAvatar } from "../redux/actions";
 import { useAppSelector } from "../redux/hooks";
 import WebService, { IWebServiceFuncs } from "../webService";
-import apis, { deviceAlertRequest, deviceSpecificationRequest, miningSessionRequest, permissionRequest, rolePermissionRequest, roleRequest, userSessionRequest } from "../webService/ApiUrls/apis";
+import apis, { deviceAlertRequest, deviceSpecificationRequest, miningSession, permission, rolePermissionRequest, roleRequest, userSessionRequest } from "../webService/ApiUrls/apis";
 import ILoginReq, { ILoginRes } from "../webService/ApiUrls/apis/ILogin";
 import IReqRes from "../webService/ApiUrls/apis/IReqRes";
 const Login = () => {
@@ -39,20 +37,18 @@ const Login = () => {
 
       setUser(u)
       setUserAvatar(u.profileImage + '?a=' + new Date())
-      // navigate('/')
+      navigate('/')
     }
   };
 
 
-  // useEffect(() => {
-  //   _try()
-  // }, [])
+
 
   const _try = async () => {
     await refWebService?.current?.callApi<IReqRes<IWithdrawalRequest>['getOneByID']['res']>(deviceAlertRequest.getAll())
     await refWebService?.current?.callApi<IReqRes<IWithdrawalRequest>['getOneByID']['res']>(deviceSpecificationRequest.getAll())
-    await refWebService?.current?.callApi<IReqRes<IWithdrawalRequest>['getOneByID']['res']>(miningSessionRequest.getAll())
-    await refWebService?.current?.callApi<IReqRes<IWithdrawalRequest>['getOneByID']['res']>(permissionRequest.getAll())
+    await refWebService?.current?.callApi<IReqRes<IWithdrawalRequest>['getOneByID']['res']>(miningSession.getAll())
+    await refWebService?.current?.callApi<IReqRes<IWithdrawalRequest>['getOneByID']['res']>(permission.getAll())
     await refWebService?.current?.callApi<IReqRes<IWithdrawalRequest>['getOneByID']['res']>(rolePermissionRequest.getAll())
     await refWebService?.current?.callApi<IReqRes<IWithdrawalRequest>['getOneByID']['res']>(roleRequest.getAll())
     await refWebService?.current?.callApi<IReqRes<IWithdrawalRequest>['getOneByID']['res']>(userSessionRequest.getAll())
@@ -173,10 +169,3 @@ const Login = () => {
 };
 
 export default Login;
-
-
-
-
-
-
-

@@ -1,7 +1,7 @@
 import { Card, Flex } from "antd";
 import IMiningDevice from "../../../interfaces/IMiningDevice";
 
-export default ({ createdAt, deviceModel, deviceName, firmwareVersion, imei, status, totalRevenue }: IMiningDevice) => <Card title={<Flex justify="space-between">
+export default ({ createdAt, deviceModel, deviceName, firmwareVersion, imei, status, totalRevenue }: IMiningDevice) => <Card  title={<Flex justify="space-between">
     {deviceName}
     <div className={status==='active'? "bg-green-500 rounded-full text-white px-2":''}>
 

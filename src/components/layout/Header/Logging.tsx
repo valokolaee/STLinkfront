@@ -6,6 +6,7 @@ import { useNavigate } from 'react-router-dom';
 import { useAppSelector } from '../../../redux/hooks';
 import CAvatar from '../../ui/CAvatar';
 import { Dashboard, DashboardOutlined } from '@mui/icons-material';
+import { setUser } from '../../../redux/actions';
 
 
 
@@ -13,14 +14,20 @@ const Logging: React.FC = () => {
     const _user = useAppSelector((s) => s.userSlice)
     const navigate = useNavigate();
 
-    const _login = () => { navigate('/login') }
+    const _login = () => {
+        setUser({ token: 'ljsfhhfhiuhgihugihgihhhfiuvhfiuhvfhvhfvhh' })
+
+        navigate('/login')
+    }
     const _dashboard = () => { navigate('/dashboard') }
 
     const _profile = () => { navigate('/profile') }
 
     const _register = () => { navigate('/register') }
 
-    const _logOut = () => { _login() }
+    const _logOut = () => {
+        _login()
+    }
 
 
 
@@ -29,13 +36,13 @@ const Logging: React.FC = () => {
         label: 'login',
         icon: <LoginOutlined />,
         onClick: _login,
-        extra: '⌘S',
+        // extra: '⌘S',
     } : {
         key: '4',
         label: 'switch user',
         icon: <LogoutOutlined />,
         onClick: _logOut,
-        extra: '⌘S',
+        // extra: '⌘S',
     }
 
 

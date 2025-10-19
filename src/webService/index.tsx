@@ -32,26 +32,17 @@ export default React.forwardRef(({ className, size = 30, donTShowSpin, }: IWebSe
     });
   };
   const [showModal, setShowModal] = useState<ModelApi | undefined>(undefined);
-  // const [_prog, set_prog] = useState<BarPropTypes>({})
-
+ 
   config = {
     headers: {
       Authorization: `Bearer ${token}`,
-      // "Content-Type": "multipart/form-data"
-    },
+     },
 
     beforeRedirect(options, responseDetails) {
 
     },
 
-    // onDownloadProgress(progressEvent) {
-    //   const progress = Math.round((progressEvent.loaded * 100) / progressEvent.total);
-    //   set_prog({ progress })
-    // },
-    // onUploadProgress(progressEvent) {
-    //   const progress = Math.round((progressEvent.loaded * 100) / progressEvent.total);
-    //   set_prog({ progress })
-    // },
+   
   }
 
 

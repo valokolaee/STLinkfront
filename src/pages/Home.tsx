@@ -1,19 +1,10 @@
-// src/pages/Home.tsx
 import React from "react";
-import Features from "../components/ui/Features";
-import Hero from "../components/ui/Hero";
 import Skeleton from "./monitoring/components/Skeleton/Skeleton";
 
 const Home: React.FC = () => {
-  // setUser({id:-1,token:''})
-  return (
-    <Skeleton />
-    // <div> {/* without any style*/}
-    //   {/* <>{apis.users.user({userId:1}).folderUrl }</> */}
-    //    <Hero />
-    //   <Features />
-    // </div>
-  );
+
+ 
+  return (<Skeleton />);
 };
 
 export default Home;
