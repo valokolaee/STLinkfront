@@ -13,31 +13,30 @@ import { useAppSelector } from '../../../../redux/hooks';
 import IMiningWallet from '../../../../interfaces/IMiningWallet';
 
 
+var _interV = setInterval(async () => {
 
+}, 3000);
 const Skeleton: React.FC = () => {
     const refWebService = useRef<IWebServiceFuncs>()
     const _savedUser = useAppSelector((s) => s.userSlice)
-    const [_session, set_session] = useState<IMiningSession | undefined>(undefined)
-    const [_data, set_data] = useState<IR1>({currency:'',totalEarning:0})
-
-    useEffect(() => {
-        _createEarning()
-    }, [_session])
+    const [_data, set_data] = useState<IR1>({ currency: '', totalEarning: 0 })
 
 
 
-    const _createEarning = async () => {
 
-        setInterval(async () => {
+
+    const _createEarning = async (_session: IMiningSession) => {
+
+        _interV = setInterval(async () => {
 
             await refWebService.current?.callApi<IReqRes<IMiningSession>['create']['res']>(apis.deviceEarnings.create({
-                amount:Math.random(), currency: 'cbt', deviceId: _session?.deviceId!, isSettled: true, userId: _savedUser.id!,miningSessionId:_session?.id
+                amount: Math.random(), currency: 'cbt', deviceId: _session?.deviceId!, isSettled: true, userId: _savedUser.id!, miningSessionId: _session?.id
             }))
 
             const res = await refWebService.current?.callApi<IReqRes<IMiningWallet>['getOneByID']['res']>(apis.miningWallet.getOneByID(1))
 
             if (res?.success) {
-                set_data({totalEarning:res.data?.availableBalance,currency:res.data?.currency})
+                set_data({ totalEarning: res.data?.availableBalance, currency: res.data?.currency })
             }
         }, 2000);
     }
@@ -45,18 +44,21 @@ const Skeleton: React.FC = () => {
 
 
     useEffect(() => {
-        if (_session) {
-            _newSession()
-        }
+
+        _newSession()
+
     }, [])
 
 
 
     const _newSession = async () => {
-        const res = await refWebService.current?.callApi<IReqRes<IMiningSession>['create']['res']>(apis.miningSession.create({deviceId:1,}))
-       
+        clearInterval(_interV)
+        const res = await refWebService.current?.callApi<IReqRes<IMiningSession>['create']['res']>(apis.miningSession.create({ deviceId: 1, }))
+        console.log(res);
+
         if (res?.success) {
-            set_session(res.data)
+            // set_session(res.data)
+            _createEarning(res.data!)
         }
     }
 
@@ -67,7 +69,7 @@ const Skeleton: React.FC = () => {
             <Row1  {..._data} />
             <Row2 />
             <Row3 />
-            <WebService ref={refWebService} donTShowSpin/>
+            <WebService ref={refWebService} donTShowSpin />
         </Flex>
     );
 }
