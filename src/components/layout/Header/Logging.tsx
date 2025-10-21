@@ -15,7 +15,7 @@ const Logging: React.FC = () => {
     const navigate = useNavigate();
 
     const _login = () => {
-        setUser({ token: 'ljsfhhfhiuhgihugihgihhhfiuvhfiuhvfhvhfvhh' })
+        // setUser({ token: 'ljsfhhfhiuhgihugihgihhhfiuvhfiuhvfhvhfvhh' })
 
         navigate('/login')
     }
@@ -48,12 +48,12 @@ const Logging: React.FC = () => {
 
 
     const items: MenuProps['items'] = [
-        {
-            key: '1',
-            label: _user.username || '',
-            onClick: _profile,
-            icon: <UserOutlined />,
-        },
+        // {
+        //     key: '1',
+        //     label: _user.username || '',
+        //     onClick: _profile,
+        //     icon: <UserOutlined />,
+        // },
         {
             key: '2',
             label: 'dashboard',
@@ -79,6 +79,7 @@ const Logging: React.FC = () => {
     return (
         <Dropdown menu={{ items }} >
             <Space>
+                {_user.username || ''}
                 <CAvatar url={_user.profileImage!} />
             </Space>
         </Dropdown>

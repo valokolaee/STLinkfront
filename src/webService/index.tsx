@@ -31,18 +31,24 @@ export default React.forwardRef(({ className, size = 30, donTShowSpin, }: IWebSe
       content
     });
   };
+  const sec = (content: string) => {
+    messageApi.open({
+      type: 'success',
+      content
+    });
+  };
   const [showModal, setShowModal] = useState<ModelApi | undefined>(undefined);
- 
+
   config = {
     headers: {
       Authorization: `Bearer ${token}`,
-     },
+    },
 
     beforeRedirect(options, responseDetails) {
 
     },
 
-   
+
   }
 
 
@@ -62,10 +68,13 @@ export default React.forwardRef(({ className, size = 30, donTShowSpin, }: IWebSe
     const _res = result(res);
 
     if (_res?.success) {
+      if (res.message) {
+
+      }
       return _res?.data
     } else {
       error(_res?.error || 'error')
-     }
+    }
 
   }
 

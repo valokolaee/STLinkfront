@@ -5,17 +5,17 @@ import { tstStyle, tstStyleBlue } from '../../../../styles/tstStyle';
 
 
 
-const Box: React.FC<IBox> = ({ flex = 1, children, vertical, card  }) => {
+const Box: React.FC<IBox> = ({ flex = 1, children, vertical, card,onClick }) => {
 
     const cardStyle = card ? style : {}
 
     return (
         <Flex
-            // wrap='wrap'
+            onClick={onClick}
             vertical={vertical}
             style={{ ...cardStyle }}
             flex={flex}
-            className={!card?'':'bg-gray-800'}
+            className={!card ? '' : 'bg-gray-800 overflow-hidden '}
         >
             {children}
         </Flex >
@@ -29,7 +29,8 @@ export interface IBox {
     flex?: number;
     vertical?: boolean;
     card?: boolean;
- 
+    onClick?: () => void
+
 }
 
 
@@ -40,6 +41,7 @@ const style: React.CSSProperties = {
     borderRadius: 5,
     marginBottom: 5,
     marginRight: 5,
+
     // ...tstStyle,
     // backgroundColor: 'rgba(0,0,0,0.3)',
 }

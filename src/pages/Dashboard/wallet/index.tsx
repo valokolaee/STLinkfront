@@ -6,7 +6,7 @@ import IMiningDevice from "../../../interfaces/IMiningDevice"
 import { useAppSelector } from "../../../redux/hooks"
 import WebService, { IWebServiceFuncs } from "../../../webService"
 import { miningDevices, miningWallet } from "../../../webService/ApiUrls/apis"
- import Create from "./create"
+import Create from "./create"
 import Item from "./item"
 import IReqRes from "../../../webService/ApiUrls/apis/IReqRes"
 import IMiningWallet from "../../../interfaces/IMiningWallet"
@@ -44,10 +44,10 @@ export default () => {
     return (
         <div className="w-full">
             <Flex className="w-full">
-                <PlusCircleOutlined style={{ fontSize: '200%', color: 'white' }} onClick={_show} />
-                {_open && <CModal onClose={_hide} open>
-                    <Create onSucceed={_newCreated}/>
-                </CModal>}
+
+                <CModal onClose={_hide} btn={<PlusCircleOutlined style={{ fontSize: '200%', color: 'white' }} onClick={_show} />}>
+                    <Create onSucceed={_newCreated} />
+                </CModal>
                 <div className="m-3 w-full bg-gray-500 p-2 rounded-lg">
                     {`${_devices?.length} wallets`}
                 </div>

@@ -13,7 +13,7 @@ const Hero = () => {
           data-aos="fade-up"
           className="bg-gradient-to-br from-gold via-bronze to-gold bg-clip-text text-4xl font-extrabold text-transparent sm:text-5xl md:text-6xl lg:text-7xl leading-tight"
         >
-          Welcome to BTX
+          Welcome to stLik
           <br />
           The Future of Financial Pools
         </h1>

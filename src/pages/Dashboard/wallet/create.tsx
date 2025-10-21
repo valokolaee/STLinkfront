@@ -52,7 +52,7 @@ export default ({ onSucceed }: { onSucceed?: (res: any) => void }) => {
       >
 
         <Form.Item
-          label={<CWhiteLabel txt='Address' />}
+          label= 'Address'  
           name="walletAddress"
           rules={[
             {
@@ -63,7 +63,7 @@ export default ({ onSucceed }: { onSucceed?: (res: any) => void }) => {
           <Input />
         </Form.Item>
         <Form.Item
-          label={<CWhiteLabel txt='currency' />}
+          label= 'currency' 
           name="currency"
 
         >

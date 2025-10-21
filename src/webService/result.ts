@@ -8,7 +8,7 @@ export default (res: AxiosResponse) => {
     switch (status) {
         case 200:
         case 201:
-            return { success: true, data }
+            return { success: true, data, message: data?.message, }
 
         default:
             return { success: false, error: data?.message, }

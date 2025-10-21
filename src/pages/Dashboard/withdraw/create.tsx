@@ -20,8 +20,8 @@ export default ({ onSucceed }: { onSucceed?: (res: any) => void }) => {
   };
 
   const onFinish: FormProps<FieldType>['onFinish'] = async (values) => {
-    const res = await refWebService?.current?.callApi<IDeviceReqRes['create']['res']>(withdrawalRequest.create(values as  IWithdrawalRequest ))
-   
+    const res = await refWebService?.current?.callApi<IDeviceReqRes['create']['res']>(withdrawalRequest.create(values as IWithdrawalRequest))
+
     if (res?.success) {
       onSucceed!(res.data)
     } else {
@@ -33,12 +33,12 @@ export default ({ onSucceed }: { onSucceed?: (res: any) => void }) => {
     console.log('Failed:', errorInfo);
   };
 
-  
+
   // TODO list of wallets
 
   return (
     <div>
- 
+
       <h2 className='text-white' >Add Mining Device</h2>
 
       <Form
@@ -53,7 +53,7 @@ export default ({ onSucceed }: { onSucceed?: (res: any) => void }) => {
       >
 
         <Form.Item
-          label={<CWhiteLabel txt='amount' />}
+          label='amount'
           name="amount"
           rules={[
             {
@@ -65,7 +65,7 @@ export default ({ onSucceed }: { onSucceed?: (res: any) => void }) => {
         </Form.Item>
 
         <Form.Item
-          label={<CWhiteLabel txt='currency' />}
+          label='currency'
 
           name="currency"
           rules={[
@@ -78,18 +78,18 @@ export default ({ onSucceed }: { onSucceed?: (res: any) => void }) => {
         </Form.Item>
 
         <Form.Item
-          label={<CWhiteLabel txt='walletAddress' />}
+          label='walletAddress'
           name="walletAddress"
           rules={[
             {
               required: true,
               message: 'Please input walletAddress!',
             }]}
-         >
+        >
           <Input />
         </Form.Item>
 
- 
+
 
         <Form.Item label={null} className='none'>
           <CButton title='Submit' />

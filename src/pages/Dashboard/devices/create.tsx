@@ -48,7 +48,7 @@ export default ({ onSucceed }: { onSucceed?: (res: any) => void }) => {
       >
 
         <Form.Item
-          label={<CWhiteLabel txt='Name' />}
+          label= 'Name'  
           name="deviceName"
           rules={[
             {
@@ -60,7 +60,7 @@ export default ({ onSucceed }: { onSucceed?: (res: any) => void }) => {
         </Form.Item>
 
         <Form.Item
-          label={<CWhiteLabel txt='IMEI' />}
+          label= 'IMEI'  
 
           name="imei"
           rules={[
@@ -73,7 +73,7 @@ export default ({ onSucceed }: { onSucceed?: (res: any) => void }) => {
         </Form.Item>
 
         <Form.Item
-          label={<CWhiteLabel txt='Model' />}
+          label= 'Model' 
           name="deviceModel"
           rules={[
             {
@@ -87,7 +87,7 @@ export default ({ onSucceed }: { onSucceed?: (res: any) => void }) => {
 
         <Form.Item
           name="serialNumber"
-          label={<CWhiteLabel txt='Serial Number' />}
+          label= 'Serial Number' 
         // hasFeedback
         >
           <Input />

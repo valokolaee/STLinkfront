@@ -2,6 +2,7 @@
 export default interface IDeviceEarning {
     id?: number;
     deviceId: number;
+   walletId?: number;
     miningSessionId?: number | null;
     amount: number;
     currency: string;

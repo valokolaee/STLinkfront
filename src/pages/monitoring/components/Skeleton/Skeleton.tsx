@@ -13,60 +13,15 @@ import { useAppSelector } from '../../../../redux/hooks';
 import IMiningWallet from '../../../../interfaces/IMiningWallet';
 
 
-var _interV = setInterval(async () => {
 
-}, 3000);
 const Skeleton: React.FC = () => {
     const refWebService = useRef<IWebServiceFuncs>()
     const _savedUser = useAppSelector((s) => s.userSlice)
-    const [_data, set_data] = useState<IR1>({ currency: '', totalEarning: 0 })
-
-
-
-
-
-    const _createEarning = async (_session: IMiningSession) => {
-
-        _interV = setInterval(async () => {
-
-            await refWebService.current?.callApi<IReqRes<IMiningSession>['create']['res']>(apis.deviceEarnings.create({
-                amount: Math.random(), currency: 'cbt', deviceId: _session?.deviceId!, isSettled: true, userId: _savedUser.id!, miningSessionId: _session?.id
-            }))
-
-            const res = await refWebService.current?.callApi<IReqRes<IMiningWallet>['getOneByID']['res']>(apis.miningWallet.getOneByID(1))
-
-            if (res?.success) {
-                set_data({ totalEarning: res.data?.availableBalance, currency: res.data?.currency })
-            }
-        }, 2000);
-    }
-
-
-
-    useEffect(() => {
-
-        _newSession()
-
-    }, [])
-
-
-
-    const _newSession = async () => {
-        clearInterval(_interV)
-        const res = await refWebService.current?.callApi<IReqRes<IMiningSession>['create']['res']>(apis.miningSession.create({ deviceId: 1, }))
-        console.log(res);
-
-        if (res?.success) {
-            // set_session(res.data)
-            _createEarning(res.data!)
-        }
-    }
-
-
+  
 
     return (
         <Flex style={{ margin: 5 }} vertical >
-            <Row1  {..._data} />
+            <Row1  />
             <Row2 />
             <Row3 />
             <WebService ref={refWebService} donTShowSpin />

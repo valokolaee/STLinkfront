@@ -14,8 +14,8 @@ import IMiningWallet from "../../../interfaces/IMiningWallet"
 export default () => {
     const refWebService = useRef<IWebServiceFuncs>()
     const _savedUser = useAppSelector((s) => s.userSlice)
-    const [_devices, set_devices] = useState<IMiningDevice[]>([])
     const [_open, set_open] = useState<boolean>(false)
+    const [_devices, set_devices] = useState<IMiningDevice[]>([])
 
     const _loadWallets = async () => {
         const res = await refWebService?.current?.callApi<IReqRes<IMiningWallet>['getAllBy']['res']>(miningDevices.getAllBy({ userId: _savedUser.id! }))
@@ -44,10 +44,9 @@ export default () => {
     return (
         <div className="w-full">
             <Flex className="w-full">
-                <PlusCircleOutlined style={{ fontSize: '200%', color: 'white' }} onClick={_show} />
-                {_open && <CModal onClose={_hide} open>
+                <CModal onClose={_hide} btn={<PlusCircleOutlined style={{ fontSize: '200%', color: 'white' }} onClick={_show} />}>
                     <Create onSucceed={_newCreated} />
-                </CModal>}
+                </CModal>
                 <div className="m-3 w-full bg-gray-500 p-2 rounded-lg">
                     {`${_devices?.length} devices`}
                 </div>

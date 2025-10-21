@@ -1,6 +1,7 @@
 export default interface IMiningDevice   {
     id?: number;
     userId?: number;
+    walletId?: number;
     deviceName?: string;
     imei?: string;
     deviceModel?: string;
