@@ -3,7 +3,7 @@ import { Tabs } from 'antd';
 import React from 'react';
 import Devices from './devices';
 import CWhiteLabel from '../../components/ui/CWhiteLabel';
-import Withdraw from './withdraw';
+import Withdraw from '../withdraw/list';
 import Wallet from './wallet';
 
 const App: React.FC = () => {

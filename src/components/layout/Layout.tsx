@@ -13,7 +13,7 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
       <div className="flex-1 flex">
         {/* <Sidebar /> */}
 
-        <main className="absolute inset-0 -z-10 bg-gradient-to-br from-black via-gray-900 to-black flex-1   mt-16 ">
+        <main className="absolute inset-0 -z-10 bg-gradient-to-br from-black via-gray-900 to-black flex-1   mt-16 mx-3">
           <StarsSimulation />
           {children}
         </main>

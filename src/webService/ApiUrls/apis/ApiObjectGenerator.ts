@@ -12,6 +12,7 @@ export interface IApiObject<T = any> {
     create: (body: IReqRes<T>['create']['req']) => ModelApi<IReqRes<T>['create']['req']>
     update: (body: IReqRes<T>['update']['req']) => ModelApi<IReqRes<T>['update']['req']>
     delete: (body: IReqRes<T>['delete']['req']) => ModelApi<IReqRes<T>['delete']['req']>
+    deletePermanently: (body: IReqRes<T>['delete']['req']) => ModelApi<IReqRes<T>['delete']['req']>
 
 
 }
@@ -32,6 +33,7 @@ export default <T>(folderUrl: string): IApiObject<T> => {
         create(body) { return { folderUrl, body, axiosType: 'post' } },
         update(body) { return { folderUrl, body, axiosType: 'put' } },
         delete(body) { return { folderUrl, axiosType: 'delete', apiUrl: body } },
+        deletePermanently(body) { return { folderUrl, axiosType: 'delete', apiUrl: body } },
 
 
     }

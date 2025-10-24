@@ -20,7 +20,7 @@ const Skeleton: React.FC = () => {
   
 
     return (
-        <Flex style={{ margin: 5 }} vertical >
+        <Flex  vertical >
             <Row1  />
             <Row2 />
             <Row3 />

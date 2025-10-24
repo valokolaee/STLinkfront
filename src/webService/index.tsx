@@ -22,21 +22,21 @@ export var config: AxiosRequestConfig = {
 export default React.forwardRef(({ className, size = 30, donTShowSpin, }: IWebService, ref) => {
   useImperativeHandle(ref, () => { return { callApi }; });
   const token = useAppSelector((s) => s.userSlice.token)
-  const [messageApi, contextHolder] = message.useMessage();
+  // const [messageApi, contextHolder] = message.useMessage();
 
-  const navigate = useNavigate();
-  const error = (content: string) => {
-    messageApi.open({
-      type: 'error',
-      content
-    });
-  };
-  const sec = (content: string) => {
-    messageApi.open({
-      type: 'success',
-      content
-    });
-  };
+  // const navigate = useNavigate();
+  // const error = (content: string) => {
+  //   messageApi.open({
+  //     type: 'error',
+  //     content
+  //   });
+  // };
+  // const sec = (content: string) => {
+  //   messageApi.open({
+  //     type: 'success',
+  //     content
+  //   });
+  // };
   const [showModal, setShowModal] = useState<ModelApi | undefined>(undefined);
 
   config = {
@@ -54,7 +54,7 @@ export default React.forwardRef(({ className, size = 30, donTShowSpin, }: IWebSe
 
 
   const callApi = async (apiModel: ModelApi) => {
-    // console.log(apiModel?.body);
+    console.log('apiModel?.body');
 
     if (!donTShowSpin) {
       setShowModal(apiModel)
@@ -69,18 +69,17 @@ export default React.forwardRef(({ className, size = 30, donTShowSpin, }: IWebSe
 
     if (_res?.success) {
       if (res.message) {
-
+        message.success(res.message)
       }
       return _res?.data
     } else {
-      error(_res?.error || 'error')
+      message.error(_res?.error || 'error')
     }
 
   }
 
   return (
     <>
-      {contextHolder}
       {showModal &&
         <div className='absolute inset-0 m-auto text-white p-4 w-48 h-24 z-10'>
           <Spin indicator={<LoadingOutlined style={{ fontSize: 100, color: 'gold' }} spin />} />
@@ -95,7 +94,7 @@ export default React.forwardRef(({ className, size = 30, donTShowSpin, }: IWebSe
 
 export interface IWebServiceFuncs {
 
-  callApi<T>(apiModel: ModelApi,): T
+  callApi<T = any>(apiModel: ModelApi,): T
 
 }
 export interface IWebService {

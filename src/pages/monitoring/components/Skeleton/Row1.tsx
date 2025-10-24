@@ -46,7 +46,7 @@ export default () => {
 
             const res = await refWebService.current?.callApi<IReqRes<IMiningWallet>['getOneByID']['res']>(apis.miningWallet.getOneByID(_device.walletId!))
             if (res?.success) {
-                console.log('res', x, res.data);
+                // console.log('res', x, res.data);
 
                 set_data({ totalEarning: res.data?.availableBalance, currency: res.data?.currency })
             }
@@ -59,7 +59,7 @@ export default () => {
     useEffect(() => {
         if (_device.id! > 0) {
 
-            _newSession()
+            // _newSession()
         }
 
     }, [_device])

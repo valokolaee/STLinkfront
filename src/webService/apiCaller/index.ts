@@ -33,7 +33,6 @@ export default async (apiModel: ModelApi,) => {
                 case 'delete':
                     res = await axios.delete(ApiUrlService(apiModel, body), config);
                     break;
-              
                 
             }
         }

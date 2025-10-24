@@ -1,16 +1,14 @@
-import { LoginOutlined, LogoutOutlined, UserOutlined } from '@ant-design/icons';
+import { BilibiliOutlined, LoginOutlined, LogoutOutlined, UserOutlined } from '@ant-design/icons';
 import type { MenuProps } from 'antd';
 import { Dropdown, Space } from 'antd';
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAppSelector } from '../../../redux/hooks';
 import CAvatar from '../../ui/CAvatar';
-import { Dashboard, DashboardOutlined } from '@mui/icons-material';
+import { Dashboard, DashboardOutlined, ReceiptLongOutlined } from '@mui/icons-material';
 import { setUser } from '../../../redux/actions';
 
-
-
-const Logging: React.FC = () => {
+export default () => {
     const _user = useAppSelector((s) => s.userSlice)
     const navigate = useNavigate();
 
@@ -22,6 +20,7 @@ const Logging: React.FC = () => {
     const _dashboard = () => { navigate('/dashboard') }
 
     const _profile = () => { navigate('/profile') }
+    const _withdraw = () => { navigate('/withdraw') }
 
     const _register = () => { navigate('/register') }
 
@@ -48,12 +47,7 @@ const Logging: React.FC = () => {
 
 
     const items: MenuProps['items'] = [
-        // {
-        //     key: '1',
-        //     label: _user.username || '',
-        //     onClick: _profile,
-        //     icon: <UserOutlined />,
-        // },
+
         {
             key: '2',
             label: 'dashboard',
@@ -61,17 +55,23 @@ const Logging: React.FC = () => {
             icon: <DashboardOutlined />,
         },
         {
+            key: '1',
+            label: 'withdraw',
+            onClick: _withdraw,
+            icon: <ReceiptLongOutlined />,
+        },
+        {
             type: 'divider',
         },
         {
             key: '2',
             label: 'Profile',
-             onClick: _profile
+            onClick: _profile
         },
         {
             key: '3',
             label: 'Register',
-             onClick: _register
+            onClick: _register
         },
         _log
 
@@ -85,4 +85,3 @@ const Logging: React.FC = () => {
         </Dropdown>
     );
 }
-export default Logging;

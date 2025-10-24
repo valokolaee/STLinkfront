@@ -1,12 +1,10 @@
 import { Flex } from "antd"
-
 import Box from "../monitoring/components/Skeleton/Box"
 import useIsMobile from "../../hooks/useIsMobile"
 import Mobile from "./mobile"
 import Devices from "./devices"
 import Wallet from "./wallet"
-import Withdraw from "./withdraw"
-
+ 
 export default () => {
     const _isMobile = useIsMobile(900);
 
@@ -24,9 +22,7 @@ export default () => {
                 <Wallet />
             </Box>
 
-            <Box card>
-                <Withdraw />
-            </Box>
+         
 
         </Flex>
     }
