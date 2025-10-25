@@ -26,16 +26,19 @@ export default () => {
 
 
     const _add = (nd: IWithdrawalRequest) => { set_devices([nd, ..._devices]) }
-    const _update = (nd: IWithdrawalRequest) => { 
+
+    const _update = (nd: IWithdrawalRequest) => {
         const updated = _devices.map(d =>
             d.id === nd.id ? nd : d
         );
         set_devices(updated)
 
-    //     const _filtered = _devices.findIndex(d => d.id === nd.id)
-    // console.log(_filtered);
-    
+        //     const _filtered = _devices.findIndex(d => d.id === nd.id)
+        // console.log(_filtered);
+
     }
+
+    
     const _delete = (nd: IWithdrawalRequest) => { set_devices([nd, ..._devices]) }
 
 
@@ -58,11 +61,7 @@ export default () => {
     }
     return (
         <div className="w-full ">
-            {/* <Flex className="w-full" vertical>
-                <div className="m-3 bg-gray-500 p-2 rounded-lg">
-                    {`${_devices?.length} withdraws`}
-                </div>
-            </Flex> */}
+     
             <Create onSucceed={_succeedCallback} />
             {_devices?.map((item) => <Item wr={item} key={item.id} onSucceed={_succeedCallback} />)}
             <WebService ref={refWebService} />

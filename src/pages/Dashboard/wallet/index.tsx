@@ -2,23 +2,22 @@ import { PlusCircleOutlined } from "@ant-design/icons"
 import { Flex } from "antd"
 import { useEffect, useRef, useState } from "react"
 import CModal from "../../../components/ui/CModal"
-import IMiningDevice from "../../../interfaces/IMiningDevice"
+import IUserWallet from "../../../interfaces/IUserWallet"
 import { useAppSelector } from "../../../redux/hooks"
 import WebService, { IWebServiceFuncs } from "../../../webService"
-import { miningDevices, miningWallet } from "../../../webService/ApiUrls/apis"
+import { userWallet } from "../../../webService/ApiUrls/apis"
+import IReqRes from "../../../webService/ApiUrls/apis/IReqRes"
 import Create from "./create"
 import Item from "./item"
-import IReqRes from "../../../webService/ApiUrls/apis/IReqRes"
-import IMiningWallet from "../../../interfaces/IMiningWallet"
 
 export default () => {
     const refWebService = useRef<IWebServiceFuncs>()
     const _savedUser = useAppSelector((s) => s.userSlice)
-    const [_devices, set_devices] = useState<IMiningWallet[]>([])
+    const [_devices, set_devices] = useState<IUserWallet[]>([])
     const [_open, set_open] = useState<boolean>(false)
 
     const _loadWallets = async () => {
-        const res = await refWebService?.current?.callApi<IReqRes<IMiningWallet>['getAllBy']['res']>(miningWallet.getAllBy({ userId: _savedUser.id! }))
+        const res = await refWebService?.current?.callApi<IReqRes<IUserWallet>['getAllBy']['res']>(userWallet.getAllBy({ userId: _savedUser.id! }))
         if (res?.success) {
             set_devices(res?.data!)
         }
@@ -37,7 +36,7 @@ export default () => {
         set_open(true)
     }
 
-    const _newCreated = (nd: IMiningWallet) => {
+    const _newCreated = (nd: IUserWallet) => {
         set_devices([nd, ..._devices])
         _hide()
     }

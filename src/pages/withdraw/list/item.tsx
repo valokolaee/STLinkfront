@@ -11,19 +11,20 @@ import StatusTag from "./StatusTag";
 import IResponse from "../../../webService/ApiUrls/apis/IResponse";
 
 export default ({ onSucceed, wr }: ICreateWithdrawProps) => {
-     const { id, amount, currency, walletAddress, requestedAt, softDeleted } = wr || {};
+     const { id, amount, currency, miningWalletAddress, userWalletAddress, requestedAt, softDeleted } = wr || {};
      const refWebService = useRef<IWebServiceFuncs>()
      const [_editMode, _set_editMode] = useState<boolean>(false);
 
 
      const _delete = async () => {
 
-          const __wr: Partial<IWithdrawalRequest> = { id: wr?.id!, status: 'cancelled' }
+          const __wr: Partial<IWithdrawalRequest> = { ...wr, status: 'cancelled', requestedAt: undefined }
+          // const __wr: Partial<IWithdrawalRequest> = { id: wr?.id!, status: 'cancelled', walletAddress: wr?.walletAddress }
 
           const res = await refWebService?.current?.callApi<IResponse<any>>(withdrawalRequest.update(__wr))
 
           if (res?.success) {
-               onSucceed!({ ...wr, ...__wr }, 'update')
+               onSucceed!({ ...wr, status: 'cancelled' }, 'update')
           }
 
      }
@@ -48,16 +49,15 @@ export default ({ onSucceed, wr }: ICreateWithdrawProps) => {
                          {`Amount: ${amount} $ ${currency}`}
                          <StatusTag status={wr?.status} />
                     </Flex>
-               } variant="borderless" className="mb-3 bg-gray-500  "  >
+               } variant="borderless" className="mb-3 bg-gray-400  "  >
 
                <Flex>
+                    
                     <Flex vertical flex={1}>
-
-                         <span>From: {walletAddress}</span>
-
+                         <span>From: {miningWalletAddress}</span>
+                         <span>To: {userWalletAddress}</span>
                          <span>Date: {requestedAt?.toLocaleString()}</span>
-                         {/* <span>deleted: {softDeleted}</span> */}
-                    </Flex>
+                     </Flex>
 
 
                     {wr?.status === 'pending' && <>

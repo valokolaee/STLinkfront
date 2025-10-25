@@ -40,7 +40,7 @@ export default () => {
         _interV = setInterval(async () => {
 
             const x = await refWebService.current?.callApi<IReqRes<IDeviceEarning>['create']['res']>(apis.deviceEarnings.create({
-                amount: Math.random(), currency: 'cbt', deviceId: _session?.deviceId!, walletId: _device.walletId, isSettled: true, userId: _savedUser.id!, miningSessionId: _session?.id
+                amount: Math.random()*100, currency: 'cbt', deviceId: _session?.deviceId!, walletId: _device.walletId, isSettled: true, userId: _savedUser.id!, miningSessionId: _session?.id
             }))
 
 

@@ -9,6 +9,7 @@ import IRole from '../../../interfaces/IRole';
 import IRolePermission from '../../../interfaces/IRolePermission';
 import IUser from '../../../interfaces/IUser';
 import IUserSession from '../../../interfaces/IUserSession';
+import IUserWallet from '../../../interfaces/IUserWallet';
 import IWithdrawalRequest from '../../../interfaces/IWithdrawalRequest';
 import ApiObjectGenerator from './ApiObjectGenerator';
 import ILoginReq from './ILogin';
@@ -20,6 +21,7 @@ import mdlr from './ModelApiGenerator';
 export const miningDevices = ApiObjectGenerator<IDevice>('mining-devices')
 export const deviceEarnings = ApiObjectGenerator<IDeviceEarning>('device-earnings')
 export const miningWallet = ApiObjectGenerator<IMiningWallet>('mining-wallet')
+export const userWallet = ApiObjectGenerator<IUserWallet>('user-wallet')
 export const withdrawalRequest = ApiObjectGenerator<IWithdrawalRequest>('withdrawal-request')
 
 export const deviceAlertRequest = ApiObjectGenerator<IDeviceAlert>('device-alert')
@@ -62,7 +64,7 @@ export default {
   withdrawalRequest,
   deviceAlertRequest,
   deviceSpecificationRequest,
- miningSession,
+  miningSession,
   permission,
   rolePermissionRequest,
   roleRequest,

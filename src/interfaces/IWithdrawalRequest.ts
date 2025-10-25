@@ -5,7 +5,8 @@ export default interface IWithdrawalRequest {
    userId?: number;
    amount: number;
    currency: string;
-   walletAddress: string;
+   miningWalletAddress?: string;
+   userWalletAddress?: string;
    transactionHash?: string | null;
    status?: 'pending' | 'processing' | 'completed' | 'failed' | 'cancelled';
    networkFee?: number;

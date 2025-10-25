@@ -1,28 +1,23 @@
-import { Form, FormProps, Input, notification, Select } from 'antd';
+import { Form, FormProps, Input } from 'antd';
 import { useRef } from 'react';
-import { useNavigate } from 'react-router-dom';
 import CButton from '../../../components/ui/CButton';
-import CLink from '../../../components/ui/CLink';
-import CText from '../../../components/ui/CText';
-import IMiningDevice from '../../../interfaces/IMiningDevice';
-import WebService, { IWebServiceFuncs } from '../../../webService';
-import { miningDevices, miningWallet } from '../../../webService/ApiUrls/apis';
-import IDeviceReqRes from '../../../webService/ApiUrls/apis/IDeviceApi';
-import CWhiteLabel from '../../../components/ui/CWhiteLabel';
-import IMiningWallet from '../../../interfaces/IMiningWallet';
+import IUserWallet from '../../../interfaces/IUserWallet';
 import { useAppSelector } from '../../../redux/hooks';
+import WebService, { IWebServiceFuncs } from '../../../webService';
+import { userWallet } from '../../../webService/ApiUrls/apis';
+import IReqRes from '../../../webService/ApiUrls/apis/IReqRes';
 
 export default ({ onSucceed }: { onSucceed?: (res: any) => void }) => {
   const refWebService = useRef<IWebServiceFuncs>()
   const _savedUser = useAppSelector((s) => s.userSlice)
 
 
-  interface FieldType extends IMiningWallet {
+  interface FieldType extends IUserWallet {
   };
 
   const onFinish: FormProps<FieldType>['onFinish'] = async (values) => {
     values = { userId: _savedUser.id!, ...values }
-    const res = await refWebService?.current?.callApi<IDeviceReqRes['create']['res']>(miningWallet.create(values as IMiningWallet))
+    const res = await refWebService?.current?.callApi<IReqRes<IUserWallet>['create']['res']>(userWallet.create(values as IUserWallet))
 
     if (res?.success) {
       onSucceed!(res.data)
@@ -63,9 +58,13 @@ export default ({ onSucceed }: { onSucceed?: (res: any) => void }) => {
           <Input />
         </Form.Item>
         <Form.Item
-          label= 'currency' 
-          name="currency"
-
+          label= 'Nickname' 
+          name="nickname"
+          rules={[
+            {
+              required: true,
+              message: 'Please input a nickname by which you can recognize easier later!',
+            }]}
         >
           <Input />
         </Form.Item>

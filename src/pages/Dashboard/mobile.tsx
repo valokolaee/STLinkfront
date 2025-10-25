@@ -20,17 +20,17 @@ const App: React.FC = () => {
             children: <Wallet />,
 
         },
-        {
-            label: <CWhiteLabel txt='Withdraw' />,
-            key: '3',
-            children: <Withdraw />,
-        }
+        // {
+        //     label: <CWhiteLabel txt='Withdraw' />,
+        //     key: '3',
+        //     children: <Withdraw />,
+        // }
     ]
     return (
         <Tabs
-            defaultActiveKey="1"
+            defaultActiveKey="2"
             centered
-
+            destroyOnHidden
             color='white'
             tabBarStyle={{ color: 'red' }}
             items={list}
