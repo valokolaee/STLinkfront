@@ -1,7 +1,7 @@
 import { Card, Flex } from "antd";
 import IUserWallet from "../../../interfaces/IUserWallet";
 
-export default ({ walletAddress, currency, nickname, withdrawnAmount, }: IUserWallet) => <Card
+export default ({ walletAddress, currency, nickname, pendingBalance, }: IUserWallet) => <Card
     title={<Flex justify="space-between">
         {walletAddress}
         <div className={"bg-indigo-500 rounded-full text-white px-2"}>
@@ -11,6 +11,6 @@ export default ({ walletAddress, currency, nickname, withdrawnAmount, }: IUserWa
 
     <span>Nickname: <strong> {nickname}</strong></span>
     <div />
-    <span>Withdrawn Amount: <strong> {withdrawnAmount}</strong></span>
+    <span>Pending Balance: <strong> {pendingBalance}</strong></span>
 
 </Card>
