@@ -11,6 +11,8 @@ import IMiningWallet from '../../../../interfaces/IMiningWallet';
 import { useAppSelector } from '../../../../redux/hooks';
 import { safeFixed } from '../../../../utils/text.utils';
 import IUserWallet from '../../../../interfaces/IUserWallet';
+import { CheckBoxOutlineBlank } from '@mui/icons-material';
+import { CheckCircleFilled } from '@ant-design/icons';
 
 export default ({ onSucceed, wr }: ICreateWithdrawProps) => {
   const [form] = Form.useForm();
@@ -88,7 +90,7 @@ export default ({ onSucceed, wr }: ICreateWithdrawProps) => {
       autoComplete='off'
 
     >
-      <Flex align='center' vertical={useIsMobile()} className=' '>
+      <Flex align='center' vertical={useIsMobile() && !wr} className=' '>
 
         <Form.Item
           style={style}
@@ -108,9 +110,12 @@ export default ({ onSucceed, wr }: ICreateWithdrawProps) => {
           name="miningWalletAddress"
           rules={[{ required: true, message: 'Please input your client type!' }]}
           style={style}
+          hidden={!!wr}
+
         >
           <Select onFocus={_loadListOfMiningWallets}
             placeholder="Mining Wallet Address"
+            disabled={!!wr}
           >
             {_mining_wallets.map((wl) => <Select.Option key={wl.id} value={wl.walletAddress!}>
               <Flex flex={1} >
@@ -127,9 +132,12 @@ export default ({ onSucceed, wr }: ICreateWithdrawProps) => {
           name="userWalletAddress"
           rules={[{ required: true, message: 'Please input your client type!' }]}
           style={style}
+          hidden={!!wr}
+
         >
           <Select onFocus={_loadListOfUserWallets}
             placeholder="User Wallet Address"
+            disabled={!!wr}
           >
             {_user_wallets.map((wl) =>
               <Select.Option key={wl.id} value={wl.walletAddress!}>
@@ -138,7 +146,7 @@ export default ({ onSucceed, wr }: ICreateWithdrawProps) => {
                     {wl.nickname}
                   </Flex>
                   {/* {wl.walletAddress} */}
-                {safeFixed(wl.pendingBalance!, 2)} {wl.currency}
+                  {safeFixed(wl.pendingBalance!, 2)} {wl.currency}
                 </Flex>
 
               </Select.Option>)}
@@ -149,8 +157,14 @@ export default ({ onSucceed, wr }: ICreateWithdrawProps) => {
         <Form.Item
           style={{ ...style, width: undefined }}
           className='none'>
-          <CButton title={(!!wr ? 'Edit ' : 'Submit ') + 'Withdraw'} className='w-full' />
-        </Form.Item>
+          {!!wr ?  
+            <button className='rounded-full px-0 py-0 p-0'>
+
+            <CheckCircleFilled className='text-green-300 text-4xl' />
+            </button>
+            :
+          <CButton title={ 'Submit Withdraw' } className='w-full' />
+        }</Form.Item>
       </Flex>
 
 

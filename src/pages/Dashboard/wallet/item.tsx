@@ -10,6 +10,7 @@ export default ({ walletAddress, currency, nickname, pendingBalance, }: IUserWal
     </Flex>} variant="borderless" className="m-2"  >
 
     <span>Nickname: <strong> {nickname}</strong></span>
+    
     <div />
     <span>Pending Balance: <strong> {pendingBalance}</strong></span>
 

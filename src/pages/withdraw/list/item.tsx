@@ -11,7 +11,7 @@ import StatusTag from "./StatusTag";
 import IResponse from "../../../webService/ApiUrls/apis/IResponse";
 
 export default ({ onSucceed, wr }: ICreateWithdrawProps) => {
-     const { id, amount, currency, miningWalletAddress, userWalletAddress, requestedAt, softDeleted } = wr || {};
+     const { id, amount, currency, miningWalletAddress, userWalletAddress,userWalletNickname, requestedAt, softDeleted } = wr || {};
      const refWebService = useRef<IWebServiceFuncs>()
      const [_editMode, _set_editMode] = useState<boolean>(false);
 
@@ -19,8 +19,7 @@ export default ({ onSucceed, wr }: ICreateWithdrawProps) => {
      const _delete = async () => {
 
           const __wr: Partial<IWithdrawalRequest> = { ...wr, status: 'cancelled', requestedAt: undefined }
-          // const __wr: Partial<IWithdrawalRequest> = { id: wr?.id!, status: 'cancelled', walletAddress: wr?.walletAddress }
-
+ 
           const res = await refWebService?.current?.callApi<IResponse<any>>(withdrawalRequest.update(__wr))
 
           if (res?.success) {
@@ -49,13 +48,14 @@ export default ({ onSucceed, wr }: ICreateWithdrawProps) => {
                          {`Amount: ${amount} $ ${currency}`}
                          <StatusTag status={wr?.status} />
                     </Flex>
-               } variant="borderless" className="mb-3 bg-gray-400  "  >
+               }
+               variant="borderless" className="mb-3 bg-gray-400  "  >
 
                <Flex>
                     
                     <Flex vertical flex={1}>
                          <span>From: {miningWalletAddress}</span>
-                         <span>To: {userWalletAddress}</span>
+                         <span>To: {userWalletNickname}</span>
                          <span>Date: {requestedAt?.toLocaleString()}</span>
                      </Flex>
 
