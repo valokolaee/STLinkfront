@@ -1,4 +1,4 @@
-import { ApprovalOutlined, ApprovalRounded, CancelOutlined, CheckCircleSharp, DeleteOutlineTwoTone, EditNoteOutlined, PaidRounded, PaidSharp } from "@mui/icons-material";
+import { ApprovalOutlined, ApprovalRounded, CancelOutlined, CheckCircleSharp, DeleteOutlineTwoTone, EditNoteOutlined, PaidRounded, PaidSharp, WifiProtectedSetupSharp } from "@mui/icons-material";
 import { Card, Flex } from "antd";
 import { useEffect, useRef, useState } from "react";
 import CConfirm from "../../../components/ui/CConfirm";
@@ -31,6 +31,9 @@ export default ({ onSucceed, wr }: ICreateWithdrawProps) => {
 
 
 
+     const _processing = () => {
+          _manageStatus('processing')
+     }
      const _delete = () => {
           _manageStatus('cancelled')
      }
@@ -60,7 +63,7 @@ export default ({ onSucceed, wr }: ICreateWithdrawProps) => {
           _set_editMode(false)
      }, [wr])
 
-     const y = wr?.status !== 'cancelled' && wr?.status !== 'completed'
+     const _finalized = wr?.status !== 'cancelled' && wr?.status !== 'completed' && wr?.status !== 'rejected' && wr?.status !== 'failed'
 
      return (
           <Card
@@ -83,24 +86,28 @@ export default ({ onSucceed, wr }: ICreateWithdrawProps) => {
 
 
 
-                    {(wr!.status !== 'completed' && wr?.status !== 'cancelled') && <>
+                    {_finalized && <>
                          {_isManager ?
                               <>
                                    {wr?.status === 'approved' ?
 
-                                        <Flex className="text-green-700" onClick={_paid}>
+                                        <Flex className="text-green-700 cursor-pointer" onClick={_paid}>
                                              Payment Done
                                              <CheckCircleSharp />
                                         </Flex>
                                         :
                                         <Flex vertical>
-                                             <button
-                                                  // disabled={wr?.status === 'rejected'}
-                                                  onClick={_approve} className={`rounded-b-none  bg-green-500  text-white border-b-0 ${className}`}>approve</button>
-                                             <button
-                                                  // disabled={wr?.status === 'rejected'}
-                                                  onClick={_reject} className={`rounded-t-none  bg-red-500 border-t-0 ${className}`}>reject</button>
-                                        </Flex>
+                                             {wr?.status === 'pending' ?
+                                                  <button
+                                                       onClick={ _processing} className={`bg-green-500   ${className}`}>start processing</button>
+                                                     :
+                                                  <>
+                                                       <button
+                                                            onClick={wr?.status === 'rejected' ? undefined : _approve} className={`rounded-b-none  bg-green-500  text-white border-b-0 ${className}`}>approve</button>
+                                                       <button
+                                                            onClick={wr?.status === 'rejected' ? undefined : _reject} className={`rounded-t-none  bg-red-500 border-t-0 ${className}`}>reject</button>
+                                                  </>
+                                             }</Flex>
 
                                    }
                               </>

@@ -87,6 +87,9 @@ export default () => {
     return (
         <>
             <RowFrame
+          
+                
+                
                 children1={[
                   
              <Devices selectedItem={_device} onSelect={_set_device} /> 
