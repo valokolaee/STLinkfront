@@ -14,7 +14,6 @@ export default () => {
     const refWebService = useRef<IWebServiceFuncs>()
     const _savedUser = useAppSelector((s) => s.userSlice)
     const [_devices, set_devices] = useState<IUserWallet[]>([])
-    const [_open, set_open] = useState<boolean>(false)
 
     const _loadWallets = async () => {
         const res = await refWebService?.current?.callApi<IReqRes<IUserWallet>['getAllBy']['res']>(userWallet.getAllBy({ userId: _savedUser.id! }))
@@ -28,30 +27,49 @@ export default () => {
         _loadWallets()
     }, [])
 
-    const _hide = () => {
-        set_open(false)
-    }
 
-    const _show = () => {
-        set_open(true)
-    }
 
     const _newCreated = (nd: IUserWallet) => {
         set_devices([nd, ..._devices])
-        _hide()
+    }
+
+    const _update = (nd: IUserWallet) => {
+        console.log(nd);
+
+        const updated = _devices.map(d =>
+            d.id === nd.id ? nd : d
+        );
+        set_devices(updated)
+
+    }
+
+    const _succeedCallback = (res: any, mode: 'add' | 'delete' | 'update') => {
+        switch (mode) {
+            case 'add':
+                _newCreated(res)
+                break;
+            case 'update':
+                _update(res)
+                break;
+            case 'delete':
+                // _delete(res)
+                break;
+            default:
+                break;
+        }
     }
     return (
         <div className="w-full">
+
             <Flex className="w-full">
 
-                <CModal onClose={_hide} btn={<PlusCircleOutlined style={{ fontSize: '200%', color: 'white' }} onClick={_show} />}>
-                    <Create onSucceed={_newCreated} />
-                </CModal>
                 <div className="m-3 w-full bg-gray-500 p-2 rounded-lg">
                     {`${_devices?.length} wallets`}
                 </div>
             </Flex>
-            {_devices?.map((item) => <Item {...item} key={item.id} />)}
+            <Create onSucceed={_newCreated} />
+
+            {_devices?.map((item) => <Item uw={item} key={item.id} onSucceed={_succeedCallback} />)}
             <WebService ref={refWebService} />
         </div>
     )

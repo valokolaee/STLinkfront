@@ -1,6 +1,5 @@
 import { Tag } from 'antd';
 import IWithdrawalRequest from '../../../interfaces/IWithdrawalRequest';
-// import { IModalFuncs } from '../../../../components/ui/CModal';
 
 
 export default ({ status }: { status: IWithdrawalRequest['status'] }) =>
@@ -16,8 +15,11 @@ export default ({ status }: { status: IWithdrawalRequest['status'] }) =>
 const _color = (s: IWithdrawalRequest['status']) => {
     switch (s) {
         case 'completed':
+            return 'lightGreen'
+        case 'approved':
             return 'green'
         case 'failed':
+        case 'rejected':
             return 'red'
         case 'processing':
             return 'gray'

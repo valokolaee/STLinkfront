@@ -154,6 +154,7 @@ const FormDisabledDemo: React.FC = () => {
               required: true,
               message: 'Please confirm your password!',
             },
+            
             ({ getFieldValue }) => ({
               validator(_, value) {
                 if (!value || getFieldValue('password') === value) {
@@ -162,6 +163,7 @@ const FormDisabledDemo: React.FC = () => {
                 return Promise.reject(new Error('The new password that you entered do not match!'));
               },
             }),
+          
           ]}
         >
           <Input.Password autoComplete="new-password" />

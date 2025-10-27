@@ -13,11 +13,13 @@ import { safeFixed } from '../../../../utils/text.utils';
 import IUserWallet from '../../../../interfaces/IUserWallet';
 import { CheckBoxOutlineBlank } from '@mui/icons-material';
 import { CheckCircleFilled } from '@ant-design/icons';
+import { safeParseFloat } from '../../../../utils/math.utils';
 
 export default ({ onSucceed, wr }: ICreateWithdrawProps) => {
   const [form] = Form.useForm();
   const refWebService = useRef<IWebServiceFuncs>()
   const _savedUser = useAppSelector((s) => s.userSlice)
+  const [_mining_wallet, set_mining_wallet] = useState<IMiningWallet>();
   const [_mining_wallets, set_mining_wallets] = useState<IMiningWallet[]>([]);
   const [_user_wallets, set_user_wallets] = useState<IUserWallet[]>([]);
 
@@ -26,15 +28,19 @@ export default ({ onSucceed, wr }: ICreateWithdrawProps) => {
   };
 
   const onFinish: FormProps<FieldType>['onFinish'] = async (values) => {
+    // console.log('c');
 
 
     if (!!!wr) {
-
       const res = await refWebService?.current?.callApi<IResponse<any>>(withdrawalRequest.create(values as IWithdrawalRequest))
+      
       if (res?.success) {
         form.resetFields();
+        
         onSucceed!(res.data, 'add')
+      
       }
+
     } else {
 
       const __wr: IWithdrawalRequest = { id: wr?.id!, ...values, }
@@ -51,7 +57,7 @@ export default ({ onSucceed, wr }: ICreateWithdrawProps) => {
 
 
   const onFinishFailed: FormProps<FieldType>['onFinishFailed'] = (errorInfo) => {
-    console.log('Failed:', errorInfo);
+    // console.log('Failed:', errorInfo);
   };
 
 
@@ -93,20 +99,6 @@ export default ({ onSucceed, wr }: ICreateWithdrawProps) => {
       <Flex align='center' vertical={useIsMobile() && !wr} className=' '>
 
         <Form.Item
-          style={style}
-          // label={<CWhiteLabel txt='amount' />}
-          name="amount"
-          rules={[
-            {
-              required: true,
-              message: 'Please input  amount',
-            }]}
-        >
-          <Input placeholder='amount' type='number' />
-        </Form.Item>
-
-
-        <Form.Item
           name="miningWalletAddress"
           rules={[{ required: true, message: 'Please input your client type!' }]}
           style={style}
@@ -116,9 +108,22 @@ export default ({ onSucceed, wr }: ICreateWithdrawProps) => {
           <Select onFocus={_loadListOfMiningWallets}
             placeholder="Mining Wallet Address"
             disabled={!!wr}
+            onSelect={(a, b,) => {
+              console.log(a, b);
+
+            }}
           >
-            {_mining_wallets.map((wl) => <Select.Option key={wl.id} value={wl.walletAddress!}>
-              <Flex flex={1} >
+            {_mining_wallets.map((wl) => <Select.Option
+
+
+              // className='border-solid px-0 py-0 p-0 m-0'
+
+              key={wl.id} value={wl.walletAddress!} >
+              <Flex
+                // className='border-solid my-0'
+                flex={1}
+              // onClick={() => { set_mining_wallet(wl) }}
+              >
                 <Flex flex={1} >
                   {wl.walletAddress}
                 </Flex>
@@ -128,6 +133,42 @@ export default ({ onSucceed, wr }: ICreateWithdrawProps) => {
             </Select.Option>)}
           </Select>
         </Form.Item>
+
+
+
+        <Form.Item
+          style={style}
+          name="amount"
+          rules={[
+            {
+              required: true,
+              message: 'Please input  amount',
+            }
+            ,
+            // ({ getFieldValue }) => ({
+            //   validator(_, value) {
+            //     const c = safeParseFloat(value) > safeParseFloat(_mining_wallet?.availableBalance)
+
+            //     // console.log(value, _mining_wallet?.availableBalance, c);
+
+            //     // if (safeParseFloat(value) > safeParseFloat(_mining_wallet?.availableBalance)) {
+            //     //   return Promise.reject(new Error('Request amount more than balance'));
+            //     // } else {
+            //     //   return Promise.resolve();
+
+            //     // }
+
+            //   },
+            // }),
+
+
+          ]}
+        >
+          <Input placeholder='amount' type='number' />
+        </Form.Item>
+
+
+
         <Form.Item
           name="userWalletAddress"
           rules={[{ required: true, message: 'Please input your client type!' }]}
@@ -155,16 +196,18 @@ export default ({ onSucceed, wr }: ICreateWithdrawProps) => {
 
 
         <Form.Item
+          name={'submit'}
           style={{ ...style, width: undefined }}
-          className='none'>
-          {!!wr ?  
+          className='none'
+        >
+          {!!wr ?
             <button className='rounded-full px-0 py-0 p-0'>
-
-            <CheckCircleFilled className='text-green-300 text-4xl' />
+              <CheckCircleFilled className='text-green-300 text-4xl' />
             </button>
             :
-          <CButton title={ 'Submit Withdraw' } className='w-full' />
-        }</Form.Item>
+            <CButton title={'Submit Withdraw'} className='w-full' />
+          }
+        </Form.Item>
       </Flex>
 
 
@@ -175,8 +218,15 @@ export default ({ onSucceed, wr }: ICreateWithdrawProps) => {
 
   );
 };
+
+
 const style = { margin: 5, width: '100%' }
-export interface ICreateWithdrawProps {
+
+
+export interface ICreateWithdrawProps extends ICreateEdit {
   wr?: IWithdrawalRequest;
+}
+
+export interface ICreateEdit {
   onSucceed?: (res: any, mode: 'add' | 'delete' | 'update') => void;
 } 

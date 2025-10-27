@@ -1,4 +1,4 @@
-import { Form, FormProps, Input } from 'antd';
+import { Flex, Form, FormProps, Input } from 'antd';
 import { useRef } from 'react';
 import CButton from '../../../components/ui/CButton';
 import IUserWallet from '../../../interfaces/IUserWallet';
@@ -6,23 +6,44 @@ import { useAppSelector } from '../../../redux/hooks';
 import WebService, { IWebServiceFuncs } from '../../../webService';
 import { userWallet } from '../../../webService/ApiUrls/apis';
 import IReqRes from '../../../webService/ApiUrls/apis/IReqRes';
+import useIsMobile from '../../../hooks/useIsMobile';
+import { ICreateEdit } from '../../withdraw/list/create';
+import { useForm } from 'antd/es/form/Form';
 
-export default ({ onSucceed }: { onSucceed?: (res: any) => void }) => {
+export default ({ onSucceed, uw }: ICreateWallet) => {
   const refWebService = useRef<IWebServiceFuncs>()
   const _savedUser = useAppSelector((s) => s.userSlice)
-
+  const [form] = Form.useForm();
 
   interface FieldType extends IUserWallet {
   };
 
   const onFinish: FormProps<FieldType>['onFinish'] = async (values) => {
-    values = { userId: _savedUser.id!, ...values }
-    const res = await refWebService?.current?.callApi<IReqRes<IUserWallet>['create']['res']>(userWallet.create(values as IUserWallet))
 
-    if (res?.success) {
-      onSucceed!(res.data)
+    values = { userId: _savedUser.id!, ...values }
+
+
+    if (!!!uw) {
+      const res = await refWebService?.current?.callApi<IReqRes<IUserWallet>['create']['res']>(userWallet.create(values as IUserWallet))
+
+      if (res?.success) {
+        onSucceed!(res.data, 'add')
+        form.resetFields();
+
+      }
+
     } else {
+
+
+      const res = await refWebService?.current?.callApi<IReqRes<IUserWallet>['update']['res']>(userWallet.update({ id: uw.id, ...values } as IUserWallet))
+
+      if (res?.success) {
+        onSucceed!({ ...uw, ...values }, 'update')
+        form.resetFields();
+      }
+
     }
+
   };
 
 
@@ -31,54 +52,71 @@ export default ({ onSucceed }: { onSucceed?: (res: any) => void }) => {
   };
 
   return (
-    <div>
 
-      <h2 className='text-white' >Add Mining Wallet</h2>
 
-      <Form
-        name="createDevice"
-        preserve={false}
-        onFinish={onFinish}
-        onFinishFailed={onFinishFailed}
-        labelCol={{ span: 5 }}
-        wrapperCol={{ span: '30%' }}
-        layout="horizontal"
-        autoComplete='off'
-      >
+    <Form
+      form={form}
+      name="createDevice"
+      preserve={false}
+      onFinish={onFinish}
+      onFinishFailed={onFinishFailed}
+      // labelCol={{ span: 5 }}
+      // wrapperCol={{ span: '30%' }}
+      layout="horizontal"
+      autoComplete='off'
+      initialValues={{ nickname: uw?.nickname!, walletAddress: uw?.walletAddress }}
+    >
+
+      <Flex vertical={useIsMobile() && !!!uw}>
 
         <Form.Item
-          label= 'Address'  
           name="walletAddress"
           rules={[
             {
               required: true,
               message: 'Please input your Wallet Address!',
             }]}
+          hidden={!!uw}
+          style={style}
+
         >
-          <Input />
+          <Input
+            disabled={!!uw}
+            placeholder='Address'
+          />
         </Form.Item>
         <Form.Item
-          label= 'Nickname' 
           name="nickname"
           rules={[
             {
               required: true,
               message: 'Please input a nickname by which you can recognize easier later!',
             }]}
+          style={style}
         >
-          <Input />
+          <Input
+            placeholder='Nickname'
+          />
         </Form.Item>
-
-
-        <Form.Item label={null} className='none'>
+        <Form.Item
+          style={{ ...style, width: undefined }}
+          label={null} className='none'>
           <CButton title='Submit' />
         </Form.Item>
+      </Flex>
 
 
-
-      </Form>
 
       <WebService ref={refWebService} />
-    </div>
+    </Form>
+
   );
 };
+
+
+const style = { margin: 5, width: '100%' }
+
+
+export interface ICreateWallet extends ICreateEdit {
+  uw?: IUserWallet;
+}
