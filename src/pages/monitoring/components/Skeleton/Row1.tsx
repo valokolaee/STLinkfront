@@ -3,24 +3,24 @@ import { useEffect, useRef, useState } from 'react';
 import svgList from '../../../../assets/icons/svgList';
 import IMiningDevice from '../../../../interfaces/IMiningDevice';
 import IMiningSession from '../../../../interfaces/IMiningSession';
-import IMiningWallet from '../../../../interfaces/IMiningWallet';
+import IMonitor from '../../../../interfaces/IMonitor';
 import { useAppSelector } from '../../../../redux/hooks';
+import { safeFixed } from '../../../../utils/text.utils';
 import WebService, { IWebServiceFuncs } from '../../../../webService';
 import apis from '../../../../webService/ApiUrls/apis';
 import IReqRes from '../../../../webService/ApiUrls/apis/IReqRes';
+import IResponse from '../../../../webService/ApiUrls/apis/IResponse';
 import Box from './Box';
 import ContentBox from './ContentBox';
 import RowFrame from './RowFrame';
 import Devices from './components/devices';
-import IDeviceEarning from '../../../../interfaces/IDeviceEarning';
-import CWhiteLabel from '../../../../components/ui/CWhiteLabel';
 
 
 
 
 var _interV = setInterval(async () => {
 
-}, 3000);
+}, 5000);
 
 export default () => {
 
@@ -32,33 +32,29 @@ export default () => {
 
 
 
-
-
-
     const _createEarning = async (_session: IMiningSession) => {
 
         _interV = setInterval(async () => {
 
-            const x = await refWebService.current?.callApi<IReqRes<IDeviceEarning>['create']['res']>(apis.deviceEarnings.create({
-                amount: Math.random()*100, currency: 'cbt', deviceId: _session?.deviceId!, walletId: _device.walletId, isSettled: true, userId: _savedUser.id!, miningSessionId: _session?.id
-            }))
+            if (!!!_savedUser.token) {
+                const res2 = await refWebService.current?.callApi(apis.monitor.getAll())
 
-
-            const res = await refWebService.current?.callApi<IReqRes<IMiningWallet>['getOneByID']['res']>(apis.miningWallet.getOneByID(_device.walletId!))
-            if (res?.success) {
-                // console.log('res', x, res.data);
-
-                set_data({ totalEarning: res.data?.availableBalance, currency: res.data?.currency })
+            } else {
+                const res2:IResponse<IMonitor> = await refWebService.current?.callApi<any>(apis.monitor.getAllBy( _device! ))
+                if (res2?.success) {
+                    set_data({ totalEarning: res2?.data?.wallet?.totalEarnings, currency: res2?.data?.wallet?.currency, })
+                 }
             }
 
-        }, 2000);
+        }, 5000);
     }
-
-
+ 
 
     useEffect(() => {
-        if (_device.id! > 0) {
+        clearInterval(_interV)
 
+        if (_device.id! > 0) {
+            _createEarning({} as IMiningSession)
             // _newSession()
         }
 
@@ -67,7 +63,7 @@ export default () => {
 
 
     const _newSession = async () => {
-        clearInterval(_interV)
+
         const res = await refWebService.current?.callApi<IReqRes<IMiningSession>['create']['res']>(apis.miningSession.create({ deviceId: _device.id, }))
         console.log(res);
 
@@ -87,20 +83,25 @@ export default () => {
     return (
         <>
             <RowFrame
-          
-                
-                
+
+
+
                 children1={[
-                  
-             <Devices selectedItem={_device} onSelect={_set_device} /> 
-                  
+                    
+                    <Devices selectedItem={_device} onSelect={_set_device} />
                     ,
-                    <Box flex={2} card>
+                    <Box flex={3 } card >
+
                         <ContentBox
-                            fontSize={6}
+                            fontSize={4}
                             color={{ name: 'green', num: 500 }}
-                            title='Local Uptime' value={`${(parseFloat((_data.totalEarning || 0.00).toString())).toFixed(2)} ${_data.currency || ''}`} />
+                            title='Total Earning'
+                            value={`${(safeFixed(_data.totalEarning || 0.00, 8))} 
+                        
+                            ${_data.currency}
+                            `} />
                     </Box>,
+                    // ${_data.currency || ''}
                     <Box flex={1} vertical card>
                         <Box flex={1}>
                             <span className='block w-full text-center'>

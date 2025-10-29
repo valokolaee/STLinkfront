@@ -2,6 +2,7 @@ import IDevice from '../../../interfaces/IDevice';
 import IDeviceAlert from '../../../interfaces/IDeviceAlert';
 import IDeviceEarning from '../../../interfaces/IDeviceEarning';
 import IDeviceSpecification from '../../../interfaces/IDeviceSpecification';
+import IMiningDevice from '../../../interfaces/IMiningDevice';
 import IMiningSession from '../../../interfaces/IMiningSession';
 import IMiningWallet from '../../../interfaces/IMiningWallet';
 import IPermission from '../../../interfaces/IPermission';
@@ -30,7 +31,8 @@ export const miningSession = ApiObjectGenerator<IMiningSession>('mining-session'
 export const permission = ApiObjectGenerator<IPermission>('permission')
 export const rolePermissionRequest = ApiObjectGenerator<IRolePermission>('role-permission')
 export const roleRequest = ApiObjectGenerator<IRole>('role')
-export const userSessionRequest = ApiObjectGenerator<IUserSession>('user-session')
+export const userSession = ApiObjectGenerator<IUserSession>('user-session')
+export const monitor = ApiObjectGenerator<IMiningDevice>('monitor')
 
 
 
@@ -68,7 +70,8 @@ export default {
   permission,
   rolePermissionRequest,
   roleRequest,
-  userSessionRequest,
+  userSession,
+  monitor
 };
 
 

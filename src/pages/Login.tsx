@@ -10,7 +10,7 @@ import IWithdrawalRequest from "../interfaces/IWithdrawalRequest";
 import { setUser, setUserAvatar } from "../redux/actions";
 import { useAppSelector } from "../redux/hooks";
 import WebService, { IWebServiceFuncs } from "../webService";
-import apis, { deviceAlertRequest, deviceSpecificationRequest, miningSession, permission, rolePermissionRequest, roleRequest, userSessionRequest } from "../webService/ApiUrls/apis";
+import apis, { deviceAlertRequest, deviceSpecificationRequest, miningSession, permission, rolePermissionRequest, roleRequest, userSession } from "../webService/ApiUrls/apis";
 import ILoginReq, { ILoginRes } from "../webService/ApiUrls/apis/ILogin";
 import IReqRes from "../webService/ApiUrls/apis/IReqRes";
 const Login = () => {
@@ -51,7 +51,7 @@ const Login = () => {
     await refWebService?.current?.callApi<IReqRes<IWithdrawalRequest>['getOneByID']['res']>(permission.getAll())
     await refWebService?.current?.callApi<IReqRes<IWithdrawalRequest>['getOneByID']['res']>(rolePermissionRequest.getAll())
     await refWebService?.current?.callApi<IReqRes<IWithdrawalRequest>['getOneByID']['res']>(roleRequest.getAll())
-    await refWebService?.current?.callApi<IReqRes<IWithdrawalRequest>['getOneByID']['res']>(userSessionRequest.getAll())
+    await refWebService?.current?.callApi<IReqRes<IWithdrawalRequest>['getOneByID']['res']>(userSession.getAll())
 
     // const res = await refWebService?.current?.callApi<IReqRes<IWithdrawalRequest>['create']['res']>(withdrawalRequest.create({ amount: 10, currency: 'cbtw', walletAddress: '100oidytf' }))
     // await refWebService?.current?.callApi<IReqRes<IWithdrawalRequest>['getOneByID']['res']>(withdrawalRequest.update({ id: res?.data?.id, walletAddress: '20cc1250y0', currency: 'ddd', amount: 100000 }))

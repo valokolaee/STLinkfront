@@ -1,11 +1,11 @@
-import { BilibiliOutlined, LoginOutlined, LogoutOutlined, UserOutlined } from '@ant-design/icons';
+import { BilibiliOutlined, HomeOutlined, LoginOutlined, LogoutOutlined, UserOutlined } from '@ant-design/icons';
 import type { MenuProps } from 'antd';
 import { Dropdown, Space } from 'antd';
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAppSelector } from '../../../redux/hooks';
 import CAvatar from '../../ui/CAvatar';
-import { Dashboard, DashboardOutlined, ReceiptLongOutlined } from '@mui/icons-material';
+import { Dashboard, DashboardOutlined, Home, ReceiptLongOutlined } from '@mui/icons-material';
 import { setUser } from '../../../redux/actions';
 
 export default () => {
@@ -13,19 +13,19 @@ export default () => {
     const navigate = useNavigate();
 
     const _login = () => {
-        // setUser({ token: 'ljsfhhfhiuhgihugihgihhhfiuvhfiuhvfhvhfvhh' })
-
+        
         navigate('/login')
     }
     const _dashboard = () => { navigate('/dashboard') }
+    const _home = () => { navigate('/') }
 
     const _profile = () => { navigate('/profile') }
     const _withdraw = () => { navigate('/withdraw') }
 
     const _register = () => { navigate('/register') }
-
+    
     const _logOut = () => {
-        _login()
+        setUser({  })
     }
 
 
@@ -40,7 +40,7 @@ export default () => {
         key: '4',
         label: 'switch user',
         icon: <LogoutOutlined />,
-        onClick: _logOut,
+        onClick: _login,
         // extra: '⌘S',
     }
 
@@ -48,6 +48,13 @@ export default () => {
 
     const items: MenuProps['items'] = [
 
+        {
+            key: '2',
+            label: 'home',
+            onClick: _home,
+            icon: <HomeOutlined />,
+        },
+        
         {
             key: '2',
             label: 'dashboard',
@@ -73,7 +80,12 @@ export default () => {
             label: 'Register',
             onClick: _register
         },
-        _log
+        _log,
+        {
+            key: '5',
+            label: 'Log Out',
+            onClick: _logOut
+        },
 
     ];
     return (
