@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from 'react';
 import CModal from '../../../../../../components/ui/CModal';
 import { useAppSelector } from '../../../../../../redux/hooks';
 import WebService, { IWebServiceFuncs } from '../../../../../../webService';
-import Box from '../../Box';
+import Box from '../Box';
 import DeviceTable from './DeviceTable';
 import { RiceBowlOutlined } from '@mui/icons-material';
 import { RightCircleFilled, RightCircleTwoTone } from '@ant-design/icons';
@@ -20,6 +20,8 @@ import CWhiteLabel from '../../../../../../components/ui/CWhiteLabel';
 
 
 export default ({ onSelect, selectedItem }: ISelect<IMiningDevice>) => {
+
+
     const { deviceName, status, deviceModel, imei } = selectedItem || {}
     const refWebService = useRef<IWebServiceFuncs>()
     const refModalDevice = useRef<any>(null)
@@ -64,9 +66,8 @@ export default ({ onSelect, selectedItem }: ISelect<IMiningDevice>) => {
                     <span>Device Model: {deviceModel}</span>
                 </Flex>
 
-                {/* <Item {... /> */}
                 <CModal ref={refModalDevice} btn={<RightCircleTwoTone style={{ fontSize: 30 }} />} mat>
-                    <DeviceTable devices={_devices} sel={{ onSelect: _set_device }} />
+                    <DeviceTable devices={_devices} sel={{ onSelect: _set_device, selectedItem }} />
                 </CModal>
             </Flex> : <CWhiteLabel txt='No Devices' />}
             <WebService ref={refWebService} />

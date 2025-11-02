@@ -1,11 +1,11 @@
 import { Flex } from 'antd';
 import React, { ReactElement, ReactNode } from 'react';
 import RowFrame from './RowFrame';
-import { tstStyle, tstStyleBlue } from '../../../../styles/tstStyle';
+import { tstStyle, tstStyleBlue } from '../../../../../styles/tstStyle';
 
 
 
-const Box: React.FC<IBox> = ({ flex = 1, children, vertical, card,onClick }) => {
+const Box: React.FC<IBox> = ({ flex = 1, children, vertical, card, onClick }) => {
 
     const cardStyle = card ? style : {}
 

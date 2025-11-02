@@ -1,134 +1,64 @@
 import { Flex } from 'antd';
-import { useEffect, useRef, useState } from 'react';
-import svgList from '../../../../assets/icons/svgList';
-import IMiningDevice from '../../../../interfaces/IMiningDevice';
-import IMiningSession from '../../../../interfaces/IMiningSession';
-import IMonitor from '../../../../interfaces/IMonitor';
-import { useAppSelector } from '../../../../redux/hooks';
-import { safeFixed } from '../../../../utils/text.utils';
-import WebService, { IWebServiceFuncs } from '../../../../webService';
-import apis from '../../../../webService/ApiUrls/apis';
-import IReqRes from '../../../../webService/ApiUrls/apis/IReqRes';
-import IResponse from '../../../../webService/ApiUrls/apis/IResponse';
-import Box from './Box';
-import ContentBox from './ContentBox';
-import RowFrame from './RowFrame';
-import Devices from './components/devices';
+import svgList from '../../../../../assets/icons/svgList';
+import IMiningDevice from '../../../../../interfaces/IMiningDevice';
+import { ISelect } from '../../../../../interfaces/ISelect';
+import { safeFixed } from '../../../../../utils/text.utils';
+import Box from '../components/Box';
+import ContentBox from '../components/ContentBox';
+import Devices from '../components/devices';
+import RowFrame from '../components/RowFrame';
+import { IMonitorData } from '../IMonitorData';
+import LastUpTime from './lastUpTime';
 
 
 
 
-var _interV = setInterval(async () => {
-
-}, 5000);
-
-export default () => {
-
-    const refWebService = useRef<IWebServiceFuncs>()
-    const _savedUser = useAppSelector((s) => s.userSlice)
-
-    const [_data, set_data] = useState<IR1>({ currency: '', totalEarning: 0 })
-    const [_device, set_device] = useState<IMiningDevice>({})
-
-
-
-    const _createEarning = async (_session: IMiningSession) => {
-
-        _interV = setInterval(async () => {
-
-            if (!!!_savedUser.token) {
-                const res2 = await refWebService.current?.callApi(apis.monitor.getAll())
-
-            } else {
-                const res2:IResponse<IMonitor> = await refWebService.current?.callApi<any>(apis.monitor.getAllBy( _device! ))
-                if (res2?.success) {
-                    set_data({ totalEarning: res2?.data?.wallet?.totalEarnings, currency: res2?.data?.wallet?.currency, })
-                 }
-            }
-
-        }, 5000);
-    }
+export default ({ device, monitor }: { monitor: IMonitorData; device: ISelect<IMiningDevice> }) => {
+    const { wallet, alert, metric, session } = monitor || {}
+    const { totalEarnings, currency = 'USDT', availableBalance, withdrawnAmount, lastUpdated, } = wallet || {}
  
-
-    useEffect(() => {
-        clearInterval(_interV)
-
-        if (_device.id! > 0) {
-            _createEarning({} as IMiningSession)
-            // _newSession()
-        }
-
-    }, [_device])
-
-
-
-    const _newSession = async () => {
-
-        const res = await refWebService.current?.callApi<IReqRes<IMiningSession>['create']['res']>(apis.miningSession.create({ deviceId: _device.id, }))
-        console.log(res);
-
-        if (res?.success) {
-            // set_session(res.data)
-            _createEarning(res.data!)
-        }
-    }
-
-
-    const _set_device = (d?: IMiningDevice) => {
-        set_data({ currency: '', totalEarning: 0 })
-        set_device(d!)
-    }
-
-
     return (
         <>
             <RowFrame
-
-
-
                 children1={[
-                    
-                    <Devices selectedItem={_device} onSelect={_set_device} />
+
+                    <Devices selectedItem={device.selectedItem} onSelect={device.onSelect} />
+
                     ,
-                    <Box flex={3 } card >
+                    <Box flex={3} card  >
 
                         <ContentBox
                             fontSize={4}
                             color={{ name: 'green', num: 500 }}
                             title='Total Earning'
-                            value={`${(safeFixed(_data.totalEarning || 0.00, 8))} 
-                        
-                            ${_data.currency}
-                            `} />
+                            value={
+                                <>
+                                    <div>{(safeFixed(totalEarnings || 0.00, 8))}</div>
+                                    <div>{currency}</div>
+                                </>
+                            } />
+
+
+
                     </Box>,
-                    // ${_data.currency || ''}
-                    <Box flex={1} vertical card>
-                        <Box flex={1}>
-                            <span className='block w-full text-center'>
-                                Block Height
-                            </span>
+                    <Box flex={2} vertical card>
+
+                        <Box flex={2}>
+                            <ContentBox
+                                color={{ name: 'blue', num: 500 }}
+                                title='Available Balance' value={safeFixed(availableBalance)} />
                         </Box>
                         <Box flex={2}>
                             <ContentBox
                                 color={{ name: 'blue', num: 500 }}
-                                title='Max Observed' value={87365} />
-                        </Box>
-                        <Box flex={2}>
-                            <ContentBox
-                                color={{ name: 'blue', num: 500 }}
-                                title='Max Unvalidated' value={87237} />
+                                title='Withdrawn Amount' value={safeFixed(withdrawnAmount)} />
                         </Box>
 
                     </Box>,
                 ]}
                 children2={[
                     <Box flex={1} card>
-                        <ContentBox
-                            fontSize={4}
-                            color={{ name: 'blue', num: 500 }}
-                            title='Last Best Tip (Slot Time)' value={'2:33 min'}
-                            svg={svgList.chart1}
-                        />
+                        <LastUpTime lastUpdated={lastUpdated} />
                     </Box>,
 
                     <Box flex={1} vertical>
@@ -193,7 +123,6 @@ export default () => {
                     </Box>,
                 ]}
             />
-            <WebService ref={refWebService} donTShowSpin />
         </>
     )
 };

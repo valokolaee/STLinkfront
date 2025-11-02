@@ -1,10 +1,10 @@
 import { Flex } from 'antd';
 import React, { ReactElement } from 'react';
-import useIsMobile from '../../../../hooks/useIsMobile';
+import useIsMobile from '../../../../../hooks/useIsMobile';
 
 const h = window.innerHeight
 
-const RowFrame: React.FC<IRowFrame> = ({ children1, children2, flex, children1flex = 2, children2flex = 1, minHeight = h / 6.5 }) => {
+const RowFrame: React.FC<IRowFrame> = ({ children1, children2, flex, children1flex = 2, children2flex = 1, minHeight = h / 7 }) => {
 
     const _isMobile = useIsMobile()
 

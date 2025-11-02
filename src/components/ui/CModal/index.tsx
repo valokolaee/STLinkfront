@@ -4,7 +4,7 @@ import IModal from './IModal';
 import { RightCircleTwoTone } from '@ant-design/icons';
 import { Modal as MatModal } from '@mui/material';
 
-export default forwardRef(({ btn, className, children, open, mat }: IModal, ref) => {
+export default forwardRef(({ btn, className, children, open, mat, }: IModal, ref) => {
     useImperativeHandle(ref, () => { return { show, hide }; });
 
     const [isModalOpen, setIsModalOpen] = useState(false);
@@ -39,7 +39,7 @@ export default forwardRef(({ btn, className, children, open, mat }: IModal, ref)
                 // onOk={handleOk}
                 // onCancel={handleCancel}
                 // footer={null}       
-                className='self-center m-4 '>
+                className='self-center m-4 max-h-1/2'>
                 {children}
             </MatModal> : <AntModal
                 open={isModalOpen}
@@ -48,7 +48,7 @@ export default forwardRef(({ btn, className, children, open, mat }: IModal, ref)
                 onCancel={hide}
                 maskClosable
                 footer={null}
-                className='self-center m-4 '>
+                className='self-center m-4 max-h-full '>
 
                 {children}
 

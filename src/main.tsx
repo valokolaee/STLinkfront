@@ -10,7 +10,7 @@ import { Provider } from "react-redux";
 import { persistStore } from 'redux-persist';
 import { PersistGate } from 'redux-persist/integration/react';
 import store from "./redux/store";
-import Skeleton from "./pages/monitoring/components/Skeleton/Skeleton";
+import Skeleton from "./pages/monitoring/components/Skeleton";
 
 let persistor = persistStore(store);
 

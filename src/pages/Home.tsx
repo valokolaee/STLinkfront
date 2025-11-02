@@ -1,9 +1,9 @@
 import React from "react";
-import Skeleton from "./monitoring/components/Skeleton/Skeleton";
+import Skeleton from "./monitoring/components/Skeleton";
 
 const Home: React.FC = () => {
 
- 
+
   return (<Skeleton />);
 };
 

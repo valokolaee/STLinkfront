@@ -1,0 +1,64 @@
+import { Flex } from 'antd';
+import { numString } from 'mrv-utils';
+import React, { ReactNode, useEffect, useState } from 'react';
+import SmartImage from '../../../../../components/ui/SmartImage';
+import svgList from '../../../../../assets/icons/svgList';
+
+
+export default ({ color: { name, num }, title, value, fontSize = 5, svg }: IContentBox) => {
+    const [_value, set_value] = useState(value)
+    
+    useEffect(() => {
+        const _delay = Math.random() * 4000
+        setTimeout(() => {
+            set_value(value)
+        }, _delay);
+    }, [value])
+
+
+    return (
+        <Flex
+            vertical
+            style={{
+                // minHeight: 230,
+                borderRadius: 5,
+                // margin: 3,
+                // ...tstStyleBlue
+            }}
+            className='relative w-full bg-'
+            align='center'
+
+        >
+            {svg &&
+                <div className="image-card">
+                    <img
+                        src={svg}
+                        alt={'alt'}
+                        className={`absolute opacity-10 left-0 right-0 bottom-0 w-full h-1/2`}
+                    />
+                </div>
+            }
+            {title}
+            <Flex
+                flex={1}
+                align='center'
+            >
+                <strong className={`text-center text-${fontSize}xl text-${name}-${num}`}>{_value}</strong>
+            </Flex>
+        </Flex >
+    );
+}
+
+
+export interface IContentBox {
+    // children?:string
+    title: string;
+    value?: ReactNode[] | ReactNode;
+    fontSize?: number;
+    color: {
+        name: string;
+        num: number;
+    };
+
+    svg?: string
+}

@@ -1,60 +1,68 @@
-import { Flex } from 'antd';
-import React from 'react';
-import RowFrame from './RowFrame';
-import Box from './Box';
-import ContentBox from './ContentBox';
-import Row3XL from './Row3XL';
 import svgList from '../../../../assets/icons/svgList';
+import { safeFixed } from '../../../../utils/text.utils';
+import Box from './components/Box';
+import ContentBox from './components/ContentBox';
+import RowFrame from './components/RowFrame';
+import { IMonitorData } from './IMonitorData';
+import Row3XL from './Row3XL';
 
 
 
-const Row3: React.FC = () => (
-    <RowFrame
+export default (monitor: IMonitorData) => {
+    const { wallet, alert, metric, session } = monitor || {}
 
-        children1={[
-            <Row3XL />
-        ]}
+    const { networkLatency, processingSpeed, } = metric || {}
+    const { energyConsumed, } = session || {}
+    const { alertMessage } = alert || {}
 
-        children2={[
-            <Box flex={1} vertical>
-                <Box flex={2} card>
-                    <ContentBox
-                        color={{ name: 'red', num: 200 }}
-                        title='Snark Fee Per Block'
-                        value={'0' }
 
-                    />
-                </Box>
-                <Box flex={2} card>
-                    <ContentBox
-                        color={{ name: 'red', num: 200 }}
-                        title='Last Snark Work Received'
-                        value={'2.3 min'}
+    return (
+        <RowFrame
 
-                    />
-                </Box>
-            </Box>,
-            <Box flex={1} vertical>
-                <Box flex={2} card >
-                    <ContentBox
-                        color={{ name: 'red', num: 200 }}
-                        title='Transaction Fee Per Block'
-                        value={'0.000300'}
-                        svg={svgList.chart6}
-                    />
-                </Box>
-                <Box flex={2} card>
-                    <ContentBox
-                        color={{ name: 'red', num: 200 }}
-                        title='Last Transaction Received'
-                        value={'40 s'}
+            children1={[
+                <Row3XL {...monitor} />
+            ]}
 
-                    />
-                </Box>
-            </Box>,
-        ]}
-    />
-);
+            children2={[
+                <Box flex={1} vertical>
+                    <Box flex={2} card>
+                        <ContentBox
+                            color={{ name: 'red', num: 200 }}
+                            title='Network Latency'
+                            value={safeFixed(networkLatency!)}
 
-export default Row3;
+                        />
+                    </Box>
+                    <Box flex={2} card>
+                        <ContentBox
+                            color={{ name: 'red', num: 200 }}
+                            title='Energy Consumed'
+                            value={`${energyConsumed || 0}`}
 
+                        />
+                    </Box>
+                </Box>,
+                <Box flex={1} vertical>
+                    <Box flex={2} card >
+                        <ContentBox
+                            color={{ name: 'red', num: 200 }}
+                            title='Processing Speed'
+                            value={`${processingSpeed}`}
+                            svg={svgList.chart6}
+                        />
+                    </Box>
+                    <Box flex={2} card>
+                        <ContentBox
+                            color={{ name: 'red', num: 200 }}
+                            title='Alert Message'
+                            value={alertMessage || 'No Alert'}
+
+                        />
+                    </Box>
+                </Box>,
+            ]}
+        />
+    );
+
+
+}

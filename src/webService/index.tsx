@@ -54,7 +54,7 @@ export default React.forwardRef(({ className, size = 30, donTShowSpin, }: IWebSe
 
 
   const callApi = async (apiModel: ModelApi) => {
-    console.log('apiModel?.body');
+    // console.log('apiModel?.body');
 
     if (!donTShowSpin) {
       setShowModal(apiModel)

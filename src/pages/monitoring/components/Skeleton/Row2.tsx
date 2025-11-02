@@ -1,13 +1,14 @@
 import { Flex } from 'antd';
 import React from 'react';
-import RowFrame from './RowFrame';
-import Box from './Box';
+import RowFrame from './components/RowFrame';
+import Box from './components/Box';
 import { BarChart, LineChart } from '@mui/x-charts';
 import {
     worldElectricityProduction,
     keyToLabel,
     colors,
-} from './worldElectricityProduction';
+} from './components/worldElectricityProduction';
+import { IMonitorData } from './IMonitorData';
 const stackStrategy = {
     stack: 'total',
     area: true,
@@ -46,7 +47,8 @@ export const sx = {
 }
 
 
-const Row2: React.FC = () => (
+
+export default     ({}: IMonitorData) => (
 
     <RowFrame
         children1={[
@@ -80,7 +82,7 @@ const Row2: React.FC = () => (
                     series={[
                         {
                             data: [2, 5.5, 2, 8.5, 1.5, 15],
-                            
+
                         },
                     ]}
                     margin={margin}
@@ -108,5 +110,4 @@ const Row2: React.FC = () => (
 
 );
 
-export default Row2;
 

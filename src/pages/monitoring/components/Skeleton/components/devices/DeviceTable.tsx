@@ -5,8 +5,9 @@ import Item from './item';
 import { ISelect } from '../../../../../../interfaces/ISelect';
 
 
-export default ({ devices,sel }: { devices: IMiningDevice[];sel: ISelect<IMiningDevice> }) => {
-    return <Flex vertical className='bg-gray-900 m-2'>{devices.map((item) => <Item info={item} onSelect={sel.onSelect} key={item.id} />)}</Flex >
+export default ({ devices, sel }: { devices: IMiningDevice[]; sel: ISelect<IMiningDevice> }) => {
+    return <Flex vertical className='bg-gray-900 m-2'>{devices.map((item) =>
+        <Item info={item} isSelected={sel.selectedItem?.id === item?.id} onSelect={sel.onSelect} key={item.id} />)}</Flex >
 
 };
 
