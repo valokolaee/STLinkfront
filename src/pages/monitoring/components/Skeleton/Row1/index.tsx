@@ -33,7 +33,7 @@ export default ({ device, monitor }: { monitor: IMonitorData; device: ISelect<IM
                             title='Total Earning'
                             value={
                                 <>
-                                    <div>{(safeFixed(totalEarnings || 0.00, 8))}</div>
+                                    <div>{(safeFixed(totalEarnings || 0.00))}</div>
                                     <div>{currency}</div>
                                 </>
                             } />

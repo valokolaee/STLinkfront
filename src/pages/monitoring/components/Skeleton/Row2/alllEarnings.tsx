@@ -1,13 +1,16 @@
-import { LineChart } from '@mui/x-charts';
-import { useEffect, useState } from 'react';
-import { JsonArrayIntoNumberArray } from '../../../../../utils/json.utils';
-import Box from '../components/Box';
+import { Flex } from 'antd';
+import React, { useEffect, useState } from 'react';
 import RowFrame from '../components/RowFrame';
-import { colors, keyToLabel, worldElectricityProduction, } from '../components/worldElectricityProduction';
+import Box from '../components/Box';
+import { BarChart, LineChart } from '@mui/x-charts';
+import {
+    worldElectricityProduction,
+    keyToLabel,
+    colors,
+} from '../components/worldElectricityProduction';
 import { IMonitorData } from '../IMonitorData';
+import { getObjectFromJsonArray, JsonArrayIntoNumberArray } from '../../../../../utils/json.utils';
 import LastEarnings from './lastEarnings';
-import Metrics from './metrics';
-import { sx } from './alllEarnings';
 const stackStrategy = {
     stack: 'total',
     area: true,
@@ -21,10 +24,33 @@ export const customize = {
 };
 
 
+const margin = { right: 5, left: 0 };
+const uData = [4000, 3000, 2000, 2780, 1890, 2390, 3490];
+const pData = [2400, 1398, 9800, 3908, 4800, 3800, 4300];
+const xLabels = [
+    'Page A',
+    'Page B',
+    'Page C',
+    'Page D',
+    'Page E',
+    'Page F',
+    'Page G',
+];
+
+export const sx = {
+    // Change x-axis font color
+    '& .MuiChartsAxis-bottom .MuiChartsAxis-tickLabel': {
+        fill: 'white',
+    },
+    // Change y-axis font color
+    '& .MuiChartsAxis-left .MuiChartsAxis-tickLabel': {
+        fill: 'white',
+    },
+}
 
 
 
-export default ({ alerts, lastEarnings, metrics, session, wallet }: IMonitorData) => {
+export default ({  metrics, }: {metrics:IMonitorData['metrics']}) => {
 
     const [_lastEarnings, set_lastEarnings] = useState<number[]>([])
 
@@ -32,16 +58,14 @@ export default ({ alerts, lastEarnings, metrics, session, wallet }: IMonitorData
         const _delay = Math.random() * 4000
 
         setTimeout(() => {
-            set_lastEarnings(JsonArrayIntoNumberArray(lastEarnings!, 'amount'))
+            // set_lastEarnings(JsonArrayIntoNumberArray(lastEarnings!, 'amount'))
         }, _delay);
 
-    }, [lastEarnings])
+    }, [metrics])
 
     return (
 
-        < RowFrame
-            children1={
-                [
+     
                     <Box flex={1} card>
                         <LineChart
                             axisHighlight={{
@@ -58,22 +82,12 @@ export default ({ alerts, lastEarnings, metrics, session, wallet }: IMonitorData
                             }))}
                             dataset={worldElectricityProduction}
                             {...customize}
+                            margin={margin}
                             sx={sx}
                         />
 
-                    </Box>,
-                    <LastEarnings lastEarnings={lastEarnings} />,
-
-                ]}
-            children2={
-                [
-
-                    <Metrics metrics={metrics} />
-                ]}
-        />
-
-
-
+        </Box>
+        
 
     );
 }
