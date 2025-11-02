@@ -10,6 +10,7 @@ import IMiningSession from '../../../../interfaces/IMiningSession';
 import apis from '../../../../webService/ApiUrls/apis';
 import IResponse from '../../../../webService/ApiUrls/apis/IResponse';
 import { IMonitorData } from './IMonitorData';
+import Loading from './components/Loading';
 
 
 var _interV = setInterval(async () => {
@@ -70,9 +71,7 @@ const Skeleton: React.FC = () => {
 
     return (
         <Flex vertical >
-            {_loading &&
-                <h1 className='absolute text-yellow-500 m-3 bg-blue-300 bg-opacity-70 rounded-full px-5'>loading...</h1>
-            }
+            {_loading && <Loading />}
             <Row1
                 monitor={_data!}
                 device={{

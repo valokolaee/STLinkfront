@@ -17,8 +17,6 @@ export default ({ lastUpdated }: { lastUpdated?: Date }) => <ContentBox
 
             ]
 
-
-
             : '.. : ..'}
     svg={svgList.chart1}
 />

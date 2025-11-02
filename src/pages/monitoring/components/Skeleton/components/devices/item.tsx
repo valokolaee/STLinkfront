@@ -13,10 +13,8 @@ export default ({ info, onSelect, isSelected }: ISelect<IMiningDevice>) => {
     }
     return <Card
         onClick={_onSelect}
-        // is={isSelected}
-        // aria-disabled
-        // className="m-2 w-full max-w-md rounded-xl border border-gray-700 bg-gradient-to-br from-gray-900 to-black text-white shadow-lg hover:shadow-xl hover:border-cyan-500 transition-all duration-300 cursor-pointer"
-        className={`m-2 rounded-xl border border-gray-700 bg-gradient-to-br from-gray-900 to-black text-white shadow-lg hover:shadow-xl hover:border-cyan-500 transition-all duration-300 cursor-pointer ${isSelected ? "border-solid border-4 border-blue-500" : ""} `}
+        className={`m-2 rounded-xl border border-gray-700 bg-gradient-to-br from-gray-900 to-black text-white shadow-lg hover:shadow-xl hover:border-cyan-500 transition-all duration-300 cursor-pointer
+             ${isSelected ? "border-solid border-4 border-blue-500" : ""} `}
     >
         <Flex justify="space-between">
 

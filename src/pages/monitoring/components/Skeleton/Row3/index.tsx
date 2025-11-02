@@ -1,15 +1,19 @@
-import svgList from '../../../../assets/icons/svgList';
-import { safeFixed } from '../../../../utils/text.utils';
-import Box from './components/Box';
-import ContentBox from './components/ContentBox';
-import RowFrame from './components/RowFrame';
-import { IMonitorData } from './IMonitorData';
+import svgList from '../../../../../assets/icons/svgList';
+import { getObjectFromJsonArray } from '../../../../../utils/json.utils';
+import { safeFixed } from '../../../../../utils/text.utils';
+import Box from '../components/Box';
+import ContentBox from '../components/ContentBox';
+import RowFrame from '../components/RowFrame';
+import { IMonitorData } from '../IMonitorData';
 import Row3XL from './Row3XL';
 
 
 
 export default (monitor: IMonitorData) => {
-    const { wallet, alert, metric, session } = monitor || {}
+    const { wallet, alerts, metrics, session } = monitor || {}
+
+    const metric = getObjectFromJsonArray(metrics!)
+    const alert = getObjectFromJsonArray(alerts!)
 
     const { networkLatency, processingSpeed, } = metric || {}
     const { energyConsumed, } = session || {}

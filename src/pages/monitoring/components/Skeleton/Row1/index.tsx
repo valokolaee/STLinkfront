@@ -14,7 +14,7 @@ import LastUpTime from './lastUpTime';
 
 
 export default ({ device, monitor }: { monitor: IMonitorData; device: ISelect<IMiningDevice> }) => {
-    const { wallet, alert, metric, session } = monitor || {}
+    const { wallet,  } = monitor || {}
     const { totalEarnings, currency = 'USDT', availableBalance, withdrawnAmount, lastUpdated, } = wallet || {}
  
     return (

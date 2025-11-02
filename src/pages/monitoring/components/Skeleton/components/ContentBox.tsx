@@ -7,7 +7,7 @@ import svgList from '../../../../../assets/icons/svgList';
 
 export default ({ color: { name, num }, title, value, fontSize = 5, svg }: IContentBox) => {
     const [_value, set_value] = useState(value)
-    
+
     useEffect(() => {
         const _delay = Math.random() * 4000
         setTimeout(() => {
@@ -19,12 +19,7 @@ export default ({ color: { name, num }, title, value, fontSize = 5, svg }: ICont
     return (
         <Flex
             vertical
-            style={{
-                // minHeight: 230,
-                borderRadius: 5,
-                // margin: 3,
-                // ...tstStyleBlue
-            }}
+            style={{ borderRadius: 5, }}
             className='relative w-full bg-'
             align='center'
 
