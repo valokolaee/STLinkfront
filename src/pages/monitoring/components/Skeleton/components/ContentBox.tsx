@@ -20,7 +20,7 @@ export default ({ color: { name, num }, title, value, fontSize = 5, svg }: ICont
         <Flex
             vertical
             style={{ borderRadius: 5, }}
-            className='relative w-full bg-'
+            className='relative w-full '
             align='center'
 
         >

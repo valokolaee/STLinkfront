@@ -6,10 +6,19 @@ import IMasterDetail from './IMasterDetal';
 
 
 const Desktop: React.FC<IMasterDetail> = ({ detail, master }) => (
+  // <div >
+  // <Flex>
+  //   <div className='w-2/12'>
+  //     {master}
+  //   </div>
+  //   <div>
+  //     {detail}
+  //   </div>
+  // </Flex>
+  // </div>
   <Splitter className='h-screen'>
-    <Splitter.Panel defaultSize="20%" min="5%" max="30%"
-    className='h-screen'
-    
+    <Splitter.Panel defaultSize="15%" min="5%" max="20%"
+      className='h-screen'
       style={{ backgroundColor: 'rgba(100, 100, 100, 0.1)' }}
     >
       {master}

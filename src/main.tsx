@@ -11,6 +11,7 @@ import { persistStore } from 'redux-persist';
 import { PersistGate } from 'redux-persist/integration/react';
 import store from "./redux/store";
 import Skeleton from "./pages/monitoring/components/Skeleton";
+import { ConfigProvider } from "antd";
 
 let persistor = persistStore(store);
 
@@ -22,8 +23,32 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
     <Provider store={store}>
       <PersistGate loading={null} persistor={persistor}>
         <BrowserRouter>
-          {/* <Skeleton/> */}
-          <App />
+          <ConfigProvider
+            theme={{
+              token: {
+                // Seed Token
+                colorPrimary: '#00b96b',
+                colorBgBase: '#000',
+
+                // Alias Token
+                colorBgContainer: '#f6ffed',
+                colorText: '#ccc',
+                colorBgLayout: 'black',
+                colorSplit: 'red',
+
+                colorBorder: '#ccc',
+                // borderRadius: 2,
+
+              },
+            }}
+
+          >
+
+
+
+            {/* <Skeleton/> */}
+            <App />
+          </ConfigProvider>
         </BrowserRouter>
       </PersistGate>
     </Provider>

@@ -1,19 +1,28 @@
-import React from 'react';
-import { Flex, Splitter, Typography } from 'antd';
-import './index.css';
+import { useState } from 'react';
 import useIsMobile from '../../../hooks/useIsMobile';
-import Mobile from './mobile';
+import Header from '../../layout/Header';
 import Desktop from './desktop';
 import IMasterDetail from './IMasterDetal';
+import './index.css';
+import Mobile from './mobile';
 
 
 
-export default ({ detail,master}:IMasterDetail) => {
+export default ({ detail, master }: IMasterDetail) => {
   const _isMobile = useIsMobile();
-  if (_isMobile) {
-    return <Mobile master={master} detail={detail} />
-  } else {
-    return <Desktop master={master} detail={detail} />
-  }
+  const [open, setOpen] = useState(true);
+
+  const drawer = { toggleOpen: setOpen, isOpen: open }
+  return <>
+    <Header className='fixed' drawer={_isMobile ? drawer : undefined} />
+    <Header /> {/* this header is added only for adjustment */}
+
+    {_isMobile ?
+      <Mobile drawer={drawer} md={{ master, detail }} />
+      :
+      <Desktop master={master} detail={detail} />
+    }
+  </>
+
 }
 

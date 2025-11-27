@@ -4,6 +4,7 @@ import { JsonArrayIntoNumberArray } from '../../../../../utils/json.utils';
 import Box from '../components/Box';
 import Loading from '../components/Loading';
 import { IMonitorData } from '../IMonitorData';
+import { sx } from './sx';
 
 
 export default ({ lastEarnings }: { lastEarnings: IMonitorData['lastEarnings'] }) => {
@@ -24,7 +25,9 @@ export default ({ lastEarnings }: { lastEarnings: IMonitorData['lastEarnings'] }
         <Box flex={1} card>
             {_lastEarnings.length > 0 ?
 
-                <LineChart series={[{ data: _lastEarnings }]} />
+                <LineChart series={[{ data: _lastEarnings }]}
+                                            sx={sx}
+                />
                 :
                 <Loading />
             }

@@ -1,7 +1,5 @@
 import { Flex } from 'antd';
 import React, { ReactElement, ReactNode } from 'react';
-import RowFrame from './RowFrame';
-import { tstStyle, tstStyleBlue } from '../../../../../styles/tstStyle';
 
 
 
@@ -15,7 +13,7 @@ const Box: React.FC<IBox> = ({ flex = 1, children, vertical, card, onClick }) =>
             vertical={vertical}
             style={{ ...cardStyle }}
             flex={flex}
-            className={!card ? '' : 'bg-gray-800 overflow-hidden '}
+            className={!card ? '' : 'bg-gray-800 overflow-hidden justify-center'}
         >
             {children}
         </Flex >

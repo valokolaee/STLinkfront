@@ -11,6 +11,7 @@ import {
 import { IMonitorData } from '../IMonitorData';
 import { getObjectFromJsonArray, JsonArrayIntoNumberArray } from '../../../../../utils/json.utils';
 import LastEarnings from './lastEarnings';
+import { sx } from './sx';
 const stackStrategy = {
     stack: 'total',
     area: true,
@@ -23,32 +24,7 @@ export const customize = {
     experimentalFeatures: { preferStrictDomainInLineCharts: true },
 };
 
-
-const margin = { right: 5, left: 0 };
-const uData = [4000, 3000, 2000, 2780, 1890, 2390, 3490];
-const pData = [2400, 1398, 9800, 3908, 4800, 3800, 4300];
-const xLabels = [
-    'Page A',
-    'Page B',
-    'Page C',
-    'Page D',
-    'Page E',
-    'Page F',
-    'Page G',
-];
-
-export const sx = {
-    // Change x-axis font color
-    '& .MuiChartsAxis-bottom .MuiChartsAxis-tickLabel': {
-        fill: 'white',
-    },
-    // Change y-axis font color
-    '& .MuiChartsAxis-left .MuiChartsAxis-tickLabel': {
-        fill: 'white',
-    },
-}
-
-
+ 
 
 export default ({  metrics, }: {metrics:IMonitorData['metrics']}) => {
 
@@ -82,7 +58,7 @@ export default ({  metrics, }: {metrics:IMonitorData['metrics']}) => {
                             }))}
                             dataset={worldElectricityProduction}
                             {...customize}
-                            margin={margin}
+                            // margin={margin}
                             sx={sx}
                         />
 

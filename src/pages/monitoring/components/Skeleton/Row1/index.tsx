@@ -21,9 +21,7 @@ export default ({ device, monitor }: { monitor: IMonitorData; device: ISelect<IM
         <>
             <RowFrame
                 children1={[
-
                     <Devices selectedItem={device.selectedItem} onSelect={device.onSelect} />
-
                     ,
                     <Box flex={3} card  >
 
@@ -37,8 +35,6 @@ export default ({ device, monitor }: { monitor: IMonitorData; device: ISelect<IM
                                     <div>{currency}</div>
                                 </>
                             } />
-
-
 
                     </Box>,
                     <Box flex={2} vertical card>
@@ -118,8 +114,6 @@ export default ({ device, monitor }: { monitor: IMonitorData; device: ISelect<IM
                                 </Flex>
                             </Box>
                         </Box>
-
-
                     </Box>,
                 ]}
             />
