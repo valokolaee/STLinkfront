@@ -5,15 +5,15 @@
 import React from "react";
 import Hero from "../components/ui/Hero";
 import Features from "../components/ui/Features";
+import Wallet from "./Dashboard/wallet";
 
-const Wallet: React.FC = () => {
-// Home.tsx
-return (
-  <div> {/* no aty style*/}
-    <Hero />
-  </div>
-);
+export default () => {
+  // Home.tsx
+  return (
+    <div> {/* no aty style*/}
+      {/* <Hero /> */}
+      <Wallet />
+    </div>
+  );
 };
 
-
-export default Wallet;

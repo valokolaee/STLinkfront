@@ -17,8 +17,9 @@ const Desktop: React.FC<IMasterDetail> = ({ detail, master }) => (
   // </Flex>
   // </div>
   <Splitter className='h-screen'>
-    <Splitter.Panel defaultSize="15%" min="5%" max="20%"
-      className='h-screen'
+    <Splitter.Panel defaultSize="20%" min="10%" max="30%"
+      // size={300}
+      // className='h-screen minw'
       style={{ backgroundColor: 'rgba(100, 100, 100, 0.1)' }}
     >
       {master}

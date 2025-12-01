@@ -15,6 +15,8 @@ import { setUser, setUserAvatar } from '../redux/actions';
 import WebService, { IWebServiceFuncs } from '../webService';
 import apis from '../webService/ApiUrls/apis';
 import IRegisterReq, { IRegisterRes } from '../webService/ApiUrls/apis/IRegister';
+import { formContainer, inputText } from '../css/classNames';
+import CSubmitBtn from '../components/ui/CSubmitBtn';
 
 
 const FormDisabledDemo: React.FC = () => {
@@ -66,20 +68,22 @@ const FormDisabledDemo: React.FC = () => {
   };
 
   return (
-    <div>
+    <div className={formContainer}>
       {contextHolder}
 
       <h2 >Register</h2>
 
       <Form
         name="Register"
-        preserve={false} 
+        preserve={false}
         onFinish={onFinish}
         onFinishFailed={onFinishFailed}
-        labelCol={{ span: 5 }}
+        
+        style={{ maxWidth: '600px', width: '90%' }}
         wrapperCol={{ span: '30%' }}
-        layout="horizontal"
-        style={{ maxWidth: '80%' }}
+
+        layout="vertical"
+        // style={{ maxWidth: '80%' }}
         autoComplete='off'
       >
 
@@ -102,7 +106,7 @@ const FormDisabledDemo: React.FC = () => {
             }),
           ]}
         >
-          <Input />
+          <Input className={inputText} />
         </Form.Item>
 
         <Form.Item
@@ -119,7 +123,7 @@ const FormDisabledDemo: React.FC = () => {
             },
           ]}
         >
-          <Input />
+          <Input className={inputText} />
         </Form.Item>
 
         <Form.Item
@@ -140,7 +144,7 @@ const FormDisabledDemo: React.FC = () => {
             }),
           ]} hasFeedback
         >
-          <Input.Password autoComplete="new-password" />
+          <Input.Password autoComplete="new-password" className={inputText} />
         </Form.Item>
         <Form.Item
           name="confirm"
@@ -154,7 +158,7 @@ const FormDisabledDemo: React.FC = () => {
               required: true,
               message: 'Please confirm your password!',
             },
-            
+
             ({ getFieldValue }) => ({
               validator(_, value) {
                 if (!value || getFieldValue('password') === value) {
@@ -163,19 +167,19 @@ const FormDisabledDemo: React.FC = () => {
                 return Promise.reject(new Error('The new password that you entered do not match!'));
               },
             }),
-          
+
           ]}
         >
-          <Input.Password autoComplete="new-password" />
+          <Input.Password autoComplete="new-password" className={inputText} />
         </Form.Item>
 
         <Form.Item
           label={<label style={{ color: "white" }}>Client Type</label>}
           name="clientType"
           rules={[{ required: true, message: 'Please input your client type!' }]}
-
+          className={inputText}
         >
-          <Select>
+          <Select  >
 
             <Select.Option value="individual">Individual</Select.Option>
             <Select.Option value="financial_entities">Financial Entity</Select.Option>
@@ -184,15 +188,8 @@ const FormDisabledDemo: React.FC = () => {
           </Select>
         </Form.Item>
 
-        <Form.Item label={null} className='none'>
-          <CButton title='Submit' />
-          <WebService ref={refWebService} />
-
-          <CText text={`Already have Id?`} className="block mt-5 " />
-          <CLink
-            to={'/login'}
-            title="login"
-          />
+        <Form.Item>
+          <CSubmitBtn />
 
 
         </Form.Item>
@@ -201,6 +198,13 @@ const FormDisabledDemo: React.FC = () => {
 
       </Form>
 
+      <WebService ref={refWebService} />
+
+          <CText text={`Already have Id?`} className="block mt-5 " />
+          <CLink
+            to={'/login'}
+            title="login"
+          />
     </div>
   );
 };

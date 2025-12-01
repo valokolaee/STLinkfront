@@ -28,26 +28,26 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
               token: {
                 // Seed Token
                 colorPrimary: '#00b96b',
-                colorBgBase: '#000',
-
+                colorBgBase	:'#000',
+                
                 // Alias Token
                 colorBgContainer: '#f6ffed',
                 colorText: '#ccc',
                 colorBgLayout: 'black',
                 colorSplit: 'red',
-
+                
                 colorBorder: '#ccc',
                 // borderRadius: 2,
 
               },
             }}
-
+          
           >
 
-
-
-            {/* <Skeleton/> */}
-            <App />
+       
+       
+          {/* <Skeleton/> */}
+          <App />
           </ConfigProvider>
         </BrowserRouter>
       </PersistGate>

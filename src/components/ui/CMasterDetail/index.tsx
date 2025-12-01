@@ -10,7 +10,7 @@ import Mobile from './mobile';
 
 export default ({ detail, master }: IMasterDetail) => {
   const _isMobile = useIsMobile();
-  const [open, setOpen] = useState(true);
+  const [open, setOpen] = useState(false);
 
   const drawer = { toggleOpen: setOpen, isOpen: open }
   return <>

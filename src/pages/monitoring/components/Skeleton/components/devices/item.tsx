@@ -4,7 +4,8 @@ import StatusTag from "./StatusTag";
 import { ISelect } from "../../../../../../interfaces/ISelect";
 import { PinOutlined, PointOfSaleOutlined } from "@mui/icons-material";
 import { RightCircleFilled } from "@ant-design/icons";
-
+import { cardAndSelected } from "../../../../../../css/classNames";
+ 
 export default ({ info, onSelect, isSelected }: ISelect<IMiningDevice>) => {
     const { createdAt, deviceModel, deviceName, firmwareVersion, imei, status, totalRevenue, } = info || {}
 
@@ -13,8 +14,7 @@ export default ({ info, onSelect, isSelected }: ISelect<IMiningDevice>) => {
     }
     return <Card
         onClick={_onSelect}
-        className={`m-2 rounded-xl border border-gray-700 bg-gradient-to-br from-gray-900 to-black text-white shadow-lg hover:shadow-xl hover:border-cyan-500 transition-all duration-300 cursor-pointer
-             ${isSelected ? "border-solid border-4 border-blue-500" : ""} `}
+        className={cardAndSelected(isSelected!)}
     >
         <Flex justify="space-between">
 

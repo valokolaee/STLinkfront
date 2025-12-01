@@ -4,7 +4,7 @@ var getIsMobile = (w?: number) => {
     if (w! > 0) {
         return window.innerWidth <= w!
     } else {
-        return window.innerWidth <= 768;
+        return window.innerWidth <= 750;
 
     }
 }

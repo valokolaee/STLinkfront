@@ -9,6 +9,8 @@ import IReqRes from '../../../webService/ApiUrls/apis/IReqRes';
 import useIsMobile from '../../../hooks/useIsMobile';
 import { ICreateEdit } from '../../withdraw/list/create';
 import { useForm } from 'antd/es/form/Form';
+import { inputText } from '../../../css/classNames';
+import CSubmitBtn from '../../../components/ui/CSubmitBtn';
 
 export default ({ onSucceed, uw }: ICreateWallet) => {
   const refWebService = useRef<IWebServiceFuncs>()
@@ -62,7 +64,7 @@ export default ({ onSucceed, uw }: ICreateWallet) => {
       onFinishFailed={onFinishFailed}
       // labelCol={{ span: 5 }}
       // wrapperCol={{ span: '30%' }}
-      layout="horizontal"
+      // layout="horizontal"
       autoComplete='off'
       initialValues={{ nickname: uw?.nickname!, walletAddress: uw?.walletAddress }}
     >
@@ -77,10 +79,12 @@ export default ({ onSucceed, uw }: ICreateWallet) => {
               message: 'Please input your Wallet Address!',
             }]}
           hidden={!!uw}
-          style={style}
+          // style={style}
 
         >
           <Input
+            className={inputText}
+
             disabled={!!uw}
             placeholder='Address'
           />
@@ -92,16 +96,19 @@ export default ({ onSucceed, uw }: ICreateWallet) => {
               required: true,
               message: 'Please input a nickname by which you can recognize easier later!',
             }]}
-          style={style}
+          // style={style}
         >
           <Input
             placeholder='Nickname'
+            className={inputText}
           />
         </Form.Item>
         <Form.Item
-          style={{ ...style, width: undefined }}
-          label={null} className='none'>
-          <CButton title='Submit' />
+          // style={{ ...style, width: undefined }}
+          // label={null} className='none'
+        >
+          <CSubmitBtn/>
+          {/* <CButton title='Submit' /> */}
         </Form.Item>
       </Flex>
 

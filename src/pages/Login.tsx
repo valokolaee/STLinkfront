@@ -1,7 +1,7 @@
 import { useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import type { FormProps } from 'antd';
-import { Checkbox, Form, Input } from 'antd';
+import { Checkbox, Flex, Form, Input } from 'antd';
 import CButton from '../components/ui/CButton';
 import CLink from "../components/ui/CLink";
 import CText from "../components/ui/CText";
@@ -13,6 +13,9 @@ import WebService, { IWebServiceFuncs } from "../webService";
 import apis, { deviceAlertRequest, deviceSpecificationRequest, miningSession, permission, rolePermissionRequest, roleRequest, userSession } from "../webService/ApiUrls/apis";
 import ILoginReq, { ILoginRes } from "../webService/ApiUrls/apis/ILogin";
 import IReqRes from "../webService/ApiUrls/apis/IReqRes";
+import { formContainer, inputText } from "../css/classNames";
+import CSubmitBtn from "../components/ui/CSubmitBtn";
+import { ClassNames } from "@emotion/react";
 const Login = () => {
   const refWebService = useRef<IWebServiceFuncs>()
 
@@ -110,19 +113,24 @@ const Login = () => {
 
   return (
 
-    <div >
+
+    <div className={formContainer}>
 
       <h2 onClick={_try} className="cursor-auto">login</h2>
 
       <Form
         name="login"
         onFinish={onFinish}
-        // onFinishFailed={onFinishFailed}
-        labelCol={{ span: 5 }}
+
+
+        style={{ maxWidth: '600px', width: '90%' }}
         wrapperCol={{ span: '30%' }}
-        layout="horizontal"
-        style={{ maxWidth: '80%' }}
+        layout="vertical"
+
+
         autoComplete="yes"
+
+
         initialValues={{
           remember: true,
           email: _savedUser?.email,
@@ -131,11 +139,12 @@ const Login = () => {
 
       >
         <Form.Item<FieldType>
+
           label={<label style={{ color: "white" }}>Username</label>}
           name="email"
           rules={[{ required: true, message: 'Please input your username!' }]}
         >
-          <Input />
+          <Input className={inputText} />
         </Form.Item>
 
         <Form.Item<FieldType>
@@ -144,24 +153,22 @@ const Login = () => {
           name="password"
           rules={[{ required: true, message: 'Please input your password!' }]}
         >
-          <Input.Password />
+          <Input.Password className={inputText} />
         </Form.Item>
-        <Form.Item<FieldType> name="remember" valuePropName="checked"
+        <Form.Item<FieldType>
+
+          name="remember" valuePropName="checked"
+          // label="yes"
           label={<label style={{ color: "white" }}>Remember me</label>}
         >
           <Checkbox />
         </Form.Item>
-        <Form.Item label={null}>
-          <CButton title='Submit' />
-          <WebService ref={refWebService} />
 
-          <CText text={`Don't have Id?`} className="block mt-5 " />
-          <CLink
-            to={'/register'}
-            title="register"
-          />
-
+        <Form.Item>
+          <CSubmitBtn />
         </Form.Item>
+        <WebService ref={refWebService} />
+
       </Form>
 
     </div>
