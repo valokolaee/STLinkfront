@@ -4,10 +4,10 @@ import LoginForm from "../components/ui/formings/LoginForm";
 import { Router, useNavigate } from "react-router-dom";
 
 const Home: React.FC = () => {
-  const n = useNavigate()
-  useEffect(() => {
-    n('register')
-  }, [])
+  // const n = useNavigate()
+  // useEffect(() => {
+  //   n('register')
+  // }, [])
 
   return (
 

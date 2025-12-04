@@ -12,10 +12,26 @@ export default defineConfig({
     // }),
 
     react(),
+    svgr(
+      {
+        // exportAsDefault: true, // Important for default imports
+        svgrOptions: {
+          plugins: ["@svgr/plugin-svgo", "@svgr/plugin-jsx"],
+          svgoConfig: {
+            floatPrecision: 2,
+          },
+          exportType: 'default',
+          ref: true,
+          svgo: false,
+          titleProp: true,
+        },
+        include: '**/*.svg',
+      }
+    ),
     basicSsl({
       name: 'localhost'
     }),
-    svgr()
+    // svgr()
   ],
   server: {
     https: true,

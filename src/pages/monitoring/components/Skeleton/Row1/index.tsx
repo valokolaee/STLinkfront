@@ -1,5 +1,4 @@
 import { Flex } from 'antd';
-import svgList from '../../../../../assets/icons/svgList';
 import IMiningDevice from '../../../../../interfaces/IMiningDevice';
 import { ISelect } from '../../../../../interfaces/ISelect';
 import { safeFixed } from '../../../../../utils/text.utils';

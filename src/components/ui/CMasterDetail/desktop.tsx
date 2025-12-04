@@ -2,6 +2,7 @@ import React from 'react';
 import { Flex, Splitter, Typography } from 'antd';
 import './index.css';
 import IMasterDetail from './IMasterDetal';
+import BottomToTopAnimation from '../BottomToTopAnimation';
 
 
 
@@ -22,6 +23,7 @@ const Desktop: React.FC<IMasterDetail> = ({ detail, master }) => (
       // className='h-screen minw'
       style={{ backgroundColor: 'rgba(100, 100, 100, 0.1)' }}
     >
+
       {master}
     </Splitter.Panel>
     <Splitter.Panel

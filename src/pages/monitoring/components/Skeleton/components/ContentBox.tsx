@@ -1,8 +1,5 @@
 import { Flex } from 'antd';
-import { numString } from 'mrv-utils';
-import React, { ReactNode, useEffect, useState } from 'react';
-import SmartImage from '../../../../../components/ui/SmartImage';
-import svgList from '../../../../../assets/icons/svgList';
+import { ReactNode, useEffect, useState } from 'react';
 
 
 export default ({ color: { name, num }, title, value, fontSize = 5, svg }: IContentBox) => {

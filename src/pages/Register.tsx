@@ -35,7 +35,7 @@ const FormDisabledDemo: React.FC = () => {
     values = { ...values, confirm: undefined }
     const x = await refWebService?.current?.callApi<IRegisterRes>(apis.auth.register(values));
 
-    console.log('xxx', x);
+    // console.log('xxx', x);
 
 
     if (x?.success) {
@@ -78,7 +78,7 @@ const FormDisabledDemo: React.FC = () => {
         preserve={false}
         onFinish={onFinish}
         onFinishFailed={onFinishFailed}
-        
+
         style={{ maxWidth: '600px', width: '90%' }}
         wrapperCol={{ span: '30%' }}
 
@@ -146,6 +146,7 @@ const FormDisabledDemo: React.FC = () => {
         >
           <Input.Password autoComplete="new-password" className={inputText} />
         </Form.Item>
+        
         <Form.Item
           name="confirm"
 
@@ -179,32 +180,27 @@ const FormDisabledDemo: React.FC = () => {
           rules={[{ required: true, message: 'Please input your client type!' }]}
           className={inputText}
         >
-          <Select  >
-
+          <Select>
             <Select.Option value="individual">Individual</Select.Option>
             <Select.Option value="financial_entities">Financial Entity</Select.Option>
             <Select.Option value="business">Business</Select.Option>
-
           </Select>
         </Form.Item>
 
         <Form.Item>
           <CSubmitBtn />
-
-
         </Form.Item>
-
-
 
       </Form>
 
       <WebService ref={refWebService} />
 
-          <CText text={`Already have Id?`} className="block mt-5 " />
-          <CLink
-            to={'/login'}
-            title="login"
-          />
+      <CText text={`Already have Id?`} className="block mt-5 " />
+      <CLink
+        to={'/login'}
+        title="login"
+      />
+
     </div>
   );
 };

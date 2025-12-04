@@ -6,16 +6,14 @@ import { cardAndSelected } from "../../css/classNames";
 
 export default ({ title, onClick, link, className }: IButton) => {
   return (
-    <div
-      onClick={onClick}
-      // className={`px-6 bg-primary text-dark font-bold rounded-lg hover:bg-green-400 transition-colors ${className}`}
-      className={`w-2/3 border-solid text-center  ${className2} ${cardAndSelected(true)} ${className}`}
 
-    // Gradient theme
-    // className=" "
+    <button
+      onClick={onClick}
+      className={`w-2/3 border-solid text-center  ${className2} ${cardAndSelected(true)} ${className}`}
     >
+
       {link ? <CLink to={link} title={title as string} /> : title}
-    </div>
+    </button>
   );
 };
 
