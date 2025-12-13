@@ -9,6 +9,9 @@ import { userWallet } from "../../../webService/ApiUrls/apis"
 import IReqRes from "../../../webService/ApiUrls/apis/IReqRes"
 import Create from "./create"
 import Item from "./item"
+import SvgWrapper from "../../../components/ui/SvgWrapper"
+import CreateNewWallet from "../../../assets/icons/CreateNewWallet"
+import { AddAPhoto } from "@mui/icons-material"
 
 export default () => {
     const refWebService = useRef<IWebServiceFuncs>()
@@ -18,7 +21,7 @@ export default () => {
     const _loadWallets = async () => {
         const res = await refWebService?.current?.callApi<IReqRes<IUserWallet>['getAllBy']['res']>(userWallet.getAllBy({ userId: _savedUser.id! }))
         if (res?.success) {
-            set_devices(res?.data!)
+            set_devices([...res?.data!, ...res?.data!, ...res?.data!, ...res?.data!, ...res?.data!,])
         }
         console.log(res);
     }
@@ -31,6 +34,7 @@ export default () => {
 
     const _newCreated = (nd: IUserWallet) => {
         set_devices([nd, ..._devices])
+
     }
 
     const _update = (nd: IUserWallet) => {
@@ -59,18 +63,25 @@ export default () => {
         }
     }
     return (
-        <div className="w-full">
 
+        <div className="w-full relative   ">
+{/* 
             <Flex className="w-full">
 
                 <div className="m-3 w-full bg-gray-500 p-2 rounded-lg">
                     {`${_devices?.length} wallets`}
                 </div>
-            </Flex>
-            <Create onSucceed={_newCreated} />
-
-            {_devices?.map((item) => <Item uw={item} key={item.id} onSucceed={_succeedCallback} />)}
+            </Flex> */}
+           
+            {/* <Create onSucceed={_newCreated} />  */}
+            <div className="w-full h-full">
+                {_devices?.map((item) => <Item uw={item} key={item.id} onSucceed={_succeedCallback} />)}
+            </div>
+            {/* <SvgWrapper className="absolute cursor-pointer  ">
+                <CreateNewWallet />
+            </SvgWrapper> */}
             <WebService ref={refWebService} />
+            
         </div>
     )
 }

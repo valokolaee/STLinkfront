@@ -7,16 +7,16 @@ import {
 } from 'antd';
 import React, { useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
-import CButton from '../components/ui/CButton';
-import CLink from '../components/ui/CLink';
-import CText from '../components/ui/CText';
-import IUser from '../interfaces/IUser';
-import { setUser, setUserAvatar } from '../redux/actions';
-import WebService, { IWebServiceFuncs } from '../webService';
-import apis from '../webService/ApiUrls/apis';
-import IRegisterReq, { IRegisterRes } from '../webService/ApiUrls/apis/IRegister';
-import { formContainer, inputText } from '../css/classNames';
-import CSubmitBtn from '../components/ui/CSubmitBtn';
+import CButton from '../../components/ui/CButton';
+import CLink from '../../components/ui/CLink';
+import CText from '../../components/ui/CText';
+import IUser from '../../interfaces/IUser';
+import { setUser, setUserAvatar } from '../../redux/actions';
+import WebService, { IWebServiceFuncs } from '../../webService';
+import apis from '../../webService/ApiUrls/apis';
+import IRegisterReq, { IRegisterRes } from '../../webService/ApiUrls/apis/IRegister';
+import { formContainer, inputText } from '../../css/classNames';
+import CSubmitBtn from '../../components/ui/CSubmitBtn';
 
 
 const FormDisabledDemo: React.FC = () => {
@@ -68,7 +68,7 @@ const FormDisabledDemo: React.FC = () => {
   };
 
   return (
-    <div className={formContainer}>
+    <div className={`${formContainer} `} >
       {contextHolder}
 
       <h2 >Register</h2>
@@ -146,7 +146,7 @@ const FormDisabledDemo: React.FC = () => {
         >
           <Input.Password autoComplete="new-password" className={inputText} />
         </Form.Item>
-        
+
         <Form.Item
           name="confirm"
 

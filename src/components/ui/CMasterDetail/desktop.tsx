@@ -1,33 +1,23 @@
+import { Splitter } from 'antd';
 import React from 'react';
-import { Flex, Splitter, Typography } from 'antd';
-import './index.css';
 import IMasterDetail from './IMasterDetal';
-import BottomToTopAnimation from '../BottomToTopAnimation';
+import './index.css';
 
 
 
 const Desktop: React.FC<IMasterDetail> = ({ detail, master }) => (
-  // <div >
-  // <Flex>
-  //   <div className='w-2/12'>
-  //     {master}
-  //   </div>
-  //   <div>
-  //     {detail}
-  //   </div>
-  // </Flex>
-  // </div>
-  <Splitter className='h-screen'>
+
+  <Splitter
+    className=' h-full w-full  '
+  >
     <Splitter.Panel defaultSize="20%" min="10%" max="30%"
-      // size={300}
-      // className='h-screen minw'
       style={{ backgroundColor: 'rgba(100, 100, 100, 0.1)' }}
     >
-
       {master}
     </Splitter.Panel>
     <Splitter.Panel
-      className='h-screen'
+    // style={{height:'91%'}}
+    // className='border-solid ' 
     >
       {detail}
     </Splitter.Panel>

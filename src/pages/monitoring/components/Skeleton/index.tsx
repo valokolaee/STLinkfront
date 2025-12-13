@@ -42,6 +42,8 @@ const Skeleton: React.FC = () => {
 
                 if (res2?.success) {
                     set_data(res2.data)
+                } else {
+                    clearInterval(_interV)
                 }
 
                 setLoading(false)
@@ -70,7 +72,7 @@ const Skeleton: React.FC = () => {
 
 
     return (
-        <Flex vertical >
+        <Flex vertical  >
             {_loading && <Loading />}
             <Row1
                 monitor={_data!}

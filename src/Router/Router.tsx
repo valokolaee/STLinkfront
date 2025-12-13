@@ -17,6 +17,8 @@ import '../css/form-field.css'
 import '../css/form-grid.css'
 import '../css/input-active.css'
 import '../css/textarea.css'
+import '../css/root.css'
+import AddWallet from "../pages/AddWallet";
 
 
 
@@ -27,6 +29,7 @@ export default () =>
     <Route path="/dashboard" element={<Dashboard />} />
     <Route path="/withdraw" element={<Withdraw />} />
     <Route path="/wallets" element={<Wallet />} />
+    <Route path="/addWallet" element={<AddWallet />} />
 
     <Route path="/login" element={<Login />} />
     <Route path="/register" element={<Register />} />

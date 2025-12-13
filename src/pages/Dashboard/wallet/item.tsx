@@ -5,54 +5,81 @@ import { CancelOutlined, EditNoteOutlined } from "@mui/icons-material";
 import Create, { ICreateWallet } from "./create";
 
 export default ({ uw, onSucceed }: ICreateWallet) => {
-    const { walletAddress, currency, nickname, pendingBalance, availableBalance, totalEarnings, } = uw || {}
+    const { walletAddress, currency, nickname, pendingBalance, availableBalance, totalEarnings } = uw || {};
     const [_editMode, _set_editMode] = useState<boolean>(false);
-
 
     const _toggleEditModeOn = () => {
         _set_editMode(true);
-    }
+    };
 
     const _toggleEditModeOff = () => {
         _set_editMode(false);
-    }
-    useEffect(() => {
-        _set_editMode(false)
-    }, [uw])
+    };
 
-    return <Card
-        title={
-            <Flex justify="space-between">
-                {walletAddress}
-                <div className={"bg-indigo-500 rounded-full text-white px-2"}>
-                    {currency}
+    useEffect(() => {
+        _set_editMode(false);
+    }, [uw]);
+
+    return (
+        <Card
+            title={
+                <Flex justify="space-between" align="center">
+                    <div className="text-white font-semibold truncate" title={walletAddress}>
+                        {walletAddress}
+                    </div>
+                    <div className="bg-blue-600 text-white px-3 py-1 rounded-full text-sm font-medium">
+                        {currency}
+                    </div>
+                </Flex>
+            }
+            variant="borderless"
+            className="m-2 bg-gray-800 border border-gray-700 rounded-xl shadow-lg transition-all duration-300 hover:border-gray-600 hover:shadow-xl"
+        >
+            <Flex justify="space-between" align="center" className="mb-4 pb-3 border-b border-gray-700">
+                <div className="w-full">
+                    <span className="text-gray-400">Nickname: </span>
+                    <strong className="text-white ml-1">{nickname}</strong>
+                </div>
+
+                {!_editMode ? (
+                    <button
+                        onClick={_toggleEditModeOn}
+                        className="ml-2 p-2 bg-blue-600 hover:bg-blue-500 rounded-lg transition-all duration-300 hover:scale-105 focus:outline-none focus:ring-2 focus:ring-blue-500/20"
+                    >
+                        <EditNoteOutlined className="text-white" />
+                    </button>
+                ) : (
+                    <button
+                        onClick={_toggleEditModeOff}
+                        className="ml-2 p-2 bg-gray-700 hover:bg-gray-600 rounded-lg transition-all duration-300 hover:scale-105 focus:outline-none focus:ring-2 focus:ring-blue-500/20"
+                    >
+                        <CancelOutlined className="text-white" />
+                    </button>
+                )}
+            </Flex>
+
+            {_editMode && (
+                <div className="mb-4 p-4 bg-gray-900 border border-gray-700 rounded-lg">
+                    <Create uw={uw} onSucceed={onSucceed} />
+                </div>
+            )}
+
+            <Flex vertical gap="middle" className="mt-4 pt-4 border-t border-gray-700">
+                <div className="flex justify-between items-center">
+                    <span className="text-gray-400">Total Earnings:</span>
+                    <strong className="text-green-400 text-lg">{totalEarnings}</strong>
+                </div>
+
+                <div className="flex justify-between items-center">
+                    <span className="text-gray-400">Available Balance:</span>
+                    <strong className="text-white text-lg">{availableBalance}</strong>
+                </div>
+
+                <div className="flex justify-between items-center">
+                    <span className="text-gray-400">Pending Balance:</span>
+                    <strong className="text-yellow-400 text-lg">{pendingBalance}</strong>
                 </div>
             </Flex>
-        }
-        variant="borderless"
-        className="m-2"  >
-
-
-        <Flex>
-
-            <div className="w-full">
-
-                <span >Nickname: <strong> {nickname}</strong></span>
-            </div>
-
-
-            {!_editMode ? <EditNoteOutlined className="text-green-700" onClick={_toggleEditModeOn} />
-                :
-                <CancelOutlined className="text-red-900" onClick={_toggleEditModeOff} />}
-        </Flex>
-
-
-        {_editMode && <Create uw={uw} onSucceed={onSucceed} />}
-        <Flex vertical>
-            <span>Total Earnings: <strong> {totalEarnings}</strong></span>
-            <span>Available Balance: <strong> {availableBalance}</strong></span>
-            <span>Pending Balance: <strong> {pendingBalance}</strong></span>
-        </Flex>
-
-    </Card>
-}
+        </Card>
+    );
+};

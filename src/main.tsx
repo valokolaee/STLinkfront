@@ -19,11 +19,12 @@ AOS.init({ duration: 800, easing: 'ease-in-out', });
 
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
-  <React.StrictMode>
-    <Provider store={store}>
-      <PersistGate loading={null} persistor={persistor}>
-        <BrowserRouter>
+  <React.StrictMode >
+    <Provider store={store} >
+      <PersistGate loading={null} persistor={persistor} >
+        <BrowserRouter >
           <ConfigProvider
+          
             theme={{
               token: {
                 // Seed Token
@@ -45,9 +46,10 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
           >
 
        
-       
-          {/* <Skeleton/> */}
+            <div className="  h-screen w-screen overflow-hidden">
           <App />
+       </div>
+          {/* <Skeleton/> */}
           </ConfigProvider>
         </BrowserRouter>
       </PersistGate>

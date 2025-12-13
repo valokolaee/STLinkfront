@@ -36,9 +36,9 @@ function App() {
     //     },
     //   }}
     // >
-      <Layout >
-        <Router />
-      </Layout>
+    <Layout >
+      <Router />
+    </Layout>
     // </ConfigProvider>
   );
 }

@@ -1,5 +1,6 @@
 
-
+// export const shadow = " diagonal-pattern "
+export const shadow = " bg-gradient-to-b from-black via-gray-800 to-black   "
 
 export const inputText = "w-full  px-4 py-3  text-white placeholder-gray-400 focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 focus:ring-offset-2 focus:text-black focus:ring-offset-gray-800 transition-all duration-300 hover:border-gray-500 hover:text-black"
 
@@ -9,4 +10,4 @@ export const cardAndSelected = (isSelected: boolean) => `${card} ${isSelected ? 
 
 
 
-export const formContainer = "flex flex-col items-center justify-center min-h-screen "
+export const formContainer = "flex flex-col items-center justify-center w-screen h-screen  "

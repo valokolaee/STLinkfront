@@ -1,5 +1,5 @@
 :root {
-  --primary-color: #1890ff;
+  /* --primary-color: #1890ff;
   --primary-hover: #40a9ff;
   --active-bg: #e6f7ff;
   --active-border: #1890ff;
@@ -9,6 +9,15 @@
   --border-hover: #d9d9d9;
   --background-hover: #f0f0f0;
   --error-color: #ff4d4f;
-  --border-radius: 8px;
-  --transition: all 0.3s ease;
+  --border-radius: 8px; */
+  /* --transition: all 0.3s ease; */
+}
+.diagonal-pattern {
+            background: linear-gradient(45deg, #c7d2fe 25%, transparent 25%) -50px 0,
+                        linear-gradient(-45deg, #c7d2fe 25%, transparent 25%) -50px 0,
+                        linear-gradient(45deg, transparent 75%, #c7d2fe 75%),
+                        linear-gradient(-45deg, transparent 75%, #c7d2fe 75%);
+            background-size: 100px 100px;
+            background-color: #f5f3ff;
+            animation: diagonalMove 10s linear infinite;
 }

@@ -1,11 +1,9 @@
-import React, { useState } from 'react';
 import type { DrawerProps, RadioChangeEvent } from 'antd';
-import { Button, Drawer, Flex, Radio, Space } from 'antd';
-import { MenuFoldOutlined, MenuUnfoldOutlined } from '@ant-design/icons';
-import IMasterDetail from './IMasterDetal';
+import { Drawer, Flex } from 'antd';
+import React, { useState } from 'react';
 import useIsMobile from '../../../hooks/useIsMobile';
 import { IDrawerIcon } from './drawerIcon';
-import StarsSimulation from '../StarsSimulation';
+import IMasterDetail from './IMasterDetal';
 
 const Mobile: React.FC<{ md: IMasterDetail, drawer: IDrawerIcon }> = ({ md: { detail, master }, drawer: { isOpen, toggleOpen } }) => {
   const [placement, setPlacement] = useState<DrawerProps['placement']>('left');
@@ -21,7 +19,7 @@ const Mobile: React.FC<{ md: IMasterDetail, drawer: IDrawerIcon }> = ({ md: { de
   };
 
   return (
-    <>
+    <div className=' h-screen w-screen relative flex flex-1 ' >
 
 
       <Drawer
@@ -34,17 +32,20 @@ const Mobile: React.FC<{ md: IMasterDetail, drawer: IDrawerIcon }> = ({ md: { de
         open={isOpen}
         key={placement}
         width={_isMobile ? '80%' : '30%'}
-       >
-   
-        
+      
+      >
+
+
         {master}
 
       </Drawer>
-      <div >
+      <Flex vertical style={{height:'90%',overflow:'scroll'}}   >
+         
         {detail}
+        
+      </Flex>
       </div>
-    </>
-  );
+   );
 };
 
 export default Mobile;

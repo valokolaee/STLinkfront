@@ -2,6 +2,8 @@ import React, { useEffect } from "react";
 import Skeleton from "./monitoring/components/Skeleton";
 import LoginForm from "../components/ui/formings/LoginForm";
 import { Router, useNavigate } from "react-router-dom";
+import BottomToTopAnimation from "../components/ui/BottomToTopAnimation";
+import WalletIcon from "../assets/icons/WalletIcon";
 
 const Home: React.FC = () => {
   // const n = useNavigate()
@@ -17,7 +19,11 @@ const Home: React.FC = () => {
     //   master={<div></div>}
     //   detail={
 
-    <Skeleton />
+    // <BottomToTopAnimation childrenV={<WalletIcon />}>
+
+      <Skeleton />
+
+    // </BottomToTopAnimation>
     //   }
 
     // />

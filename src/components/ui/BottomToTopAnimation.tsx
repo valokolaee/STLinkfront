@@ -1,13 +1,12 @@
 // src/components/BottomToTopAnimation.tsx
 import React, { useEffect, useState } from 'react';
+import SvgWrapper from './SvgWrapper';
+import { Flex } from 'antd';
+import useIsMobile from '../../hooks/useIsMobile';
 
-interface BottomToTopAnimationProps {
-  content?: React.ReactNode;
-  duration?: number;
-  className?: string;
-}
 
-export default ({ children, childrenV, className, duration }: {
+
+export default ({ children, childrenV, className, duration=500 }: {
   childrenV?: React.ReactNode;
   children?: React.ReactNode;
   duration?: number;
@@ -19,30 +18,37 @@ export default ({ children, childrenV, className, duration }: {
       set_children(children)
     }, duration);
   }, [])
+  const _width = useIsMobile() ? 'w-screen' : 'w-full '
   return (
-    <div
+    <Flex className={'h-full w-full border-solid' + className} vertical >
+      <div className='w-full justify-center items-center  '>
 
-    // className="border-solid  "
-    >
-      <div
-        className={`animate-bottom-to-top-vanish items-center relative overflow-hidden flex flex-col  justify-center ${className}`}
-        style={{
-          animationDuration: `${duration}ms`,
-        }}
-      >
-        <div>
+        {!!!_children && <Flex
+          className={`animate-bottom-to-top-vanish   items-center   relative  flex flex-col    justify-center ${className} `}
+          style={{ animationDuration: `${duration}ms`, }}
+        >
+          <SvgWrapper className='w-1/2'>
+            {childrenV}
+          </SvgWrapper>
+        </Flex>}
 
-          {childrenV}
-        </div>
+        <Flex vertical className={' items-center h-full   ' + _width}>
+
+          <Flex className='animate-bottom-to-top absolute items-center justify-center h-4/5    '>
+            <SvgWrapper className=' opacity-10  '>
+              {childrenV}
+            </SvgWrapper>
+          </Flex>
+
+          {/* {_children && <Flex
+           
+            className={`animate-bottom-to-top  w-full   border-solid      ${className}`}
+            style={{ animationDuration: `${duration}ms`, }} */}
+          {/* > */}
+            {_children}
+          {/* </Flex>} */}
+        </Flex>
       </div>
-      {_children && <div
-        className={`animate-bottom-to-top ${className}`}
-        style={{
-          animationDuration: `${duration}ms`,
-        }}
-      >
-        {_children}
-      </div>}
-    </div>
+    </Flex>
   );
 };
