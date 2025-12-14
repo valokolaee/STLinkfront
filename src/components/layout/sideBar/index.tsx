@@ -1,8 +1,8 @@
-import { shadow } from "../../../css/classNames";
+import { shadowY } from "../../../css/classNames";
 import Item from "./item";
 import routList from "./routList";
 
 export default () =>
-    <div className={ shadow}>
+    <div >
         {routList().map((item, index) => <Item {...item} key={index} />)}
     </div>

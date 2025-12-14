@@ -3,13 +3,14 @@ import { ReactNode } from "react";
 import { Link, useLocation } from "react-router-dom";
 import CLink from "../../ui/CLink";
 import "./SideBarItem.css"; // Optional: for additional custom styles
+import { shadowX, shadowY } from "../../../css/classNames";
 
 export default ({ icon, label, rout }: ISideBarItem) => {
   const location = useLocation();
   const isActive = location.pathname === rout;
 
   return (
-    <div className={`sidebar-item ${isActive ? 'sidebar-item--active' : ''}`}>
+    <div className={`sidebar-item ${isActive ? 'sidebar-item--active' : ''} ${shadowX}`}>
       <Link to={rout!} className="sidebar-item__link">
         <Flex align="center" gap="middle" className="sidebar-item__content">
           <div className="sidebar-item__icon">

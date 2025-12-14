@@ -39,11 +39,11 @@ const Mobile: React.FC<{ md: IMasterDetail, drawer: IDrawerIcon }> = ({ md: { de
         {master}
 
       </Drawer>
-      <Flex vertical  style={{ height: '90%', overflow: 'scroll' }}   >
-             {/* x */}
+      <Flex vertical style={{ overflow: 'scroll' }}   >
+
         {detail}
 
- 
+
       </Flex>
     </div>
   );
