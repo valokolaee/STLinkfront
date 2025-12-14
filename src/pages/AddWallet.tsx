@@ -1,3 +1,3 @@
-import Create from "./Dashboard/wallet/create";
+import Create from "./Dashboard/wallets/create";
 
-export default () => <Create/>
+export default () => <Create />

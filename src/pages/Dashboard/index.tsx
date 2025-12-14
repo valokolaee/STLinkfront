@@ -3,7 +3,7 @@ import Box from "../monitoring/components/Skeleton/components/Box"
 import useIsMobile from "../../hooks/useIsMobile"
 import Mobile from "./mobile"
 import Devices from "./devices"
-import Wallet from "./wallet"
+import Wallet from "./wallets"
 
 export default () => {
     const _isMobile = useIsMobile(900);

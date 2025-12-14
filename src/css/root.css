@@ -21,3 +21,16 @@
             background-color: #f5f3ff;
             animation: diagonalMove 10s linear infinite;
 }
+.truncate {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* For multi-line truncation */
+.multi-line-truncate {
+  display: -webkit-box;
+  -webkit-line-clamp: 3; /* Number of lines */
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}

@@ -4,7 +4,7 @@ import React from 'react';
 import Devices from './devices';
 import CWhiteLabel from '../../components/ui/CWhiteLabel';
 import Withdraw from '../withdraw/list';
-import Wallet from './wallet';
+import Wallet from './wallets';
 
 const App: React.FC = () => {
 

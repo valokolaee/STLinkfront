@@ -34,7 +34,7 @@ export default ({ uw, onSucceed }: ICreateWallet) => {
                         >
                             {nickname}
                         </div>
-                        <div className="bg-blue-600 text-white px-3 py-1 rounded-full text-sm font-medium">
+                        <div className="bg-blue-600 text-white px-3 py-1 rounded-full text-sm font-medium  ">
                             {currency}
                         </div>
                     </Flex>
@@ -45,7 +45,7 @@ export default ({ uw, onSucceed }: ICreateWallet) => {
                     <div className="w-full">
                         <span className="text-gray-400">Address: </span>
                         <br />
-                        <strong className="  whitespace-nowrap overflow-hidden text-ellipsis">{walletAddress}</strong>
+                        <strong className="  whitespace-nowrap overflow-hidden text-ellipsis truncate multi-line-truncate ">{walletAddress}</strong>
                         <br />
                     </div>
 
@@ -73,10 +73,10 @@ export default ({ uw, onSucceed }: ICreateWallet) => {
                 )} */}
 
                 <Flex vertical className=" ">
-                    {/* <div className="flex justify-between items-center">
+                    <div className="flex justify-between items-center">
                         <span className="text-gray-400">Total Earnings:</span>
                         <strong className="text-green-400 text-lg">{totalEarnings}</strong>
-                    </div> */}
+                    </div>
 
                     <div className="flex justify-between items-center">
                         <span className="text-gray-400">Available Balance:</span>

@@ -75,7 +75,7 @@ export default () => {
            
             {/* <Create onSucceed={_newCreated} />  */}
             {/* <div className="w-full h-full"> */}
-            <div className='w-full grid grid-cols-1 sm:grid-cols-1 md:grid-cols-1 xl:grid-cols-2  items-center justify-items-center'>
+            <div className='w-full grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 xl:grid-cols-3  items-center justify-items-center'>
                 {_devices?.map((item) => <Item uw={item} key={item.id} onSucceed={_succeedCallback} />)}
             </div>
             {/* <SvgWrapper className="absolute cursor-pointer  ">
