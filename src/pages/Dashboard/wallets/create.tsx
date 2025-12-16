@@ -83,7 +83,7 @@ export default ({ onSucceed, uw }: ICreateWallet) => {
 
         >
           <Input
-            className={inputText}
+            // className={inputText}
 
             disabled={!!uw}
             placeholder='Address'
@@ -100,7 +100,7 @@ export default ({ onSucceed, uw }: ICreateWallet) => {
         >
           <Input
             placeholder='Nickname'
-            className={inputText}
+            // className={inputText}
           />
         </Form.Item>
         <Form.Item

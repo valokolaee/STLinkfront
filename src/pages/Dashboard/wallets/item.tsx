@@ -23,7 +23,8 @@ export default ({ uw, onSucceed }: ICreateWallet) => {
     }, [uw]);
 
     return (
-        <Link to={`/wallet/${id}`} className="cursor-pointer w-full h-full">
+        // <Link to={`/wallet/${id}`} className="cursor-pointer w-full h-full">
+        <Link to={''} className="cursor-pointer w-full h-full">
             <Card
 
                 className={"m-2 shadow-lg duration-300 hover:shadow-xl hover:scale-[2] " + cardAndSelected(true) + shadowX}

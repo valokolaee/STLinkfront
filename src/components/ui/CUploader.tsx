@@ -8,6 +8,7 @@ import WebService, { IWebServiceFuncs } from '../../webService';
 import apis from '../../webService/ApiUrls/apis';
 import { ModelApi } from '../../webService/ApiUrls/ModelApi';
 import IResponse from '../../webService/ApiUrls/apis/IResponse';
+import { cardAndSelected } from '../../css/classNames';
 
 const CUploader: React.FC<IUploader> = ({ numberOfItems, img, label, apiModel, callBack }) => {
     const refWebService = useRef<IWebServiceFuncs>()
@@ -31,7 +32,7 @@ const CUploader: React.FC<IUploader> = ({ numberOfItems, img, label, apiModel, c
                 customRequest={customRequest}
                 fileList={fileList}
             >
-                <Button icon={<UploadOutlined />}>{label}</Button>
+                <Button icon={<UploadOutlined />} className={cardAndSelected(true)}>{label}</Button>
                 <WebService ref={refWebService} />
             </Upload>
         </ImgCrop>

@@ -4,7 +4,7 @@ import { Route, Routes } from "react-router-dom";
 // Pages
 import Home from "../pages/Home";
 import Login from "../pages/Login";
-import Profile from "../pages/Profile/Profile";
+import Profile from "../pages/Profile";
 import Register from "../pages/Register";
 import Dashboard from "../pages/Dashboard";
 import Withdraw from "../pages/withdraw";

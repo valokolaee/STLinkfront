@@ -17,6 +17,7 @@ import apis from '../../webService/ApiUrls/apis';
 import IRegisterReq, { IRegisterRes } from '../../webService/ApiUrls/apis/IRegister';
 import { formContainer, inputText } from '../../css/classNames';
 import CSubmitBtn from '../../components/ui/CSubmitBtn';
+import { DownOutlined } from '@ant-design/icons';
 
 
 const FormDisabledDemo: React.FC = () => {
@@ -106,7 +107,9 @@ const FormDisabledDemo: React.FC = () => {
             }),
           ]}
         >
-          <Input className={inputText} />
+          <Input
+            // className={inputText}
+          />
         </Form.Item>
 
         <Form.Item
@@ -123,7 +126,9 @@ const FormDisabledDemo: React.FC = () => {
             },
           ]}
         >
-          <Input className={inputText} />
+          <Input
+            // className={inputText}
+          />
         </Form.Item>
 
         <Form.Item
@@ -144,7 +149,9 @@ const FormDisabledDemo: React.FC = () => {
             }),
           ]} hasFeedback
         >
-          <Input.Password autoComplete="new-password" className={inputText} />
+          <Input.Password autoComplete="new-password"
+            // className={inputText}
+          />
         </Form.Item>
 
         <Form.Item
@@ -171,16 +178,23 @@ const FormDisabledDemo: React.FC = () => {
 
           ]}
         >
-          <Input.Password autoComplete="new-password" className={inputText} />
+          <Input.Password autoComplete="new-password"
+            // className={inputText}
+          />
         </Form.Item>
 
         <Form.Item
           label={<label style={{ color: "white" }}>Client Type</label>}
           name="clientType"
           rules={[{ required: true, message: 'Please input your client type!' }]}
-          className={inputText}
+          // className={inputText}
+        
         >
-          <Select>
+          <Select
+            suffixIcon={
+              <DownOutlined style={{ color: '#fff', fontSize: '12px' }} />
+            }
+          >
             <Select.Option value="individual">Individual</Select.Option>
             <Select.Option value="financial_entities">Financial Entity</Select.Option>
             <Select.Option value="business">Business</Select.Option>

@@ -12,16 +12,13 @@ const AvatarUploader: React.FC<IImageUploader> = ({ avatar, uploader }) => {
 
 
   return (
-    <Content>
-      <Flex vertical align='center'>
+      <Flex vertical align='center' >
         <CAvatar {...avatar} />
 
-        <div className='h-2'></div>
+        <div className='h-2'/>
 
         <ImageUploader {...uploader} />
       </Flex>
-    </Content>
-
   );
 };
 

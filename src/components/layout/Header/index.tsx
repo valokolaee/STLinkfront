@@ -10,7 +10,7 @@ export default ({ drawer }: { drawer?: IDrawerIcon }) => {
 
     // <Flex flex={20} className={"absolute  w-screen  z-50 flex items-center justify-between    bg-dark border-b border-dark-gray "} style={{height:'10%'}}>
     <Flex
-      className={"w-screen p-2" + shadowX}
+      className={"p-2  " + shadowX}
     // style={{ height: '10%' }}
     >
       {drawer && <DrawerIcon {...drawer!} />}

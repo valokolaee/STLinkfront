@@ -9,6 +9,7 @@ import IResponse from "../../../webService/ApiUrls/apis/IResponse";
 import Create, { ICreateWithdrawProps } from "./create";
 import StatusTag from "./StatusTag";
 import CButton from "../../../components/ui/CButton";
+import { cardAndSelected } from "../../../css/classNames";
 
 export default ({ onSucceed, wr }: ICreateWithdrawProps) => {
      const { id, amount, currency, miningWalletAddress, status, userWalletNickname, requestedAt, softDeleted } = wr || {};
@@ -74,7 +75,8 @@ export default ({ onSucceed, wr }: ICreateWithdrawProps) => {
                     </Flex>
                }
                variant="borderless"
-               className="mb-3 bg-gray-400  "  >
+               className={"mb-3 bg-gray-400  "+ cardAndSelected(true)}
+          >
 
                <Flex>
 

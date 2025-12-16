@@ -23,6 +23,8 @@ import ImageUploader from "../../components/ui/CUploader";
 import { Content } from 'antd/es/layout/layout';
 import AvatarUploader from '../../components/ui/CImageUploader';
 import IResponse from '../../webService/ApiUrls/apis/IResponse';
+import { formContainer } from '../../css/classNames';
+import CSubmitBtn from '../../components/ui/CSubmitBtn';
 
 
 const Profile: React.FC = () => {
@@ -77,65 +79,28 @@ const Profile: React.FC = () => {
     set_disabled(!_disabled)
   }
   return (
-    <div>
+    <Flex flex={2}  className='  w-full'>
       {contextHolder}
-      <div className='inline'>
-        <div className='inline'>
-          <h2 >Profile</h2>
-        </div>
-        {/* <EditOutlined onClick={_setDisabled} /> */}
-      </div>
-
 
       <Form
         name="EditProfile"
-        // disabled={_disabled}
         aria-disabled
         onFinish={onFinish}
         onFinishFailed={onFinishFailed}
-        labelCol={{ span: 5 }}
+        // style={{ maxWidth: '600px', width: '90%' }}
         wrapperCol={{ span: '30%' }}
-        layout="horizontal"
-        style={{ maxWidth: '80%' }}
+        layout="vertical"
         autoComplete='off'
         initialValues={_user}
+        className='w-full items-center p-2'
       >
 
-        <Form.Item label={<label style={{ color: "white" }}></label>}>
-          <Flex align='baseline'>
+        {/* <Form.Item label={<label style={{ color: "white" }}></label>}>
 
-            <AvatarUploader
+      
 
-              avatar={{
-                url: _user?.profileImage! + '&a=' + new Date(),
-                size: 150,
-              }}
+        </Form.Item> */}
 
-
-              uploader={{
-                apiModel: apis.users.updateAvatar,
-                callBack(res) { setUserAvatar(res.data.url + '?a=' + new Date()) },
-                label: 'Upload Avatar'
-              }}
-
-            />
-
-            <AvatarUploader
-
-              avatar={{
-                size: 100,
-                url: _user?.logoUrl! + '&a=' + new Date(),
-              }}
-
-              uploader={{
-                apiModel: apis.users.updateLogo,
-                callBack(res) { setUserLogo(res.data.url + '?a=' + new Date()) },
-                label: 'Upload Logo'
-              }}
-
-            />
-          </Flex>
-        </Form.Item>
         <Form.Item
           label={<label style={{ color: "white" }}>Username</label>}
           name="username"
@@ -211,24 +176,17 @@ const Profile: React.FC = () => {
           </Select>
         </Form.Item>
 
-        <Form.Item label={null} className='none'>
-          <CButton title='Submit' />
-          <WebService ref={refWebService} />
-
-          <CText text={`Already have Id?`} className="block mt-5 " />
-          <CLink
-            to={'/login'}
-            title="login"
-          />
-
-
+        <Form.Item  >
+          <CSubmitBtn />
         </Form.Item>
 
+        <WebService ref={refWebService} />
 
 
       </Form>
 
-    </div>
+    </Flex>
+
   );
 };
 

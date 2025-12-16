@@ -144,7 +144,9 @@ const Login = () => {
           name="email"
           rules={[{ required: true, message: 'Please input your username!' }]}
         >
-          <Input className={inputText} />
+          <Input
+            // className={inputText}
+          />
         </Form.Item>
 
         <Form.Item<FieldType>
@@ -153,7 +155,35 @@ const Login = () => {
           name="password"
           rules={[{ required: true, message: 'Please input your password!' }]}
         >
-          <Input.Password className={inputText} />
+
+
+          <Input.Password
+            // style={{
+            //   borderRadius: 8,
+            //   padding: '10px 12px',
+            //   backgroundColor:'red'
+            // }}
+            // style={{ backgroundColor: 'black' }}
+            // style={{
+            //   backgroundColor: hasError ? '#fff2f0' : '#f6ffed'
+            // }}
+            // classNames={
+            //   {
+            //     input: inputText,
+            //     // count: inputText,
+            //     // prefix: inputText,
+            //     root: inputText,
+            //     suffix:''
+
+            //   }
+            // }
+            classNames={{
+              // input: inputText,
+              // root: inputText,
+              // prefix: 'undefined'
+            }}
+          // className={`${inputText}   `}
+          />
         </Form.Item>
         <Form.Item<FieldType>
 
