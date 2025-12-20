@@ -14,10 +14,10 @@ const Desktop: React.FC<IMasterDetail> = ({ detail, master }) => (
     </Flex>
     <Flex flex={10} className='border-solids overflow-scroll '>
       <Splitter
-        className='   w-full    flex flex-row  border-solidh overflow-scroll'
+        className=' w-full flex flex-row  border-solidh overflow-scroll'
       >
 
-        <Splitter.Panel defaultSize="20%" min="10%" max="30%"
+        <Splitter.Panel defaultSize="20%" min="15%" max="30%"
           style={{ backgroundColor: 'rgba(100, 100, 100, 0.1)' }}
           // className='h-full'
         >
