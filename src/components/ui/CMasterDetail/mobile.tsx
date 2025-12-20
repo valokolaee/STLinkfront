@@ -4,14 +4,20 @@ import React, { useState } from 'react';
 import useIsMobile from '../../../hooks/useIsMobile';
 import { IDrawerIcon } from './drawerIcon';
 import IMasterDetail from './IMasterDetal';
+import Header from '../../layout/Header';
 
-const Mobile: React.FC<{ md: IMasterDetail, drawer: IDrawerIcon }> = ({ md: { detail, master }, drawer: { isOpen, toggleOpen } }) => {
+const Mobile: React.FC<{ md: IMasterDetail, drawer?: IDrawerIcon }> = ({ md: { detail, master },  }) => {
   const [placement, setPlacement] = useState<DrawerProps['placement']>('left');
-  const _isMobile = useIsMobile();
+   const [open, setOpen] = useState(false);
+
+  const drawer = { toggleOpen: setOpen, isOpen: open };
 
 
   const onClose = () => {
-    toggleOpen(false);
+    setOpen(false);
+  };
+  const onOpen = () => {
+    setOpen(false);
   };
 
   const onChange = (e: RadioChangeEvent) => {
@@ -20,6 +26,7 @@ const Mobile: React.FC<{ md: IMasterDetail, drawer: IDrawerIcon }> = ({ md: { de
 
   return (
     <div className=' h-screen w-screen relative    ' >
+      <Header drawer={drawer} />
 
 
       <Drawer
@@ -29,21 +36,13 @@ const Mobile: React.FC<{ md: IMasterDetail, drawer: IDrawerIcon }> = ({ md: { de
         closable={true}
         onClose={onClose}
         onClick={onClose}
-        open={isOpen}
+        open={open}
         key={placement}
-        width={_isMobile ? '80%' : '30%'}
-
       >
-
-
         {master}
-
       </Drawer>
       <Flex vertical  style={{ height: '90%', overflow: 'scroll' }}   >
-             {/* x */}
         {detail}
-
- 
       </Flex>
     </div>
   );

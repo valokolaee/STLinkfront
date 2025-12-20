@@ -12,7 +12,7 @@ import { PersistGate } from 'redux-persist/integration/react';
 import store from "./redux/store";
 import Skeleton from "./pages/monitoring/components/Skeleton";
 import { ConfigProvider } from "antd";
-import { cardAndSelected } from "./css/classNames";
+import { cardAndSelected, inputText } from "./css/classNames";
 
 let persistor = persistStore(store);
 
@@ -35,8 +35,8 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
               }
             }}
             input={{
-              className: cardAndSelected(true),
-              classNames: { input: cardAndSelected(true) },
+              className: inputText,
+              classNames: { input:inputText },
 
               // variant:'underlined'
 
@@ -44,7 +44,7 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
             }}
             select={{
               classNames: {
-                root: cardAndSelected(true),
+                root: inputText,
                 // prefix: cardAndSelected(true),
                 //#endregion
               }

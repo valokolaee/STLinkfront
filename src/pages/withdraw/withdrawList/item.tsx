@@ -6,10 +6,12 @@ import IWithdrawalRequest from "../../../interfaces/IWithdrawalRequest";
 import WebService, { IWebServiceFuncs } from "../../../webService";
 import { withdrawalRequest } from "../../../webService/ApiUrls/apis";
 import IResponse from "../../../webService/ApiUrls/apis/IResponse";
-import Create, { ICreateWithdrawProps } from "./create";
 import StatusTag from "./StatusTag";
 import CButton from "../../../components/ui/CButton";
 import { cardAndSelected } from "../../../css/classNames";
+import Create, { ICreateWithdrawProps } from "../create";
+import TinyItem from "./tinyItem";
+import ItemHeader from "./ItemHeader";
 
 export default ({ onSucceed, wr }: ICreateWithdrawProps) => {
      const { id, amount, currency, miningWalletAddress, status, userWalletNickname, requestedAt, softDeleted } = wr || {};
@@ -66,16 +68,18 @@ export default ({ onSucceed, wr }: ICreateWithdrawProps) => {
 
      const _finalized = wr?.status !== 'cancelled' && wr?.status !== 'completed' && wr?.status !== 'rejected' && wr?.status !== 'failed'
 
+
+
+    const className =  "mb-3 bg-gray-400  " + cardAndSelected(true) 
+
+
+
      return (
+
           <Card
-               title={
-                    <Flex justify="space-between">
-                         {`Amount: ${amount} $ ${currency}`}
-                         <StatusTag status={wr?.status} />
-                    </Flex>
-               }
+               title={<ItemHeader wr={wr!} />}
                variant="borderless"
-               className={"mb-3 bg-gray-400  "+ cardAndSelected(true)}
+               className={"mb-3 bg-gray-400  " + cardAndSelected(true)}
           >
 
                <Flex>
@@ -101,8 +105,8 @@ export default ({ onSucceed, wr }: ICreateWithdrawProps) => {
                                         <Flex vertical>
                                              {wr?.status === 'pending' ?
                                                   <button
-                                                       onClick={ _processing} className={`bg-green-500   ${className}`}>start processing</button>
-                                                     :
+                                                       onClick={_processing} className={`bg-green-500   ${className}`}>start processing</button>
+                                                  :
                                                   <>
                                                        <button
                                                             onClick={wr?.status === 'rejected' ? undefined : _approve} className={`rounded-b-none  bg-green-500  text-white border-b-0 ${className}`}>approve</button>

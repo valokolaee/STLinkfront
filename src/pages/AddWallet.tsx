@@ -1,3 +1,3 @@
-import Create from "./Dashboard/wallets/create";
+import Create from "./components/wallets/create";
 
 export default () => <Create />

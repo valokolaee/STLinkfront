@@ -108,7 +108,7 @@ const FormDisabledDemo: React.FC = () => {
           ]}
         >
           <Input
-            // className={inputText}
+          // className={inputText}
           />
         </Form.Item>
 
@@ -127,7 +127,7 @@ const FormDisabledDemo: React.FC = () => {
           ]}
         >
           <Input
-            // className={inputText}
+          // className={inputText}
           />
         </Form.Item>
 
@@ -150,7 +150,7 @@ const FormDisabledDemo: React.FC = () => {
           ]} hasFeedback
         >
           <Input.Password autoComplete="new-password"
-            // className={inputText}
+          // className={inputText}
           />
         </Form.Item>
 
@@ -179,7 +179,7 @@ const FormDisabledDemo: React.FC = () => {
           ]}
         >
           <Input.Password autoComplete="new-password"
-            // className={inputText}
+          // className={inputText}
           />
         </Form.Item>
 
@@ -187,14 +187,10 @@ const FormDisabledDemo: React.FC = () => {
           label={<label style={{ color: "white" }}>Client Type</label>}
           name="clientType"
           rules={[{ required: true, message: 'Please input your client type!' }]}
-          // className={inputText}
-        
+        // className={inputText}
+
         >
-          <Select
-            suffixIcon={
-              <DownOutlined style={{ color: '#fff', fontSize: '12px' }} />
-            }
-          >
+          <Select suffixIcon={<DownOutlined style={{ color: '#fff', fontSize: '12px' }} />}>
             <Select.Option value="individual">Individual</Select.Option>
             <Select.Option value="financial_entities">Financial Entity</Select.Option>
             <Select.Option value="business">Business</Select.Option>

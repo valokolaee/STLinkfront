@@ -1,5 +1,6 @@
 import { Flex } from 'antd';
 import { ReactNode, useEffect, useState } from 'react';
+import { shadowX, shadowY } from '../../../../../css/classNames';
 
 
 export default ({ color: { name, num }, title, value, fontSize = 5, svg }: IContentBox) => {
@@ -17,7 +18,7 @@ export default ({ color: { name, num }, title, value, fontSize = 5, svg }: ICont
         <Flex
             vertical
             style={{ borderRadius: 5, }}
-            className='relative w-full '
+            className={'relative w-full '}
             align='center'
 
         >

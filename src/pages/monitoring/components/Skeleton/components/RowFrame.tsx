@@ -11,8 +11,8 @@ const RowFrame: React.FC<IRowFrame> = ({ children1, children2, flex, children1fl
     return (
         <Flex style={{ minHeight }} vertical={_isMobile} flex={flex} className='overflow-hidden '>
 
-            <Flex style={style} flex={children1flex} vertical={_isMobile}> {children1} </Flex>
-            <Flex style={style} flex={children2flex} vertical={_isMobile}>{children2}</Flex>
+            <Flex style={style} flex={_isMobile ? undefined : children1flex} vertical={_isMobile}> {children1} </Flex>
+            <Flex style={style} flex={_isMobile ? undefined : children2flex} vertical={_isMobile}>{children2}</Flex>
 
         </Flex>
     );

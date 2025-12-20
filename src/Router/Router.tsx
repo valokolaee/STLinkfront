@@ -7,8 +7,7 @@ import Login from "../pages/Login";
 import Profile from "../pages/Profile";
 import Register from "../pages/Register";
 import Dashboard from "../pages/Dashboard";
-import Withdraw from "../pages/withdraw";
-import Wallet from "../pages/Wallets/Wallet";
+ import Wallet from "../pages/Wallets/Wallet";
 import '../css/btn.css'
 import '../css/custom-select.css'
 import '../css/form-checkbox.css'
@@ -20,7 +19,9 @@ import '../css/textarea.css'
 import '../css/root.css'
 import AddWallet from "../pages/AddWallet";
 import Wallets from "../pages/Wallets";
-
+import Withdraw from "../pages/withdraw";
+import Devices from "../pages/components/devices";
+ 
 
 
 export default () =>
@@ -35,7 +36,7 @@ export default () =>
 
     <Route path="/login" element={<Login />} />
     <Route path="/register" element={<Register />} />
-    <Route path="/profile" element={<Profile />} />
+    <Route path="/Profile" element={<Profile />} />
 
   </Routes>
 

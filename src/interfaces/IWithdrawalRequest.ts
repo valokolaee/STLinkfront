@@ -15,6 +15,7 @@ export default interface IWithdrawalRequest {
    processedAt?: Date | null;
    softDeleted?: boolean;
    processedBy?: number | null;
-   userWalletNickname?: string
+   userWalletNickname?: string;
+   
 
 }

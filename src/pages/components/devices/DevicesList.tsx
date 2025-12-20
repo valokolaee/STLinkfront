@@ -10,8 +10,9 @@ import Create from "./create"
 import Item from "./item"
 import IReqRes from "../../../webService/ApiUrls/apis/IReqRes"
 import IMiningWallet from "../../../interfaces/IMiningWallet"
+import TinyItem from "./TinyItem"
 
-export default () => {
+export default ({ flashMode }: { flashMode?: boolean }) => {
     const refWebService = useRef<IWebServiceFuncs>()
     const _savedUser = useAppSelector((s) => s.userSlice)
     const [_open, set_open] = useState<boolean>(false)
@@ -41,17 +42,17 @@ export default () => {
         set_devices([nd, ..._devices])
         _hide()
     }
+
+
+
+
     return (
-        <div className="w-full">
-            <Flex className="w-full">
-                <CModal onClose={_hide} btn={<PlusCircleOutlined style={{ fontSize: '200%', color: 'white' }} onClick={_show} />}>
-                    <Create onSucceed={_newCreated} />
-                </CModal>
-                <div className="m-3 w-full bg-gray-500 p-2 rounded-lg">
-                    {`${_devices?.length} devices`}
-                </div>
-            </Flex>
-            {_devices?.map((item) => <Item {...item} key={item.id} />)}
+        <div className="w-full h-full">
+
+
+            {flashMode ?
+                _devices.slice(0, 5)?.map((item) => <TinyItem {...item} key={item.id} />)
+                : _devices?.map((item) => <Item {...item} key={item.id} />)}
             <WebService ref={refWebService} />
         </div>
     )

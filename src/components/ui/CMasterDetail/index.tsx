@@ -10,19 +10,16 @@ import { Flex } from 'antd';
 
 export default ({ detail, master }: IMasterDetail) => {
   const _isMobile = useIsMobile();
-  const [open, setOpen] = useState(false);
-
-  const drawer = { toggleOpen: setOpen, isOpen: open };
 
   return (
-    <Flex vertical className="h-screen overflow-hidden  ">
-      <Header drawer={_isMobile ? drawer : undefined} />
+    <Flex vertical className="h-screen overflow-hidden ">
+      {/* <Header drawer={_isMobile ? drawer : undefined} /> */}
 
       <Flex vertical
         className="overflow-hidden flex flex-col     "
        >
         {_isMobile ?
-          <Mobile drawer={drawer} md={{ master, detail }} />
+          <Mobile  md={{ master, detail }} />
           :
           <Desktop master={master} detail={detail} />
         }

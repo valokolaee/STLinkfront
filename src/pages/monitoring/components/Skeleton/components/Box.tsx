@@ -1,5 +1,6 @@
 import { Flex } from 'antd';
 import React, { ReactElement, ReactNode } from 'react';
+import { shadowX, shadowY } from '../../../../../css/classNames';
 
 
 
@@ -13,7 +14,7 @@ const Box: React.FC<IBox> = ({ flex = 1, children, vertical, card, onClick }) =>
             vertical={vertical}
             style={{ ...cardStyle }}
             flex={flex}
-            className={!card ? '' : 'bg-gray-800 overflow-hidden justify-center'}
+            className={!card ? '' : 'bg-gray-800s overflow-hidden justify-center'+shadowX }
         >
             {children}
         </Flex >

@@ -1,16 +1,13 @@
 import { Flex, Form, FormProps, Input } from 'antd';
 import { useRef } from 'react';
-import CButton from '../../../components/ui/CButton';
+import CSubmitBtn from '../../../components/ui/CSubmitBtn';
+import useIsMobile from '../../../hooks/useIsMobile';
 import IUserWallet from '../../../interfaces/IUserWallet';
 import { useAppSelector } from '../../../redux/hooks';
 import WebService, { IWebServiceFuncs } from '../../../webService';
 import { userWallet } from '../../../webService/ApiUrls/apis';
 import IReqRes from '../../../webService/ApiUrls/apis/IReqRes';
-import useIsMobile from '../../../hooks/useIsMobile';
-import { ICreateEdit } from '../../withdraw/list/create';
-import { useForm } from 'antd/es/form/Form';
-import { inputText } from '../../../css/classNames';
-import CSubmitBtn from '../../../components/ui/CSubmitBtn';
+import { ICreateEdit } from '../../withdraw/create';
 
 export default ({ onSucceed, uw }: ICreateWallet) => {
   const refWebService = useRef<IWebServiceFuncs>()
@@ -57,6 +54,7 @@ export default ({ onSucceed, uw }: ICreateWallet) => {
 
 
     <Form
+      // className='border-solid'
       form={form}
       name="createDevice"
       preserve={false}
@@ -64,12 +62,14 @@ export default ({ onSucceed, uw }: ICreateWallet) => {
       onFinishFailed={onFinishFailed}
       // labelCol={{ span: 5 }}
       // wrapperCol={{ span: '30%' }}
-      // layout="horizontal"
+
+      layout="vertical"
+
       autoComplete='off'
       initialValues={{ nickname: uw?.nickname!, walletAddress: uw?.walletAddress }}
     >
 
-      <Flex vertical={useIsMobile() && !!!uw}>
+      <Flex  vertical>
 
         <Form.Item
           name="walletAddress"
@@ -79,8 +79,8 @@ export default ({ onSucceed, uw }: ICreateWallet) => {
               message: 'Please input your Wallet Address!',
             }]}
           hidden={!!uw}
-          // style={style}
-
+        // style={style}
+          label='Wallet Address'
         >
           <Input
             // className={inputText}
@@ -91,23 +91,24 @@ export default ({ onSucceed, uw }: ICreateWallet) => {
         </Form.Item>
         <Form.Item
           name="nickname"
+          label="Nickname"
           rules={[
             {
               required: true,
               message: 'Please input a nickname by which you can recognize easier later!',
             }]}
-          // style={style}
+        // style={style}
         >
           <Input
             placeholder='Nickname'
-            // className={inputText}
+          // className={inputText}
           />
         </Form.Item>
         <Form.Item
-          // style={{ ...style, width: undefined }}
-          // label={null} className='none'
+        // style={{ ...style, width: undefined }}
+        // label={null} className='none'
         >
-          <CSubmitBtn/>
+          <CSubmitBtn />
           {/* <CButton title='Submit' /> */}
         </Form.Item>
       </Flex>
@@ -119,9 +120,6 @@ export default ({ onSucceed, uw }: ICreateWallet) => {
 
   );
 };
-
-
-const style = { margin: 5, width: '100%' }
 
 
 export interface ICreateWallet extends ICreateEdit {

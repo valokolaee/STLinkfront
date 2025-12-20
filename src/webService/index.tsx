@@ -81,10 +81,16 @@ export default React.forwardRef(({ className, size = 30, donTShowSpin, }: IWebSe
   return (
     <>
       {showModal &&
-        <div className='absolute inset-0 m-auto text-white p-4 w-48 h-24 z-10'>
-          <Spin indicator={<LoadingOutlined style={{ fontSize: 100, color: 'gold' }} spin />} />
+      <div className='fixed  inset-0 flex items-center justify-center  '>
+        
+        <Spin
+          
+          indicator={<LoadingOutlined style={{ fontSize: 100, color: 'gold' }} spin />}
+          // className='border-solid relative '
+        />
         </div>
-      }</>
+      } 
+    </>
   );
 
 
