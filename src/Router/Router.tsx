@@ -21,6 +21,7 @@ import AddWallet from "../pages/AddWallet";
 import Wallets from "../pages/Wallets";
 import Withdraw from "../pages/withdraw";
 import Devices from "../pages/components/devices";
+import NewsAndBlog from "../pages/NewsAndBlog";
  
 
 
@@ -37,6 +38,7 @@ export default () =>
     <Route path="/login" element={<Login />} />
     <Route path="/register" element={<Register />} />
     <Route path="/Profile" element={<Profile />} />
+    <Route path="/News" element={<NewsAndBlog />} />
 
   </Routes>
 

@@ -1,5 +1,5 @@
 import { HomeFilled, ProductFilled, ProfileOutlined, TransactionOutlined } from '@ant-design/icons';
-import { DashboardOutlined, DeviceHub, DeviceHubOutlined, DeviceHubSharp, HomeOutlined, RequestPageOutlined, ResetTv, SvgIconComponent, WalletOutlined } from '@mui/icons-material';
+import { DashboardOutlined, DeviceHub, DeviceHubOutlined, DeviceHubSharp, HomeOutlined, NewLabelOutlined, NewspaperOutlined, RequestPageOutlined, ResetTv, SvgIconComponent, UpdateOutlined, WalletOutlined } from '@mui/icons-material';
 import DeviceSvg from '../../../assets/icons/deviceSvg';
 import TransferSection from 'antd/es/transfer/Section';
 import UserSvg from '../../../assets/icons/UserSvg';
@@ -10,7 +10,8 @@ const routList = () => [
     { label: 'Dashboard', rout: '/Dashboard', icon: <DashboardOutlined /> },
     { label: 'Wallets', rout: '/Wallets', icon: <WalletOutlined /> },
     { label: 'Withdraw', rout: '/Withdraw', icon: <RequestPageOutlined /> },
-    { label: 'Profile', rout: '/Profile', icon: <ProductFilled   /> },
+    { label: 'Profile', rout: '/Profile', icon: <ProfileOutlined   /> },
+    { label: 'News*', rout: '/News', icon: <NewspaperOutlined   /> },
 ]
 export default routList
 
