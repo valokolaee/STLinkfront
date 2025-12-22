@@ -12,7 +12,9 @@ const Home: React.FC = () => {
   // }, [])
 
   return (
-
+    <>
+      welcome!
+    </>
     //  <LoginForm />
 
     // <CMasterDetail
@@ -21,7 +23,7 @@ const Home: React.FC = () => {
 
     // <BottomToTopAnimation childrenV={<WalletIcon />}>
 
-      <Skeleton />
+      // <Skeleton />
 
     // </BottomToTopAnimation>
     //   }

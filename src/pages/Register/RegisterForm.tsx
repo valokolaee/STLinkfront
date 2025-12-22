@@ -42,7 +42,7 @@ const FormDisabledDemo: React.FC = () => {
     if (x?.success) {
       setUser(x.data as IUser)
       setUserAvatar('')
-      navigate('/login')
+      navigate('/dashboard')
     } else {
       openNotification(x?.message || 'Registration failed')
     }

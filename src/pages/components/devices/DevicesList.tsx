@@ -21,7 +21,8 @@ export default ({ flashMode }: { flashMode?: boolean }) => {
     const _loadWallets = async () => {
         const res = await refWebService?.current?.callApi<IReqRes<IMiningWallet>['getAllBy']['res']>(miningDevices.getAllBy({ userId: _savedUser.id! }))
         if (res?.success) {
-            set_devices(res?.data!)
+
+            set_devices(res?.data!||[])
         }
         console.log(res);
     }

@@ -8,7 +8,7 @@ import { withdrawalRequest } from "../../../webService/ApiUrls/apis";
 import IResponse from "../../../webService/ApiUrls/apis/IResponse";
 import StatusTag from "./StatusTag";
 import CButton from "../../../components/ui/CButton";
-import { cardAndSelected } from "../../../css/classNames";
+import { card, cardAndSelected } from "../../../css/classNames";
 import Create, { ICreateWithdrawProps } from "../create";
 import TinyItem from "./tinyItem";
 import ItemHeader from "./ItemHeader";
@@ -79,7 +79,7 @@ export default ({ onSucceed, wr }: ICreateWithdrawProps) => {
           <Card
                title={<ItemHeader wr={wr!} />}
                variant="borderless"
-               className={"mb-3 bg-gray-400  " + cardAndSelected(true)}
+               className={"mb-3 bg-gray-400  " + card}
           >
 
                <Flex>

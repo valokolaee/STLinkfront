@@ -9,7 +9,6 @@ export default ({ wr }: { wr: IWithdrawalRequest; }) => {
      return (
 
           <Flex justify="space-between" className="p-2">
-              hhh
                <Flex flex={1.5}>
                     {` ${amount} $ ${currency}`}
                </Flex>

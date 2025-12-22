@@ -40,7 +40,7 @@ const Login = () => {
 
       setUser(u)
       setUserAvatar(u.profileImage + '?a=' + new Date())
-      navigate('/')
+      navigate('/dashboard')
     }
   };
 

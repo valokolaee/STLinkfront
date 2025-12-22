@@ -39,7 +39,7 @@ export default ({ onSelect, selectedItem }: ISelect<IMiningDevice>) => {
                 // set_device(res.data![0])
             }
         }
-        console.log(res);
+        // console.log(res);
     }
 
     useEffect(() => {
@@ -69,10 +69,10 @@ export default ({ onSelect, selectedItem }: ISelect<IMiningDevice>) => {
                 <CModal ref={refModalDevice} btn={<RightCircleTwoTone style={{ fontSize: 30 }} />} mat>
                     <DeviceTable devices={_devices} sel={{ onSelect: _set_device, selectedItem }} />
                 </CModal>
-            </Flex> : <CWhiteLabel txt='No Devices' />}
+            </Flex> :
+                <CWhiteLabel txt='No Devices' />}
             <WebService ref={refWebService} />
 
         </Box>
-
     )
 };

@@ -10,7 +10,7 @@ export default ({ icon, label, rout }: ISideBarItem) => {
   const isActive = location.pathname?.toLocaleLowerCase() === rout?.toLocaleLowerCase();
 
   return (
-    <div className={`sidebar-item ${isActive ? 'sidebar-item--active' : ''} ${shadowX}`}>
+    <div className={`sidebar-item ${isActive ? 'sidebar-item--active' : ''} ${'shadowY'}`}>
       <Link to={rout!} className="sidebar-item__link">
         <Flex align="center" gap="middle" className="sidebar-item__contento ">
           <div className="sidebar-item__icon  text-xl"  >
