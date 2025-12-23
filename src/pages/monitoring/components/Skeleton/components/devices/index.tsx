@@ -20,21 +20,21 @@ import CWhiteLabel from '../../../../../../components/ui/CWhiteLabel';
 
 
 export default ({ onSelect, selectedItem }: ISelect<IMiningDevice>) => {
-
-
     const { deviceName, status, deviceModel, imei } = selectedItem || {}
+
+
     const refWebService = useRef<IWebServiceFuncs>()
     const refModalDevice = useRef<any>(null)
     const _savedUser = useAppSelector((s) => s.userSlice)
-
-
     const [_devices, set_devices] = useState<IMiningDevice[]>([])
 
-    const _loadWallets = async () => {
+
+
+    const _loadDevices = (initial: boolean) => async () => {
         const res = await refWebService?.current?.callApi<IReqRes<IMiningDevice>['getAllBy']['res']>(miningDevices.getAllBy({ userId: _savedUser.id! }))
         if (res?.success) {
             set_devices(res?.data!)
-            if (res?.data!.length > 0) {
+            if (res?.data!.length > 0 && initial) {
                 onSelect!(res.data![0])
                 // set_device(res.data![0])
             }
@@ -43,33 +43,35 @@ export default ({ onSelect, selectedItem }: ISelect<IMiningDevice>) => {
     }
 
     useEffect(() => {
-        _loadWallets()
+        _loadDevices(true)()
     }, [])
+
 
     const _set_device = (d?: IMiningDevice) => {
         onSelect!(d)
         refModalDevice.current.hide()
     }
+
+
     return (
-
-
         <Box flex={2} card >
-            {selectedItem?.id! > 0 ? <Flex vertical align='flex-end' className='w-full'>
-                <Flex vertical
-                    className=' w-full h-full'>
-
-                    <Flex justify="space-between">
-                        <p>Device Name: {deviceName}</p>
-                        {status && <StatusTag status={status} />}
+            {selectedItem?.id! > 0 ?
+                <Flex vertical align='flex-end' className='w-full'>
+                    <Flex vertical
+                        className=' w-full h-full'>
+                        <Flex justify="space-between">
+                            <p>Device Name: {deviceName}</p>
+                            {status && <StatusTag status={status} />}
+                        </Flex>
+                        <span>IMei: {imei}</span>
+                        <span>Device Model: {deviceModel}</span>
                     </Flex>
-                    <span>IMei: {imei}</span>
-                    <span>Device Model: {deviceModel}</span>
-                </Flex>
 
-                <CModal ref={refModalDevice} btn={<RightCircleTwoTone style={{ fontSize: 30 }} />} mat>
-                    <DeviceTable devices={_devices} sel={{ onSelect: _set_device, selectedItem }} />
-                </CModal>
-            </Flex> :
+                    <CModal ref={refModalDevice} btn={<RightCircleTwoTone style={{ fontSize: 30 }} onClick={_loadDevices(false)} />} mat>
+                        <DeviceTable devices={_devices} sel={{ onSelect: _set_device, selectedItem }} />
+                    </CModal>
+                </Flex>
+                :
                 <CWhiteLabel txt='No Devices' />}
             <WebService ref={refWebService} />
 

@@ -7,9 +7,11 @@ export default ({ color: { name, num }, title, value, fontSize = 5, svg }: ICont
     const [_value, set_value] = useState(value)
 
     useEffect(() => {
+        // set_value('...')
         const _delay = Math.random() * 4000
         setTimeout(() => {
-            set_value(value)
+            set_value(value || undefined)
+
         }, _delay);
     }, [value])
 
@@ -36,7 +38,7 @@ export default ({ color: { name, num }, title, value, fontSize = 5, svg }: ICont
                 flex={1}
                 align='center'
             >
-                <strong className={`text-center text-${fontSize}xl text-${name}-${num}`}>{_value}</strong>
+                <strong className={`text-center text-${fontSize}xl text-${name}-${num}`}>{_value || ''}</strong>
             </Flex>
         </Flex >
     );

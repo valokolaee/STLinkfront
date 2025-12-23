@@ -33,18 +33,36 @@ const Skeleton: React.FC = () => {
 
             if (!!!_savedUser.token) {
 
-                const res2 = await refWebService.current?.callApi(apis.monitor.getAll())
+                // const res2 = await refWebService.current?.callApi(apis.monitor.getAll())
 
             } else {
                 // await refWebService.current?.callApi<any>(apis.deviceEarnings.create({ amount: Math.random(), currency: 'USDT', deviceId: _device?.id!, walletId: 1, isSettled: true, userId: _savedUser.id!, miningSessionId: 1 }))
 
                 const res2: IResponse<IMonitorData> = await refWebService.current?.callApi<any>(apis.monitor.getAllBy(_device!))
 
-                if (res2?.success) {
-                    set_data(res2.data)
+
+                if (_device?.status === 'active') {
+
+                    if (res2?.success) {
+                        set_data(res2.data)
+                    } else {
+                        clearInterval(_interV)
+                    }
+
                 } else {
-                    clearInterval(_interV)
+                    set_data({
+                        wallet: {
+                            totalEarnings: res2.data?.wallet?.totalEarnings,
+                            walletAddress: ''
+                        }
+                    })
+                    setLoading(false)
                 }
+
+
+
+
+
 
                 setLoading(false)
 

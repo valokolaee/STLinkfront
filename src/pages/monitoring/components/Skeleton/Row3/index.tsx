@@ -51,7 +51,7 @@ export default (monitor: IMonitorData) => {
                         <ContentBox
                             color={{ name: 'red', num: 200 }}
                             title='Processing Speed'
-                            value={`${processingSpeed}`}
+                            value={`${processingSpeed || 0}`}
                             svg={svgList.chart6}
                         />
                     </Box>

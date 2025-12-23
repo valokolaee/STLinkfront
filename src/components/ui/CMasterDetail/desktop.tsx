@@ -12,7 +12,7 @@ const Desktop: React.FC<IMasterDetail> = ({ detail, master }) => (
     <Flex flex={1} className='w-screen border-solidc' >
       <Header  />
     </Flex>
-    <Flex flex={10} className='border-solids overflow-scroll '>
+    <Flex flex={13} className='border-solids overflow-scroll '>
       <Splitter
         className=' w-full flex flex-row  border-solidh overflow-scroll'
       >

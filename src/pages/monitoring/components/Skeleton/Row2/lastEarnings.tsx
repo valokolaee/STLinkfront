@@ -23,13 +23,10 @@ export default ({ lastEarnings }: { lastEarnings: IMonitorData['lastEarnings'] }
     return (
 
         <Box flex={1} card>
-            {_lastEarnings.length > 0 ?
-
-                <LineChart series={[{ data: _lastEarnings }]} sx={sx} />
-                :
-                <Loading />
-            }
-
+            
+            <LineChart series={[{ data: _lastEarnings }]} sx={sx} />
+     
+                    
         </Box>
 
 

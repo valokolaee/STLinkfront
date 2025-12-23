@@ -10,7 +10,7 @@ export default forwardRef(({ btn, className, children, open, mat, }: IModal, ref
     const [isModalOpen, setIsModalOpen] = useState(false);
 
     const show = () => {
-        console.log('show devices modal');
+        // console.log('show devices modal');
 
         setIsModalOpen(true);
     };
@@ -47,6 +47,7 @@ export default forwardRef(({ btn, className, children, open, mat, }: IModal, ref
                 onOk={hide}
                 onCancel={hide}
                 maskClosable
+
                 footer={null}
                 className='self-center m-4 max-h-full '>
 
