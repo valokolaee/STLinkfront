@@ -81,7 +81,7 @@ export default React.forwardRef(({ className, size = 30, donTShowSpin, }: IWebSe
   return (
     <>
       {showModal &&
-      <div className='fixed  inset-0 flex items-center justify-center  '>
+      <div className='fixed  inset-0 flex items-center justify-center  border-solidb' onClick={()=>{setShowModal(undefined)}}>
         
         <Spin
           

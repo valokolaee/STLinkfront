@@ -10,9 +10,10 @@ import { Provider } from "react-redux";
 import { persistStore } from 'redux-persist';
 import { PersistGate } from 'redux-persist/integration/react';
 import store from "./redux/store";
-import Skeleton from "./pages/monitoring/components/Skeleton";
+import Skeleton from "./pagesUser/monitoring/components/Skeleton";
 import { ConfigProvider } from "antd";
 import { cardAndSelected, inputText } from "./css/classNames";
+import RouterBase from "./Router/RouterBase";
 
 let persistor = persistStore(store);
 
@@ -36,7 +37,7 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
             }}
             input={{
               className: inputText,
-              classNames: { input:inputText },
+              classNames: { input: inputText },
 
               // variant:'underlined'
 
@@ -53,7 +54,7 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
             theme={{
               // components: {
               //   Select: {
-                  
+
               //     colorIcon: '#ff4d4f', // Dropdown arrow icon
               //     colorIconHover: '#d9363e', // Hover state
               //     colorPrimary: '#1890ff', // Selected/hover items
@@ -96,7 +97,8 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
 
 
             <div className="  h-screen w-screen overflow-hidden">
-              <App />
+              <RouterBase />
+              {/* <App /> */}
             </div>
             {/* <Skeleton/> */}
           </ConfigProvider>

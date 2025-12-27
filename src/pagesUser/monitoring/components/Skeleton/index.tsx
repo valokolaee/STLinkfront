@@ -11,7 +11,7 @@ import apis from '../../../../webService/ApiUrls/apis';
 import IResponse from '../../../../webService/ApiUrls/apis/IResponse';
 import { IMonitorData } from './IMonitorData';
 import Loading from './components/Loading';
-
+import { dateDifference } from '../../../../utils/DateTimeHelperN';
 
 var _interV = setInterval(async () => {
 
@@ -35,32 +35,85 @@ const Skeleton: React.FC = () => {
 
                 // const res2 = await refWebService.current?.callApi(apis.monitor.getAll())
 
+
             } else {
-                // await refWebService.current?.callApi<any>(apis.deviceEarnings.create({ amount: Math.random(), currency: 'USDT', deviceId: _device?.id!, walletId: 1, isSettled: true, userId: _savedUser.id!, miningSessionId: 1 }))
 
                 const res2: IResponse<IMonitorData> = await refWebService.current?.callApi<any>(apis.monitor.getAllBy(_device!))
 
 
-                if (_device?.status === 'active') {
 
-                    if (res2?.success) {
+                if (res2.success) {
+                     const _calculatedAt = res2.data?.lastEarnings![0].calculatedAt
+                    const _status: IMiningDevice['status'] = (dateDifference(new Date(), _calculatedAt) > 10 || dateDifference(new Date(), _calculatedAt) < 0) ? 'offline' : 'active'
+
+                    set_device({
+                        ..._device,
+                        status: _status
+                    })
+
+                    if (_status === 'active') {
                         set_data(res2.data)
                     } else {
-                        clearInterval(_interV)
+                        set_data({
+                            wallet: {
+                                totalEarnings: res2.data?.wallet?.totalEarnings,
+                                walletAddress: ''
+                            }
+                        })
                     }
+
 
                 } else {
                     set_data({
                         wallet: {
-                            totalEarnings: res2.data?.wallet?.totalEarnings,
+                            totalEarnings: 0,
                             walletAddress: ''
                         }
                     })
-                    setLoading(false)
                 }
 
 
 
+
+                // if (_device?.status === 'active') {
+
+                //     const _lastEarnings = res2.data?.lastEarnings
+                //     const _calculatedAt = res2.data?.lastEarnings![0].calculatedAt
+                //     if (res2?.success) {
+                //         set_data(res2.data)
+
+
+
+                //         if (_lastEarnings!?.length > 0) {
+
+                //             set_device({
+                //                 ..._device,
+                //                 status: (dateDifference(new Date(), _calculatedAt) > 10 || dateDifference(new Date(), _calculatedAt) < 0) ? 'offline' : 'active'
+                //             })
+                //             set_data({
+                //                 wallet: {
+                //                     totalEarnings: res2.data?.wallet?.totalEarnings,
+                //                     walletAddress: ''
+                //                 }
+                //             })
+
+
+
+                //         }
+                //     } else {
+                //         clearInterval(_interV)
+                //     }
+
+                // } else {
+
+                //     set_data({
+                //         wallet: {
+                //             totalEarnings: res2.data?.wallet?.totalEarnings,
+                //             walletAddress: ''
+                //         }
+                //     })
+                //     setLoading(false)
+                // }
 
 
 
@@ -81,7 +134,7 @@ const Skeleton: React.FC = () => {
             _getEarning({} as IMiningSession)
         }
 
-    }, [_device])
+    }, [_device?.id])
 
 
 

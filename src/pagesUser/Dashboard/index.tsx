@@ -86,12 +86,12 @@ export default () => {
             vertical
         // vertical={_isMobile}
         >
-            <button onClick={_newSession}>
+            {/* <button onClick={_newSession}>
                 go
             </button>
             <button onClick={_clearInterval}>
                 stop
-            </button>
+            </button> */}
             {_isMobile ? <Mobile /> : <Desktop />}
             <WebService ref={refWebService} />
 
