@@ -33,6 +33,7 @@ export const rolePermissionRequest = ApiObjectGenerator<IRolePermission>('role-p
 export const roleRequest = ApiObjectGenerator<IRole>('role')
 export const userSession = ApiObjectGenerator<IUserSession>('user-session')
 export const monitor = ApiObjectGenerator<IMiningDevice>('monitor')
+export const pan = ApiObjectGenerator<IMiningDevice>('pan','panel')
 
 
 

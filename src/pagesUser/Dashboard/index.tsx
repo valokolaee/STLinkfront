@@ -8,7 +8,7 @@ import { useAppSelector } from "../../redux/hooks"
 import IMiningSession from "../../interfaces/IMiningSession"
 import IReqRes from "../../webService/ApiUrls/apis/IReqRes"
 import IMiningWallet from "../../interfaces/IMiningWallet"
-import apis from "../../webService/ApiUrls/apis"
+import apis, { pan } from "../../webService/ApiUrls/apis"
 import axios from "axios"
 var _inter =
     setInterval(async () => { }, 1000)
@@ -60,9 +60,10 @@ export default () => {
 
 
     // useEffect(() => {
-    //     if (_session) {
-    //         _newSession()
-    //     }
+    //     _txt()
+    //     // if (_session) {
+    //     //     _newSession()
+    //     // }
     // }, [])
 
 
@@ -81,17 +82,20 @@ export default () => {
         clearInterval(_inter)
     }
 
+    const _txt = () => {
+        refWebService.current?.callApi(pan.getAll())
+    }
     return (
         <Flex className=" w-full h-full overflow-scroll "
             vertical
         // vertical={_isMobile}
         >
-            {/* <button onClick={_newSession}>
+            <button onClick={_newSession}>
                 go
             </button>
             <button onClick={_clearInterval}>
                 stop
-            </button> */}
+            </button>
             {_isMobile ? <Mobile /> : <Desktop />}
             <WebService ref={refWebService} />
 

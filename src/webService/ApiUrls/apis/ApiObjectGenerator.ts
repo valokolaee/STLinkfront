@@ -22,40 +22,19 @@ export interface IApiObject<T = any> {
 
 
 
-export default <T>(folderUrl: string): IApiObject<T> => {
+export default <T>(folderUrl: string,api?:ModelApi['api']): IApiObject<T> => {
     return {
-        getAll(body) { return { folderUrl, body, axiosType: 'get' } },
-        getOneByID(body) { return { folderUrl, axiosType: 'get', apiUrl: body } },
-        getOneByObject(body) { return { folderUrl, axiosType: 'post', apiUrl: body } },
-        getAllBy(body) { return { folderUrl, body, axiosType: 'post', apiUrl: 'getAllBy' } },
-        search(body) { return { folderUrl, body, axiosType: 'post', apiUrl: 'search' } },
+        getAll(body) { return { folderUrl, body, axiosType: 'get', api} },
+        getOneByID(body) { return { folderUrl, axiosType: 'get', apiUrl: body , api} },
+        getOneByObject(body) { return { folderUrl, axiosType: 'post', apiUrl: body , api} },
+        getAllBy(body) { return { folderUrl, body, axiosType: 'post', apiUrl: 'getAllBy' , api} },
+        search(body) { return { folderUrl, body, axiosType: 'post', apiUrl: 'search' , api} },
 
-        create(body) { return { folderUrl, body, axiosType: 'post' } },
-        update(body) { return { folderUrl, body, axiosType: 'put' } },
-        delete(body) { return { folderUrl, axiosType: 'delete', apiUrl: body } },
-        deletePermanently(body) { return { folderUrl, axiosType: 'delete', apiUrl: body } },
+        create(body) { return { folderUrl, body, axiosType: 'post' , api} },
+        update(body) { return { folderUrl, body, axiosType: 'put' , api} },
+        delete(body) { return { folderUrl, axiosType: 'delete', apiUrl: body , api} },
+        deletePermanently(body) { return { folderUrl, axiosType: 'delete', apiUrl: body , api} },
 
 
     }
 }
-
-// type TExtraActions = { name: string; obj: ModelApi }
-
-// const extraActions = (folderUrl: string, list?: TExtraActions[]) => {
-//     var actions: { [key: string]: ModelApi } = {}
-//     if (list!?.length > 0) {
-//         list!.forEach((e) => { actions[e.name] = { folderUrl, ...e.obj }; })
-//     }
-//     return actions
-// }
-
-
-
-
-
-// export default <T>(folderUrl: string, list?: TExtraActions[]) => {
-//     return {
-//         ...mainActions<T>(folderUrl),
-//         ...extraActions(folderUrl, list)
-//     }
-// }

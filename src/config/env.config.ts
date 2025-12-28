@@ -22,4 +22,5 @@
 export const BASE_URL = import.meta.env.VITE_BASE_URL as string;
 export const LOCAL_HOST = import.meta.env.VITE_LOCAL_HOST as string;
 export const API = import.meta.env.VITE_API as string;
+export const PANEL = import.meta.env.VITE_PANEL as string;
 export const ASSET = import.meta.env.VITE_ASSET as string;

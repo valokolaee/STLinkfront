@@ -8,6 +8,7 @@ export interface ModelApi<T = any> {
   apiUrl2?: string;
   desc?: string;
   body?: T
+  api?:'api'|'panel'
 }
 
 
