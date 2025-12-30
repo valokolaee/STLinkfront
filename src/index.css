@@ -42,3 +42,12 @@
     min-height: 100vh;
   }
 }
+/* In your global CSS file (index.css or App.css) */
+* {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;     /* Firefox */
+}
+
+*::-webkit-scrollbar {
+  display: none;  /* Chrome, Safari and Opera */
+}
