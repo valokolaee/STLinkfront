@@ -97,8 +97,8 @@ export default () => {
             <button onClick={_clearInterval}>
                 stop
             </button> */}
-            <OneWallet />
-            {/* {_isMobile ? <Mobile /> : <Desktop />} */}
+            {/* <OneWallet /> */}
+            {_isMobile ? <Mobile /> : <Desktop />}
             <WebService ref={refWebService} />
 
         </Flex>
