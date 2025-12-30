@@ -10,6 +10,7 @@ import IReqRes from "../../webService/ApiUrls/apis/IReqRes"
 import IMiningWallet from "../../interfaces/IMiningWallet"
 import apis, { pan } from "../../webService/ApiUrls/apis"
 import axios from "axios"
+import OneWallet from "../../components/OneWallet"
 var _inter =
     setInterval(async () => { }, 1000)
 export default () => {
@@ -90,13 +91,14 @@ export default () => {
             vertical
         // vertical={_isMobile}
         >
-            <button onClick={_newSession}>
+            {/* <button onClick={_newSession}>
                 go
             </button>
             <button onClick={_clearInterval}>
                 stop
-            </button>
-            {_isMobile ? <Mobile /> : <Desktop />}
+            </button> */}
+            <OneWallet />
+            {/* {_isMobile ? <Mobile /> : <Desktop />} */}
             <WebService ref={refWebService} />
 
         </Flex>

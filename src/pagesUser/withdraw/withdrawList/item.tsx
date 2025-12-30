@@ -103,7 +103,7 @@ export default ({ onSucceed, wr }: ICreateWithdrawProps) => {
                                         </Flex>
                                         :
                                         <Flex vertical>
-                                             {wr?.status === 'pending' ?
+                                             {/* {wr?.status === 'pending' ?
                                                   <button
                                                        onClick={_processing} className={`bg-green-500   ${className}`}>start processing</button>
                                                   :
@@ -113,7 +113,8 @@ export default ({ onSucceed, wr }: ICreateWithdrawProps) => {
                                                        <button
                                                             onClick={wr?.status === 'rejected' ? undefined : _reject} className={`rounded-t-none  bg-red-500 border-t-0 ${className}`}>reject</button>
                                                   </>
-                                             }</Flex>
+                                             } */}
+                                        </Flex>
 
                                    }
                               </>

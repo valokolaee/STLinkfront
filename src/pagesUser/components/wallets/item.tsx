@@ -32,10 +32,10 @@ export default ({ uw, onSucceed }: ICreateWallet) => {
     // const _del = () => {
     //     refWebService.current?.callApi(userWallet.delete(id!))
     // }
+    // <Link to={''} className="cursor-pointer w-full h-full">
 
-    // <Link to={`/wallet/${id}`} className="cursor-pointer w-full h-full">
     return (
-        <Link to={''} className="cursor-pointer w-full h-full">
+        <Link to={`/wallet/${id}`} className="cursor-pointer w-full h-full">
 
             <Card
 
