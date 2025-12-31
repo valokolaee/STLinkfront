@@ -73,13 +73,6 @@ const Wallet: React.FC<WalletProps> = ({
     setDescription('');
   };
 
-  const formatCurrency = (value: number) => {
-    return new Intl.NumberFormat('en-US', {
-      style: 'currency',
-      currency: currency,
-    }).format(value);
-  };
-
   const getTransactionColor = (type: string) => {
     switch (type) {
       case 'deposit': return 'text-green-600';
@@ -98,7 +91,7 @@ const Wallet: React.FC<WalletProps> = ({
 
       <div className="balance-card">
         <div className="balance-label">Current Balance</div>
-        <div className="balance-amount">{formatCurrency(balance)}</div>
+        <div className="balance-amount">{formatCurrency(balance, currency)}</div>
         <div className="balance-subtitle">Available funds</div>
       </div>
 
@@ -124,14 +117,14 @@ const Wallet: React.FC<WalletProps> = ({
             />
           </div>
           <div className="button-group">
-            <button 
+            <button
               onClick={handleDeposit}
               className="btn-deposit"
               disabled={!amount || parseFloat(amount) <= 0}
             >
               Deposit
             </button>
-            <button 
+            <button
               onClick={handleWithdrawal}
               className="btn-withdraw"
               disabled={!amount || parseFloat(amount) <= 0 || parseFloat(amount) > balance}
@@ -158,7 +151,7 @@ const Wallet: React.FC<WalletProps> = ({
                 </div>
                 <div className={`transaction-amount ${getTransactionColor(transaction.type)}`}>
                   {transaction.type === 'deposit' ? '+' : '-'}
-                  {formatCurrency(transaction.amount)}
+                  {formatCurrency(transaction.amount, currency)}
                 </div>
               </div>
             ))}
@@ -183,3 +176,13 @@ const Wallet: React.FC<WalletProps> = ({
 };
 
 export default Wallet;
+
+
+
+
+export const formatCurrency = (value: number, currency?: string | undefined) => {
+  return new Intl.NumberFormat('en-US', {
+    style: 'currency',
+    currency:currency || 'USD',
+  }).format(value);
+};
