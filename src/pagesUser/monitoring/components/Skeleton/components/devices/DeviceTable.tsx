@@ -5,13 +5,10 @@ import Item from './item';
 
 
 export default ({ devices, sel }: { devices: IMiningDevice[]; sel: ISelect<IMiningDevice> }) =>
-    // <Flex vertical className='bg-gray-900 m-2 border-solid overflow-scroll'>
-    <>
-{
-    devices.map((item) =>
+    <Flex vertical className='bg-gray-900 m-2 overflow-scroll'>
+        {devices.map((item) =>
         <Item info={item} isSelected={sel.selectedItem?.id === item?.id} onSelect={sel.onSelect} key={item.id} />)}
-    </>      
-    // </Flex >
+    </Flex >
 
 
 
