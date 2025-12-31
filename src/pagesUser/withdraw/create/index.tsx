@@ -187,10 +187,10 @@ export default ({ onSucceed, wr }: ICreateWithdrawProps) => {
             <Select.Option key={wl.id} value={wl.walletAddress!}>
               <Flex flex={1} >
                 <Flex flex={1} >
-                  {wl.nickname}
+                  {`${wl.nickname}  `}
                 </Flex>
                 {/* {wl.walletAddress} */}
-                {safeFixed(wl.pendingBalance!, 2)} {wl.currency}
+              {/* {`       Balance: ${safeFixed(wl.pendingBalance!, 2)} ${wl.currency}`} */}
               </Flex>
 
             </Select.Option>)}
