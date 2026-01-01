@@ -22,6 +22,8 @@ const CUploader: React.FC<IUploader> = ({ numberOfItems, img, label, apiModel, c
         formData.append('file', file);
         const result: any = await refWebService?.current?.callApi(apiModel!(formData))
         callBack && callBack(result)
+        console.log(result);
+        
         // setUserAvatar(result.data.url + '?a=' + new Date())
     };
 

@@ -7,7 +7,7 @@ import CLink from "../../components/ui/CLink";
 import CText from "../../components/ui/CText";
 import IUser from "../../interfaces/IUser";
 import IWithdrawalRequest from "../../interfaces/IWithdrawalRequest";
-import { setUser, setUserAvatar } from "../../redux/actions";
+import { setUser, setUserAvatar, setUserLogo } from "../../redux/actions";
 import { useAppSelector } from "../../redux/hooks";
 import WebService, { IWebServiceFuncs } from "../../webService";
 import apis, { deviceAlertRequest, deviceSpecificationRequest, miningSession, permission, rolePermissionRequest, roleRequest, userSession } from "../../webService/ApiUrls/apis";
@@ -39,8 +39,17 @@ const Login = () => {
       }
 
       setUser(u)
+
       setUserAvatar(u.profileImage + '?a=' + new Date())
-      navigate('/dashboard')
+      
+      if (!!!u.logoUrl) {
+        setUserLogo('')
+      } else {
+        
+        setUserLogo(u.logoUrl + '?a=' + new Date())
+      }
+      
+      navigate('/Profile')
     }
   };
 
@@ -116,7 +125,7 @@ const Login = () => {
 
     <div className={formContainer}>
 
-      <h2 onClick={_try} className="cursor-auto">login</h2>
+      <h2  className="cursor-auto">login</h2>
 
       <Form
         name="login"

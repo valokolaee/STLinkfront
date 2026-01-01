@@ -7,10 +7,9 @@ import { Flex } from 'antd';
 
 
 const AvatarUploader: React.FC<IImageUploader> = ({ avatar, uploader }) => {
-  const _user = useAppSelector((s) => s.userSlice)
-  const { shape, size, style, url } = avatar || {}
 
-
+  // console.log(avatar);
+  
   return (
       <Flex vertical align='center' >
         <CAvatar {...avatar} />
