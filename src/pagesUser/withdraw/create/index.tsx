@@ -128,7 +128,7 @@ export default ({ onSucceed, wr }: ICreateWithdrawProps) => {
               <Flex flex={1} >
                 {wl.walletAddress}
               </Flex>
-        Balance:      {safeFixed(wl.availableBalance!, 2)} {wl.currency}
+              Balance:      {safeFixed(wl.availableBalance!, 2)} {wl.currency}
             </Flex>
 
           </Select.Option>)}
@@ -190,7 +190,7 @@ export default ({ onSucceed, wr }: ICreateWithdrawProps) => {
                   {`${wl.nickname}  `}
                 </Flex>
                 {/* {wl.walletAddress} */}
-              {/* {`       Balance: ${safeFixed(wl.pendingBalance!, 2)} ${wl.currency}`} */}
+                {/* {`       Balance: ${safeFixed(wl.pendingBalance!, 2)} ${wl.currency}`} */}
               </Flex>
 
             </Select.Option>)}

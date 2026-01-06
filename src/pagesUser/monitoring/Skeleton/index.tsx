@@ -1,17 +1,17 @@
 import { Flex } from 'antd';
 import React, { useEffect, useRef, useState } from 'react';
-import { useAppSelector } from '../../../../redux/hooks';
-import WebService, { IWebServiceFuncs } from '../../../../webService';
+import { useAppSelector } from '../../../redux/hooks';
+import WebService, { IWebServiceFuncs } from '../../../webService';
 import Row1, { IR1 } from './Row1';
 import Row2 from './Row2';
 import Row3 from './Row3';
-import IMiningDevice from '../../../../interfaces/IMiningDevice';
-import IMiningSession from '../../../../interfaces/IMiningSession';
-import apis from '../../../../webService/ApiUrls/apis';
-import IResponse from '../../../../webService/ApiUrls/apis/IResponse';
+import IMiningDevice from '../../../interfaces/IMiningDevice';
+import IMiningSession from '../../../interfaces/IMiningSession';
+import apis from '../../../webService/ApiUrls/apis';
+import IResponse from '../../../webService/ApiUrls/apis/IResponse';
 import { IMonitorData } from './IMonitorData';
 import Loading from './components/Loading';
-import { dateDifference } from '../../../../utils/DateTimeHelperN';
+import { dateDifference } from '../../../utils/DateTimeHelperN';
 
 var _interV = setInterval(async () => {
 
@@ -24,10 +24,11 @@ const Skeleton: React.FC = () => {
     const [_loading, setLoading] = useState(true)
     const [_data, set_data] = useState<IMonitorData | undefined>({})
     const [_device, set_device] = useState<IMiningDevice | undefined>({})
+    const [_deviceStatus, set_deviceStatus] = useState<IMiningDevice['status'] | undefined>(undefined)
 
 
 
-    const _getEarning = async (_session: IMiningSession) => {
+    const _getEarning = async () => {
 
         _interV = setInterval(async () => {
 
@@ -43,20 +44,19 @@ const Skeleton: React.FC = () => {
 
 
                 if (res2.success) {
-                     const _calculatedAt = res2.data?.lastEarnings![0].calculatedAt
+                    const _calculatedAt = res2.data?.lastEarnings![0].calculatedAt
                     const _status: IMiningDevice['status'] = (dateDifference(new Date(), _calculatedAt) > 10 || dateDifference(new Date(), _calculatedAt) < 0) ? 'offline' : 'active'
 
-                    set_device({
-                        ..._device,
-                        status: _status
-                    })
-
+              
+                    set_deviceStatus(_status)
+              
                     if (_status === 'active') {
                         set_data(res2.data)
                     } else {
                         set_data({
                             wallet: {
                                 totalEarnings: res2.data?.wallet?.totalEarnings,
+                                availableBalance: res2.data?.wallet?.availableBalance,
                                 walletAddress: ''
                             }
                         })
@@ -131,7 +131,7 @@ const Skeleton: React.FC = () => {
         clearInterval(_interV)
 
         if (_device!.id! > 0) {
-            _getEarning({} as IMiningSession)
+            _getEarning()
         }
 
     }, [_device?.id])
@@ -148,9 +148,10 @@ const Skeleton: React.FC = () => {
             <Row1
                 monitor={_data!}
                 device={{
-                    selectedItem: _device,
+                    selectedItem: { ..._device, status: _deviceStatus },
                     onSelect: _setDevice
                 }}
+
             />
             <Row2 {..._data!} />
             <Row3 {..._data} />

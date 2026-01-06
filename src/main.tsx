@@ -10,7 +10,7 @@ import { Provider } from "react-redux";
 import { persistStore } from 'redux-persist';
 import { PersistGate } from 'redux-persist/integration/react';
 import store from "./redux/store";
-import Skeleton from "./pagesUser/monitoring/components/Skeleton";
+import Skeleton from "./pagesUser/monitoring/Skeleton";
 import { ConfigProvider } from "antd";
 import { cardAndSelected, inputText } from "./css/classNames";
 import RouterBase from "./Router/RouterBase";

@@ -28,10 +28,11 @@
 }
 
 .balance-card {
-  background: white;
+  background: rgb(32, 32, 32);
   border-radius: 20px;
   padding: 30px;
   text-align: center;
+  margin:5px;
   margin-bottom: 30px;
   box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
   color: #333;
@@ -39,7 +40,7 @@
 
 .balance-label {
   font-size: 1rem;
-  color: #666;
+  color: rgb(117, 125, 191);
   margin-bottom: 10px;
 }
 
@@ -47,12 +48,12 @@
   font-size: 3.5rem;
   font-weight: bold;
   margin: 10px 0;
-  color: #2d3748;
+  color: hsl(0, 0%, 100%);
 }
 
 .balance-subtitle {
   font-size: 0.9rem;
-  color: #718096;
+  color: #a8bddc;
 }
 
 .transaction-section {

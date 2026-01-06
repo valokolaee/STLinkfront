@@ -1,4 +1,4 @@
-import svgList from "../../../../../assets/icons/svgList";
+import svgList from "../../../../assets/icons/svgList";
 import ContentBox from "../components/ContentBox";
 
 export default ({ lastUpdated }: { lastUpdated?: Date }) => <ContentBox

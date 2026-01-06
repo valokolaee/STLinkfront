@@ -2,8 +2,8 @@ import {
     useGaugeState
 } from '@mui/x-charts/Gauge';
 import { Flex } from 'antd';
-import { getObjectFromJsonArray } from '../../../../../../utils/json.utils';
-import { safeFixed } from '../../../../../../utils/text.utils';
+import { getObjectFromJsonArray } from '../../../../../utils/json.utils';
+import { safeFixed } from '../../../../../utils/text.utils';
 import Box from '../../components/Box';
 import ContentBox from '../../components/ContentBox';
 import RowFrame from '../../components/RowFrame';
@@ -11,7 +11,7 @@ import { IMonitorData } from '../../IMonitorData';
 import CpuUsage from './cpuUsage';
 import GpuUsage from './gpuUsage';
 
- 
+
 
 export default (monitor: IMonitorData) => {
     const { wallet, alerts, metrics, session } = monitor || {}

@@ -1,6 +1,6 @@
 import { LineChart } from '@mui/x-charts';
 import { useEffect, useState } from 'react';
-import { JsonArrayIntoNumberArray } from '../../../../../utils/json.utils';
+import { JsonArrayIntoNumberArray } from '../../../../utils/json.utils';
 import Box from '../components/Box';
 import RowFrame from '../components/RowFrame';
 import { colors, keyToLabel, worldElectricityProduction, } from '../components/worldElectricityProduction';

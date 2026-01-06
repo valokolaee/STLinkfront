@@ -1,7 +1,7 @@
 import { Card, Flex } from "antd";
-import { cardAndSelected } from "../../../../../../css/classNames";
-import IMiningDevice from "../../../../../../interfaces/IMiningDevice";
-import { ISelect } from "../../../../../../interfaces/ISelect";
+import { cardAndSelected } from "../../../../../css/classNames";
+import IMiningDevice from "../../../../../interfaces/IMiningDevice";
+import { ISelect } from "../../../../../interfaces/ISelect";
 import StatusTag from "./StatusTag";
 
 export default ({ info, onSelect, isSelected }: ISelect<IMiningDevice>) => {

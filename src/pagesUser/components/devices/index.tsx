@@ -44,14 +44,14 @@ export default () => {
     }
     return (
         <div className="w-full">
-            <Flex className="w-full">
+            {/* <Flex className="w-full">
                 <CModal onClose={_hide} btn={<PlusCircleOutlined style={{ fontSize: '200%', color: 'white' }} onClick={_show} />}>
                     <Create onSucceed={_newCreated} />
                 </CModal>
                 <div className="m-3 w-full bg-gray-500 p-2 rounded-lg">
                     {`${_devices?.length} devices`}
                 </div>
-            </Flex>
+            </Flex> */}
             <DevicesList/>
             {/* {_devices?.map((item) => <Item {...item} key={item.id} />)} */}
             <WebService ref={refWebService} />

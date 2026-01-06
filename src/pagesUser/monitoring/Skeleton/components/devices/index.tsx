@@ -1,19 +1,19 @@
 import { useEffect, useRef, useState } from 'react';
-import CModal from '../../../../../../components/ui/CModal';
-import { useAppSelector } from '../../../../../../redux/hooks';
-import WebService, { IWebServiceFuncs } from '../../../../../../webService';
+import CModal from '../../../../../components/ui/CModal';
+import { useAppSelector } from '../../../../../redux/hooks';
+import WebService, { IWebServiceFuncs } from '../../../../../webService';
 import Box from '../Box';
 import DeviceTable from './DeviceTable';
 import { RiceBowlOutlined } from '@mui/icons-material';
 import { RightCircleFilled, RightCircleTwoTone } from '@ant-design/icons';
 import { Flex } from 'antd';
 import Item from './item';
-import IMiningDevice from '../../../../../../interfaces/IMiningDevice';
-import IReqRes from '../../../../../../webService/ApiUrls/apis/IReqRes';
-import { miningDevices } from '../../../../../../webService/ApiUrls/apis';
+import IMiningDevice from '../../../../../interfaces/IMiningDevice';
+import IReqRes from '../../../../../webService/ApiUrls/apis/IReqRes';
+import { miningDevices } from '../../../../../webService/ApiUrls/apis';
 import StatusTag from './StatusTag';
-import { ISelect } from '../../../../../../interfaces/ISelect';
-import CWhiteLabel from '../../../../../../components/ui/CWhiteLabel';
+import { ISelect } from '../../../../../interfaces/ISelect';
+import CWhiteLabel from '../../../../../components/ui/CWhiteLabel';
 import Loading from '../Loading';
 
 
@@ -74,7 +74,7 @@ export default ({ onSelect, selectedItem }: ISelect<IMiningDevice>) => {
                         {_loading ?
                             <Flex className='justify-center'>
 
-                            <Loading />
+                                <Loading />
                             </Flex>
                             :
                             <DeviceTable devices={_devices} sel={{ onSelect: _set_device, selectedItem }} />
@@ -84,7 +84,7 @@ export default ({ onSelect, selectedItem }: ISelect<IMiningDevice>) => {
                 </Flex>
                 :
                 <CWhiteLabel txt='No Devices' />}
-            <WebService ref={refWebService}  donTShowSpin/>
+            <WebService ref={refWebService} donTShowSpin />
 
         </Box>
     )

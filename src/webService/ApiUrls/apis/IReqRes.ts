@@ -4,7 +4,7 @@ import IResponse from "./IResponse";
 export default interface IReqRes<Q> {
     getAll: TReqRes<never, IResponse<Q[]>>;
     getOneByID: TReqRes<number, IResponse<Q>>;
-    getOneByObject: TReqRes<number, IResponse<Q>>;
+    getOneByObject: TReqRes<Partial<Q>, IResponse<Q>>;
     getAllBy: TReqRes<Partial<Q>, IResponse<Q[]>>;
     search: TReqRes<Partial<Q>, IResponse<Q[]>>;
 

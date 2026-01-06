@@ -11,6 +11,7 @@ import Item from "./item"
 import IReqRes from "../../../webService/ApiUrls/apis/IReqRes"
 import IMiningWallet from "../../../interfaces/IMiningWallet"
 import TinyItem from "./TinyItem"
+import { card } from "../../../css/classNames"
 
 export default ({ flashMode }: { flashMode?: boolean }) => {
     const refWebService = useRef<IWebServiceFuncs>()
@@ -48,9 +49,7 @@ export default ({ flashMode }: { flashMode?: boolean }) => {
 
 
     return (
-        <div className="w-full h-full">
-
-
+        <div className={card}>
             {flashMode ?
                 _devices.slice(0, 5)?.map((item) => <TinyItem {...item} key={item.id} />)
                 : _devices?.map((item) => <Item {...item} key={item.id} />)}

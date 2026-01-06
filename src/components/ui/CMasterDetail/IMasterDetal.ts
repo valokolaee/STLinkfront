@@ -1,4 +1,4 @@
 export default interface IMasterDetail {
-    master: React.ReactNode;
+    master?: React.ReactNode;
     detail: React.ReactNode;
  }

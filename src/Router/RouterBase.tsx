@@ -10,12 +10,15 @@ import '../css/input-active.css';
 import '../css/root.css';
 import '../css/textarea.css';
 import RouterAgents from "./RouterAgents";
-
+import Home from "../pagesUser/Home";
+ 
 
 
 export default () =>
 
   <Routes>
+    <Route path="/" element={<Home />} />
+
     <Route path="/*" element={<App />} />
     <Route path="/panel/*" element={<RouterAgents />} />
     {/* <Route path="/dashboard" element={<Dashboard />} />

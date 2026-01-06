@@ -6,7 +6,7 @@ import DevicesList from "../../components/devices/DevicesList"
 import Withdraw from "../../withdraw"
 import { Link } from "react-router-dom"
 import NavTo from "./NavTo"
-import Wallet from "../../Wallets/Wallet"
+import Wallet from "../../Wallets/Wallet/transactions"
 import Wallets from "../../components/wallets"
 import DashWithdraw from "./DashWithdraw"
 import DashDevices from "./DashDevices"
@@ -18,12 +18,12 @@ export default () => {
     return (
         <Flex className=" w-full h-full overflow-scroll "  >
 
-            <Flex flex={  1} vertical>
+            <Flex flex={1} vertical>
                 <DashWithdraw />
                 <DashDevices />
             </Flex>
 
-            <Flex flex={  1} vertical>
+            <Flex flex={1} vertical>
                 <DashNewsUpdates />
                 <DashWallets />
             </Flex>

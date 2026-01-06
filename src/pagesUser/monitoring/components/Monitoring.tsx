@@ -1,9 +1,9 @@
 import React from "react";
 
-import RealtimeChart from "./components/realTime/RealtimeChart";
-import StrategyChart from "./components/strategy/StrategyChart";
-import RealTimeScript from "./components/realTime/RealTimeScript";
-import StrategyScript from "./components/strategy/StrategyScript";
+import RealtimeChart from "./realTime/RealtimeChart";
+import StrategyChart from "./strategy/StrategyChart";
+import RealTimeScript from "./realTime/RealTimeScript";
+import StrategyScript from "./strategy/StrategyScript";
 
 const Monitoring: React.FC = () => {
   return (

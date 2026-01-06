@@ -1,6 +1,6 @@
-import svgList from '../../../../../assets/icons/svgList';
-import { getObjectFromJsonArray } from '../../../../../utils/json.utils';
-import { safeFixed } from '../../../../../utils/text.utils';
+import svgList from '../../../../assets/icons/svgList';
+import { getObjectFromJsonArray } from '../../../../utils/json.utils';
+import { safeFixed } from '../../../../utils/text.utils';
 import Box from '../components/Box';
 import ContentBox from '../components/ContentBox';
 import RowFrame from '../components/RowFrame';

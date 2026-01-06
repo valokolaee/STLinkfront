@@ -10,7 +10,7 @@ import apis, { userWallet } from "../../../webService/ApiUrls/apis";
 import { del } from "request";
 
 export default ({ uw, onSucceed }: ICreateWallet) => {
-    const refWebService = useRef<IWebServiceFuncs>()
+    // const refWebService = useRef<IWebServiceFuncs>()
     const { id, walletAddress, currency, nickname, pendingBalance, availableBalance, totalEarnings } = uw || {};
     const [_editMode, _set_editMode] = useState<boolean>(false);
 
@@ -32,14 +32,14 @@ export default ({ uw, onSucceed }: ICreateWallet) => {
     // const _del = () => {
     //     refWebService.current?.callApi(userWallet.delete(id!))
     // }
-    // <Link to={`/wallet/${id}`} className="cursor-pointer w-full h-full">
 
     return (
-     <Link to={''} className="cursor-pointer w-full h-full">
+        <Link to={`/wallet/${id}`} className="cursor-pointer w-full h-full">
+            {/* <Link to={''} className="cursor-pointer w-full h-full"> */}
 
             <Card
 
-                className={"m-2 shadow-lg duration-300 hover:shadow-xl hover:scale-[2] " +  card + 'shadowX'}
+                className={"m-2 shadow-lg duration-300 hover:shadow-xl hover:scale-[2] " + card + 'shadowX'}
 
                 title={
                     <Flex justify="space-between" align="center">
@@ -48,7 +48,7 @@ export default ({ uw, onSucceed }: ICreateWallet) => {
                             {nickname}
                         </div>
                         <div className="bg-blue-600 text-white px-3 py-1 rounded-full text-sm font-medium  ">
-                            {currency}
+                            {currency === 'BTC' ? 'USDT' : currency}
                         </div>
                     </Flex>
                 }
@@ -103,7 +103,7 @@ export default ({ uw, onSucceed }: ICreateWallet) => {
                     </div> */}
                 </Flex>
             </Card>
-            <WebService ref={refWebService} />
+            {/* <WebService ref={refWebService} /> */}
         </Link>
     );
 };

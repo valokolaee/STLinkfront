@@ -1,6 +1,6 @@
 import { Flex } from 'antd';
 import { ReactNode, useEffect, useState } from 'react';
-import { shadowX, shadowY } from '../../../../../css/classNames';
+import { shadowX, shadowY } from '../../../../css/classNames';
 
 
 export default ({ color: { name, num }, title, value, fontSize = 5, svg }: IContentBox) => {

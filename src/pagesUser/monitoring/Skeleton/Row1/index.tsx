@@ -1,7 +1,7 @@
 import { Flex } from 'antd';
-import IMiningDevice from '../../../../../interfaces/IMiningDevice';
-import { ISelect } from '../../../../../interfaces/ISelect';
-import { safeFixed } from '../../../../../utils/text.utils';
+import IMiningDevice from '../../../../interfaces/IMiningDevice';
+import { ISelect } from '../../../../interfaces/ISelect';
+import { safeFixed } from '../../../../utils/text.utils';
 import Box from '../components/Box';
 import ContentBox from '../components/ContentBox';
 import Devices from '../components/devices';
@@ -13,9 +13,9 @@ import LastUpTime from './lastUpTime';
 
 
 export default ({ device, monitor }: { monitor: IMonitorData; device: ISelect<IMiningDevice> }) => {
-    const { wallet,  } = monitor || {}
+    const { wallet, } = monitor || {}
     const { totalEarnings, currency = 'USDT', availableBalance, withdrawnAmount, lastUpdated, } = wallet || {}
- 
+
     return (
         <>
             <RowFrame

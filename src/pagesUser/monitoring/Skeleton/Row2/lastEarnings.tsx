@@ -1,6 +1,6 @@
 import { LineChart } from '@mui/x-charts';
 import { useEffect, useState } from 'react';
-import { JsonArrayIntoNumberArray } from '../../../../../utils/json.utils';
+import { JsonArrayIntoNumberArray } from '../../../../utils/json.utils';
 import Box from '../components/Box';
 import Loading from '../components/Loading';
 import { IMonitorData } from '../IMonitorData';
@@ -23,10 +23,10 @@ export default ({ lastEarnings }: { lastEarnings: IMonitorData['lastEarnings'] }
     return (
 
         <Box flex={1} card>
-            
+
             <LineChart series={[{ data: _lastEarnings }]} sx={sx} />
-     
-                    
+
+
         </Box>
 
 

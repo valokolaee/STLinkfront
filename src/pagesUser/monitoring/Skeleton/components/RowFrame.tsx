@@ -1,6 +1,6 @@
 import { Flex } from 'antd';
 import React, { ReactElement } from 'react';
-import useIsMobile from '../../../../../hooks/useIsMobile';
+import useIsMobile from '../../../../hooks/useIsMobile';
 
 const h = window.innerHeight
 

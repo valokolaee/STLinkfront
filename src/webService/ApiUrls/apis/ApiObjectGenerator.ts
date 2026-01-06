@@ -26,7 +26,7 @@ export default <T>(folderUrl: string,api?:ModelApi['api']): IApiObject<T> => {
     return {
         getAll(body) { return { folderUrl, body, axiosType: 'get', api} },
         getOneByID(body) { return { folderUrl, axiosType: 'get', apiUrl: body , api} },
-        getOneByObject(body) { return { folderUrl, axiosType: 'post', apiUrl: body , api} },
+        getOneByObject(body) { return { folderUrl, axiosType: 'post', body, apiUrl:'getOneByObject',  api} },
         getAllBy(body) { return { folderUrl, body, axiosType: 'post', apiUrl: 'getAllBy' , api} },
         search(body) { return { folderUrl, body, axiosType: 'post', apiUrl: 'search' , api} },
 

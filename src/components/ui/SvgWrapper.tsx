@@ -10,7 +10,7 @@ export default ({ children, className,onClick }: {
 }) => {
 
   return (
-    <div className={`${className} ${onClick?'cursor-pointer':''}`} onClick={onClick}>
+    <div className={`${className} ${onClick?' cursor-pointer ':''}`} onClick={onClick}>
       {children}
     </div>
   );

@@ -1,5 +1,5 @@
 import { Tag } from 'antd';
-import IMiningDevice from '../../../../../../interfaces/IMiningDevice';
+import IMiningDevice from '../../../../../interfaces/IMiningDevice';
 // import { IModalFuncs } from '../../../../components/ui/CModal';
 
 
