@@ -49,7 +49,7 @@ export default ({ flashMode }: { flashMode?: boolean }) => {
 
 
     return (
-        <div className={card}>
+        <div className={`${card} `}>
             {flashMode ?
                 _devices.slice(0, 5)?.map((item) => <TinyItem {...item} key={item.id} />)
                 : _devices?.map((item) => <Item {...item} key={item.id} />)}

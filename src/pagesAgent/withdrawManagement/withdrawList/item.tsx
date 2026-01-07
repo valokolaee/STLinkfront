@@ -12,7 +12,7 @@ import { card, cardAndSelected } from "../../../css/classNames";
 import TinyItem from "./tinyItem";
 import ItemHeader from "./ItemHeader";
 import { ICreateEdit, ICreateWithdrawProps } from "../../../pagesUser/withdraw/create";
-import IWithdrawalRequestWithUser from "../../../interfaces/IWithdrawalRequest copy";
+import IWithdrawalRequestWithUser from "../../../interfaces/IWithdrawalRequestWithUser";
 
 export default ({ onSucceed, wr }: ICreateWithdrawalRequestWithUserProps) => {
      const { id, amount, currency, miningWalletAddress, status, userWalletNickname, requestedAt, softDeleted, user } = wr || {};
@@ -20,7 +20,7 @@ export default ({ onSucceed, wr }: ICreateWithdrawalRequestWithUserProps) => {
 
      console.log(wr?.userId);
      console.log(user);
-     
+
      const refWebService = useRef<IWebServiceFuncs>()
      const [_editMode, _set_editMode] = useState<boolean>(false);
      const [_isManager, _set__isManager] = useState<boolean>(true); // TODO: implement role check

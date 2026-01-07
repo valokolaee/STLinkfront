@@ -5,28 +5,65 @@ import IResponse from "../../../../webService/ApiUrls/apis/IResponse";
 import IWithdrawalRequest from "../../../../interfaces/IWithdrawalRequest";
 import { withdrawalRequest } from "../../../../webService/ApiUrls/apis";
 import Item from "./item";
+import { list } from "./list";
+import ITransaction from "../../../../interfaces/ITransaction";
 
-export default ({ address }: { address: string }) => {
+export default ({ address, walletId }: { address?: string; walletId: number }) => {
     const refWebService = useRef<IWebServiceFuncs>()
-    const [_withdrawalRequest, set_withdrawalRequest] = useState<IWithdrawalRequest[] | undefined>();
+    const [_transactions, set_transactions] = useState<ITransaction[]>(list);
 
 
     const _loadWithdraws = async () => {
-        const res = await refWebService.current?.callApi<IResponse<IWithdrawalRequest[]>>(withdrawalRequest.getAllBy({ miningWalletAddress: address }))
+        const res = await refWebService.current?.callApi<IResponse<ITransaction[]>>(withdrawalRequest.getAllBy({ miningWalletAddress: address }))
 
         if (res?.success) {
-            set_withdrawalRequest(res.data!)
+            set_transactions(res.data!)
         }
 
 
     }
-    useEffect(() => {
-        _loadWithdraws()
-    }, [])
+    // useEffect(() => {
+    //     _loadWithdraws()
+    // }, [])
 
 
     return <>
-        {_withdrawalRequest!?.length > 0 ? <> {_withdrawalRequest?.map((item) => <Item {...item} key={item.id} />)}</> : <strong className="border-solidb w-full text-center pt-10 ">No Withdraw Request Submitted under this Wallet</strong>}
+        <div className="transaction-history">
+            <h2>Transaction History</h2>
+            {_transactions.length === 0 ? (
+                <p className="no-transactions">No transactions yet</p>
+            ) : (
+                <div className="transactions-list">
+                    {_transactions.map((transaction) => (
+                        <Item {...transaction} thisWalletId={walletId} />
+
+                    ))}
+                </div>
+            )}
+        </div>
+
+        <div className="wallet-footer">
+            <div className="stats">
+                <div className="stat-item">
+                    <span className="stat-label">Total Transactions:</span>
+                    <span className="stat-value">{_transactions.length}</span>
+                </div>
+                <div className="stat-item">
+                    <span className="stat-label">Currency:</span>
+                    <span className="stat-value">{'USDT'}</span>
+                </div>
+            </div>
+        </div>
+
+
+        {/* {
+            _withdrawalRequest!?.length > 0 ?
+                <> {_withdrawalRequest?.map((item) => <Item {...item} thisWalletId={walletId} key={item.id} />)}</>
+                :
+                <strong className="border-solidb w-full text-center pt-10 ">
+                    No Transactions Submitted under this Wallet
+                </strong>
+        } */}
         <WebService ref={refWebService} />
     </>
 }

@@ -1,15 +1,14 @@
+import { Flex } from "antd";
 import { useEffect, useRef, useState } from "react";
 import { useParams } from "react-router-dom";
-import { safeInt } from "../../../utils/text.utils";
-import WebService, { IWebServiceFuncs } from "../../../webService";
-import { miningDevices, miningWallet, withdrawalRequest } from "../../../webService/ApiUrls/apis";
-import IMiningWallet from "../../../interfaces/IMiningWallet";
-import IResponse from "../../../webService/ApiUrls/apis/IResponse";
 import { formatCurrency } from "../../../components/OneWallet/Wallet";
-import IWithdrawalRequest from "../../../interfaces/IWithdrawalRequest";
-import Withdraw from "../../withdraw";
-import { Flex } from "antd";
-import Wallet from "./transactions";
+import IMiningWallet from "../../../interfaces/IMiningWallet";
+import WebService, { IWebServiceFuncs } from "../../../webService";
+import { miningWallet } from "../../../webService/ApiUrls/apis";
+import IResponse from "../../../webService/ApiUrls/apis/IResponse";
+import Transactions from "./transactions";
+import { safeInt } from "../../../utils/text.utils";
+import OneWallet from "../../../components/OneWallet";
 
 export default () => {
     const refWebService = useRef<IWebServiceFuncs>()
@@ -47,8 +46,9 @@ export default () => {
                     <div className="balance-subtitle">Total Balance:{formatCurrency(totalEarnings || 0, '')}</div>
                 </div>
             </Flex>
-            <Flex flex={10} className="overflow-scroll">
-                <Wallet address={imei!} />
+            <Flex flex={10} className="overflow-scroll" vertical>
+                {/* <OneWallet/> */}
+                <Transactions address={imei!}  walletId={3}/>
             </Flex>
         </Flex>
 
