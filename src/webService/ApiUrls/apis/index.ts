@@ -14,6 +14,7 @@ import IUserWallet from '../../../interfaces/IUserWallet';
 import IWithdrawalRequest from '../../../interfaces/IWithdrawalRequest';
 import ApiObjectGenerator from './ApiObjectGenerator';
 import ILoginReq from './ILogin';
+import ILoginAgentReq from './ILoginAgent';
 import IRegisterReq from './IRegister';
 import mdlr from './ModelApiGenerator';
 
@@ -33,16 +34,27 @@ export const rolePermissionRequest = ApiObjectGenerator<IRolePermission>('role-p
 export const roleRequest = ApiObjectGenerator<IRole>('role')
 export const userSession = ApiObjectGenerator<IUserSession>('user-session')
 export const monitor = ApiObjectGenerator<IMiningDevice>('monitor')
-export const pan = ApiObjectGenerator<IMiningDevice>('pan','panel')
+export const pan = ApiObjectGenerator<IMiningDevice>('pan', 'panel')
 
+
+export const panel = {
+  folderUrl: 'panel',
+  login(body: ILoginAgentReq) { return mdlr({ axiosType: 'post', apiUrl: 'login', folderUrl: 'auth', body, api: 'panel' }) },
+  getMe: mdlr({ axiosType: 'get', apiUrl: 'me', folderUrl: 'auth', api: 'panel' }),
+}
 
 
 
 export default {
 
+
+
+
+
+
   auth: {
     folderUrl: 'auth',
-    login(body: ILoginReq) { return mdlr({ axiosType: 'post', apiUrl: 'login', folderUrl: 'auth', body }) },
+    login(body: ILoginReq) { return mdlr({ axiosType: 'post', apiUrl: 'login', folderUrl: 'auth', body, }) },
     register(body: IRegisterReq) { return mdlr({ axiosType: 'post', apiUrl: 'register', folderUrl: 'auth', body }) },
     getMe: mdlr({ axiosType: 'get', apiUrl: 'me', folderUrl: 'auth', }),
     mail: mdlr({ axiosType: 'get', apiUrl: 'mail', folderUrl: 'auth', }),

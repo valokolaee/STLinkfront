@@ -2,15 +2,25 @@ import { ReactNode } from "react";
 
 export default interface IModal {
     mat?: boolean;
-   btn?: ReactNode;
-
-   className?: string;
+    btn?: ReactNode;
+    
+    className?: string;
     children?: any;
     title?: string;
     open?: boolean;
     onClose?: () => void
     // funcs?:   {
-    //     show: () => void;
-    //     hide: () => void;
-    // } 
+        //     show: () => void;
+        //     hide: () => void;
+        // } 
+    }
+    
+    
+    
+    
+export interface IModalActions { 
+    show: () => void;
+    hide: () => void;
+
+
 }

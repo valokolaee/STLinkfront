@@ -1,8 +1,11 @@
 import { Flex } from "antd";
-import CButton, { IButton } from "./CButton";
+import CButton, { classNameBtn, IButton } from "./CButton";
+import { cardAndSelected } from "../../css/classNames";
 
-export default (p?:IButton) =>
+export default ({ className }: IButton) =>
     <Flex justify="center">
-
-        <CButton title='Submit'  {...p} />
+        <button
+            className={` w-2/3   ${classNameBtn} ${cardAndSelected(true)} ${className}`}>
+            Submit
+        </button>
     </Flex>

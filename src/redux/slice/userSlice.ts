@@ -3,10 +3,10 @@ import {
   createSlice,
   PayloadAction,
 } from '@reduxjs/toolkit';
-import IUser from '../../interfaces/IUser';
+import ISavedUser from '../../interfaces/ISavedUser';
 
 
-const initialState: IUser = {
+const initialState: ISavedUser = {
   // email: '',
   // firstName: "",
   // lastName: "",
@@ -20,14 +20,15 @@ const userSlice = createSlice({
   initialState,
 
   reducers: {
-    SET_USER: (state, action: PayloadAction<IUser>) => {
+    SET_USER: (state, action: PayloadAction<ISavedUser>) => {
       state.username = action.payload.username;
       state.email = action.payload.email;
       state.token = action.payload.token;
       state.clientType = action.payload.clientType;
       state.id = action.payload.id;
       state.createdAt = action.payload.createdAt;
-      state.pass = action.payload.pass;
+      // state.pass = action.payload.pass;
+      state.role = action.payload.role;
     },
     SET_USER_LOGO: (state, action: PayloadAction<string>) => {
       state.logoUrl = action.payload;

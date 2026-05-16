@@ -29,18 +29,18 @@ export default forwardRef(({ btn, className, children, open, mat, }: IModal, ref
 
     return (
         <>
-                 <a onClick={show} className={className}>
-                     {btn}
-                 </a>
-        {isModalOpen&&<div className="modal-overlay" onClick={hide}>
-            <div className="modal-content" onClick={hide}>
-                <button className="modal-close" onClick={hide}>
-                    ×
-                </button>
-                {children}
-            </div>
-        </div>}
-</>
+            <a onClick={show} className={className}>
+                {btn}
+            </a>
+            {isModalOpen && <div className="modal-overlay" onClick={hide}>
+                <div className="modal-content" onClick={hide}>
+                    <button className="modal-close" onClick={hide}>
+                        ×
+                    </button>
+                    {children}
+                </div>
+            </div>}
+        </>
 
 
         // <>

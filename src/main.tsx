@@ -1,19 +1,17 @@
 // src/main.tsx
-import React from "react";
-import ReactDOM from "react-dom/client";
+import { ConfigProvider } from "antd";
 import AOS from 'aos';
 import 'aos/dist/aos.css';
-import { BrowserRouter } from "react-router-dom";
-import App from "./App";
-import './index.css';
+import React from "react";
+import ReactDOM from "react-dom/client";
 import { Provider } from "react-redux";
 import { persistStore } from 'redux-persist';
 import { PersistGate } from 'redux-persist/integration/react';
+import { inputText } from "./css/classNames";
+import './index.css';
+import { AppRouter } from "./protectedRouts";
+import { AuthProvider } from "./protectedRouts/context/AuthContext";
 import store from "./redux/store";
-import Skeleton from "./pagesUser/monitoring/Skeleton";
-import { ConfigProvider } from "antd";
-import { cardAndSelected, inputText } from "./css/classNames";
-import RouterBase from "./Router/RouterBase";
 
 let persistor = persistStore(store);
 
@@ -24,7 +22,7 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode >
     <Provider store={store} >
       <PersistGate loading={null} persistor={persistor} >
-        <BrowserRouter >
+        {/* <BrowserRouter > */}
           <ConfigProvider
             form={{
               // colon:true,
@@ -96,13 +94,16 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
           >
 
 
-            <div className="  h-screen w-screen overflow-hidden">
-              <RouterBase />
+            <div className="  h-screen w-screen overflow-scroll">
+              <AuthProvider>
+                 <AppRouter />
+              </AuthProvider>
+              {/* <RouterBase /> */}
               {/* <App /> */}
             </div>
             {/* <Skeleton/> */}
           </ConfigProvider>
-        </BrowserRouter>
+        {/* </BrowserRouter> */}
       </PersistGate>
     </Provider>
   </React.StrictMode>

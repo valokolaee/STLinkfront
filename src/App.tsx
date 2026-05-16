@@ -1,7 +1,7 @@
 // import { ConfigProvider } from "antd";
 import { ConfigProvider } from "antd";
 import Layout from "./components/layout";
- import RouterBase from "./Router/RouterBase";
+import RouterBase from "./Router/RouterBase";
 import RouterUser from "./Router/RouterUser";
 
 function App() {

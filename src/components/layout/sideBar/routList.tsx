@@ -8,7 +8,7 @@ const routList = () => [
     { label: 'Wallets', rout: '/Wallets', icon: <WalletOutlined /> },
     { label: 'Withdraw', rout: '/Withdraw', icon: <RequestPageOutlined /> },
     { label: 'Profile', rout: '/Profile', icon: <ProfileOutlined /> },
-    { label: 'News*', rout: '/News', icon: <NewspaperOutlined /> },
+    // { label: 'News*', rout: '/News', icon: <NewspaperOutlined /> },
 ]
 export default routList
 
