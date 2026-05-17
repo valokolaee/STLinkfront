@@ -22,32 +22,24 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
 
   useEffect(() => {
     // Check for stored session
-    const storedUser = JSON.stringify(_user);//''//localStorage.getItem('user');
-    console.log(storedUser);
+    // const storedUser = JSON.stringify(_user);//''//localStorage.getItem('user');
+    // console.log(storedUser);
     
-    if (storedUser) {
-      setUser(JSON.parse(storedUser));
-    }
+    // if (storedUser) {
+      // setUser(JSON.parse(storedUser));
+    // }
     setIsLoading(false);
   }, []);
 
   const login = async (email: string, password: string) => {
-    // Implement your login logic here
-    // This is just a mock example
-    // const mockUser: IUser = {
-    //   id: '1',
-    //   email,
-    //   role: email.includes('admin') ? 'admin' : 'customer',
-    //   name: email.includes('admin') ? 'Admin User' : 'Customer User',
-    // };
 
     setUser(_user);
-    localStorage.setItem('user', JSON.stringify(_user));
+    // localStorage.setItem('user', JSON.stringify(_user));
   };
 
   const logout = () => {
     setUser(null);
-    localStorage.removeItem('user');
+    // localStorage.removeItem('user');
   };
 
   return (

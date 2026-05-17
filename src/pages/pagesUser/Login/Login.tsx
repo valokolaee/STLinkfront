@@ -38,7 +38,7 @@ const Login = () => {
         u.pass = values.password
       }
 
-      setUser({ ...u, role:"customer"})
+      setUser({ ...u, role: "customer" })
 
       setUserAvatar(u.profileImage + '?a=' + new Date())
 
@@ -49,7 +49,7 @@ const Login = () => {
         setUserLogo(u.logoUrl + '?a=' + new Date())
       }
 
-      navigate('/dashboard')
+      navigate('/cust/dashboard')
     }
   };
 

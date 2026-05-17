@@ -22,7 +22,7 @@ export const AppRouter = () => {
 
     // Customer routes with layout
     {
-      path: '/',
+      path: '/cust',
       element: (
         <ProtectedRoute allowedRoles={['customer']}>
           <CustomerLayout />
