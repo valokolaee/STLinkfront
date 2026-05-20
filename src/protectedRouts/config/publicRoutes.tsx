@@ -1,6 +1,6 @@
 // config/routes.ts
 import Layout from '../../components/layout';
-import WithdrawManagement from '../../pages/pagesAgent/withdrawManagement';
+import WithdrawManagement from '../../pages/pagesAdmin/withdrawManagement';
 import Landing from '../../pages/pagesPublic/Landing/Landing';
 import Dashboard from '../../pages/pagesUser/Dashboard';
 import Home from '../../pages/pagesUser/Home';
@@ -9,6 +9,7 @@ import Profile from '../../pages/pagesUser/Profile';
 import Register from '../../pages/pagesUser/Register';
 import Blog from '../../pages/pagesPublic/news/Blog/Blog';
 import { RouteConfig } from '../types/routes';
+import Unauthorized from '../components/unauthorized';
 
 // Public routes (accessible to everyone)
 export const publicRoutes: RouteConfig[] = [
@@ -30,6 +31,13 @@ export const publicRoutes: RouteConfig[] = [
     // allowedRoles: ['customer'],
     // redirectTo: '/',
   },
+
+  {
+    path: '/unauthorized',
+    element: <Unauthorized />
+
+
+  }
   // {
   //   path: '/dashboard',
   //   element: <Dashboard />,

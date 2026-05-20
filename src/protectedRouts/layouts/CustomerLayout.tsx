@@ -2,12 +2,14 @@
 import { Outlet, NavLink } from 'react-router-dom';
 import { useAuth } from '../context/useAuth';
 import Layout from '../../components/layout';
+import customerRoutList from '../../components/layout/sideBar/customerRoutList';
+import { IRout } from '../../components/layout/sideBar';
 export const CustomerLayout = () => {
   const { user, logout } = useAuth();
 
 
   return (
-    <Layout>
+    <Layout rList={customerRoutList  as IRout[]}>
       <Outlet />
     </Layout>
   )

@@ -13,7 +13,7 @@ export default interface IUser {
     referrer?: number | null;
     rankId?: number | null;
     logoUrl?: string | null;
-    profileImage?: string | null;
+    profileImageUrl?: string | null;
     csvUrl?: string | null;
     createdAt?: Date;
     token?: string;

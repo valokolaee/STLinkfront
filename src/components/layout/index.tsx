@@ -1,29 +1,14 @@
 // src/components/layout/Layout.tsx
 import React from "react";
 import CMasterDetail from "../ui/CMasterDetail";
-import SideBar from "./sideBar";
+import SideBar, { IRout } from "./sideBar";
 
-const Layout = ({ children }: { children: React.ReactNode }) => {
+const Layout = ({ children,rList }: { children: React.ReactNode;rList:IRout[] }) => {
   return (
     <CMasterDetail
-      master={<SideBar />}
+      master={<SideBar  rList={rList}/>}
       detail={children}
     />
-
-
-
-    //   <div className="flex flex-col min-h-screen bg-dark">
-
-    //     <div className="flex-1 flex">
-    //       {/* <Sidebar /> */}
-
-    //       <main className="absolute inset-0 -z-10 bg-gradient-to-br from-black via-gray-900 to-black flex-1   mt-16 mx-3">
-    //         {children}
-    //       </main>
-    //     </div>
-
-    //     {/* <MobileNav /> */}
-    //   </div>
   );
 };
 

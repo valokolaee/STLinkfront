@@ -16,6 +16,7 @@ import IReqRes from "../../../webService/ApiUrls/apis/IReqRes";
 import { formContainer, inputText } from "../../../css/classNames";
 import CSubmitBtn from "../../../components/ui/CSubmitBtn";
 import { ClassNames } from "@emotion/react";
+import { customerMainRoutes } from "../../../protectedRouts/config/customerRoutes";
 const Login = () => {
   const refWebService = useRef<IWebServiceFuncs>()
 
@@ -40,7 +41,7 @@ const Login = () => {
 
       setUser({ ...u, role: "customer" })
 
-      setUserAvatar(u.profileImage + '?a=' + new Date())
+      setUserAvatar(u.profileImageUrl + '?a=' + new Date())
 
       if (!!!u.logoUrl) {
         setUserLogo('')
@@ -49,7 +50,7 @@ const Login = () => {
         setUserLogo(u.logoUrl + '?a=' + new Date())
       }
 
-      navigate('/cust/dashboard')
+      navigate(`${customerMainRoutes}/dashboard`)
     }
   };
 

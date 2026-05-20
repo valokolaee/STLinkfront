@@ -1,6 +1,6 @@
 // config/routes.ts
 import Layout from '../../components/layout';
-import WithdrawManagement from '../../pages/pagesAgent/withdrawManagement';
+import WithdrawManagement from '../../pages/pagesAdmin/withdrawManagement';
 import Landing from '../../pages/pagesPublic/Landing/Landing';
 import Dashboard from '../../pages/pagesUser/Dashboard';
 import Home from '../../pages/pagesUser/Home';
@@ -19,18 +19,18 @@ import Device from '../../pages/pagesUser/Devices/Device';
 
 
 
-
+export const customerMainRoutes='/cu'
 export const customerRoutes: RouteConfig[] = [
 
-  { path: '/dashboard', element: <Dashboard />, allowedRoles: ['customer'], redirectTo: '/login', },
-  { path: '/profile', element: <Profile />, allowedRoles: ['customer'], redirectTo: '/login', },
-  { path: '/monitoring', element: <Skeleton />, allowedRoles: ['customer'], redirectTo: '/login', },
-  { path: '/withdraw', element: <Withdraw />, allowedRoles: ['customer'], redirectTo: '/login', },
-  { path: '/wallets', element: <Wallets />, allowedRoles: ['customer'], redirectTo: '/login', },
-  { path: '/wallet/:id"', element: <Wallet />, allowedRoles: ['customer'], redirectTo: '/login', },
-  { path: '/addWallet', element: <AddWallet />, allowedRoles: ['customer'], redirectTo: '/login', },
-  { path: '/devices', element: <Devices />, allowedRoles: ['customer'], redirectTo: '/login', },
-  { path: '/device/:id"', element: <Device />, allowedRoles: ['customer'], redirectTo: '/login', },
+  { path: '/dashboard', element: <Dashboard />},// allowedRoles: ['customer'], redirectTo: '/login', },
+  { path: '/profile', element: <Profile />},// allowedRoles: ['customer'], redirectTo: '/login', },
+  { path: '/monitoring', element: <Skeleton />},// allowedRoles: ['customer'], redirectTo: '/login', },
+  { path: '/withdraw', element: <Withdraw />},// allowedRoles: ['customer'], redirectTo: '/login', },
+  { path: '/wallets', element: <Wallets />},// allowedRoles: ['customer'], redirectTo: '/login', },
+  { path: '/wallet/:id"', element: <Wallet />},// allowedRoles: ['customer'], redirectTo: '/login', },
+  { path: '/addWallet', element: <AddWallet />},// allowedRoles: ['customer'], redirectTo: '/login', },
+  { path: '/devices', element: <Devices />},// allowedRoles: ['customer'], redirectTo: '/login', },
+  { path: '/device/:id"', element: <Device />},// allowedRoles: ['customer'], redirectTo: '/login', },
 
 ];
 

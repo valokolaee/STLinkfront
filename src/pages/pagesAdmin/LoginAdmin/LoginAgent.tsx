@@ -13,6 +13,7 @@ import apis, { deviceAlertRequest, deviceSpecificationRequest, miningSession, pa
 import ILoginReq, { ILoginRes } from "../../../webService/ApiUrls/apis/ILogin";
 import IReqRes from "../../../webService/ApiUrls/apis/IReqRes";
 import ILoginAgentReq, { ILoginAgentRes } from '../../../webService/ApiUrls/apis/ILoginAgent';
+import { adminMainRoutes } from '../../../protectedRouts/config/adminRoutes';
 const Login = () => {
   const refWebService = useRef<IWebServiceFuncs>()
 
@@ -35,9 +36,10 @@ const Login = () => {
       //   u.pass = values.password
       // }
 
-      setUser(u)
+      // setUser(u)
+      setUser({ ...u, role: "admin" })
 
-      setUserAvatar(u.profileImage + '?a=' + new Date())
+      setUserAvatar(u.profileImageUrl + '?a=' + new Date())
 
       if (!!!u.logoUrl) {
         setUserLogo('')
@@ -46,11 +48,9 @@ const Login = () => {
         setUserLogo(u.logoUrl + '?a=' + new Date())
       }
 
-      navigate('/panel/withdrawManagement')
+      navigate(`${adminMainRoutes}/withdrawManagement`)
     }
   };
-
-
 
 
 

@@ -43,7 +43,7 @@ export const panel = {
   getMe: mdlr({ axiosType: 'get', apiUrl: 'me', folderUrl: 'auth', api: 'panel' }),
 }
 
-
+// POST https://localhost:3002/panel/auth/login
 
 export default {
 
