@@ -43,15 +43,18 @@ const Skeleton: React.FC = () => {
 
 
 
-                if (res2.success) {
-                    const _calculatedAt = res2.data?.lastEarnings![0].calculatedAt
-                    const _status: IMiningDevice['status'] = (dateDifference(new Date(), _calculatedAt) > 10 || dateDifference(new Date(), _calculatedAt) < 0) ? 'offline' : 'active'
+                if (res2?.success) {
+                    const _calculatedAt = res2?.data?.lastEarnings![0]?.calculatedAt
+                    console.log(dateDifference(new Date(), _calculatedAt));
+                    
+                    const _status: IMiningDevice['status'] = (dateDifference(new Date(), _calculatedAt) > 300 || dateDifference(new Date(), _calculatedAt) < 0) ? 'offline' : 'active'
 
 
                     set_deviceStatus(_status)
 
                     if (_status === 'active') {
-                        set_data(res2.data)
+                    // if (true) {
+                        set_data(res2?.data)
                     } else {
                         set_data({
                             wallet: {
@@ -126,6 +129,10 @@ const Skeleton: React.FC = () => {
 
 
     useEffect(() => {
+        console.log(_data);
+    }, [_data])
+
+    useEffect(() => {
         setLoading(true)
 
         clearInterval(_interV)
@@ -151,7 +158,6 @@ const Skeleton: React.FC = () => {
                     selectedItem: { ..._device, status: _deviceStatus },
                     onSelect: _setDevice
                 }}
-
             />
             <Row2 {..._data!} />
             <Row3 {..._data} />

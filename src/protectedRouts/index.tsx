@@ -9,8 +9,9 @@ import { publicAdminRoutes } from './config/publicAdminRoutes';
 
 
 export const AppRouter = () => {
-  const router = createBrowserRouter([
 
+  
+  const router = createBrowserRouter([
     // Public routes
     ...publicRoutes.map(route => ({
       path: route.path,
@@ -21,7 +22,6 @@ export const AppRouter = () => {
       path: route.path,
       element: route.element,
     })),
-
 
 
     // Customer routes with layout
@@ -54,9 +54,6 @@ export const AppRouter = () => {
         element: route.element,
       })),
     },
-
-
-
 
 
   ]);

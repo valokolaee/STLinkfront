@@ -25,7 +25,6 @@ const _color = (s: IMiningDevice['status']) => {
             return 'blue'
         case 'offline':
             return 'orange'
-
         default:
             return 'white'
     }
