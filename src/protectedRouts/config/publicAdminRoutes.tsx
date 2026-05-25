@@ -1,11 +1,11 @@
 import LoginAdmin from '../../pages/pagesAdmin/LoginAdmin';
-import { RouteConfig } from '../types/routes';
+import { IRouteConfig } from '../types/IRouteConfig';
 
 
 
 
 // Public routes (accessible to everyone)
-export const publicAdminRoutes: RouteConfig[] = [
+export const publicAdminRoutes: IRouteConfig[] = [
   {
     path: '/panel/login',
     element: <LoginAdmin />,
@@ -14,3 +14,9 @@ export const publicAdminRoutes: RouteConfig[] = [
 ];
 
 
+
+
+    export default publicAdminRoutes.map(route => ({
+      path: route.path,
+      element: route.element,
+    }))

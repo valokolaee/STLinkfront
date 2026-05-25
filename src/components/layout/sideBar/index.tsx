@@ -1,9 +1,7 @@
-import { ReactNode } from "react";
-import { shadowY } from "../../../css/classNames";
+import { IRouteConfig } from "../../../protectedRouts/types/IRouteConfig";
 import Item from "./item";
-import customerRoutList from "./customerRoutList";
 
-export default ({rList }:{rList:IRout[]}) =>
+export default ({ rList }: { rList: IRouteConfig[] }) =>
     <div>
         {rList.map((item, index) => <Item {...item} key={index} />)}
     </div>
@@ -11,8 +9,3 @@ export default ({rList }:{rList:IRout[]}) =>
 
 
 
-export interface IRout {
-    label: 'Dashboard';
-    rout: string;
-    icon: ReactNode
-}

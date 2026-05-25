@@ -45,15 +45,15 @@ const Skeleton: React.FC = () => {
 
                 if (res2?.success) {
                     const _calculatedAt = res2?.data?.lastEarnings![0]?.calculatedAt
-                    console.log(dateDifference(new Date(), _calculatedAt));
-                    
+                    // console.log(dateDifference(new Date(), _calculatedAt));
+
                     const _status: IMiningDevice['status'] = (dateDifference(new Date(), _calculatedAt) > 300 || dateDifference(new Date(), _calculatedAt) < 0) ? 'offline' : 'active'
 
 
                     set_deviceStatus(_status)
 
+
                     if (_status === 'active') {
-                    // if (true) {
                         set_data(res2?.data)
                     } else {
                         set_data({
@@ -74,51 +74,6 @@ const Skeleton: React.FC = () => {
                         }
                     })
                 }
-
-
-
-
-                // if (_device?.status === 'active') {
-
-                //     const _lastEarnings = res2.data?.lastEarnings
-                //     const _calculatedAt = res2.data?.lastEarnings![0].calculatedAt
-                //     if (res2?.success) {
-                //         set_data(res2.data)
-
-
-
-                //         if (_lastEarnings!?.length > 0) {
-
-                //             set_device({
-                //                 ..._device,
-                //                 status: (dateDifference(new Date(), _calculatedAt) > 10 || dateDifference(new Date(), _calculatedAt) < 0) ? 'offline' : 'active'
-                //             })
-                //             set_data({
-                //                 wallet: {
-                //                     totalEarnings: res2.data?.wallet?.totalEarnings,
-                //                     walletAddress: ''
-                //                 }
-                //             })
-
-
-
-                //         }
-                //     } else {
-                //         clearInterval(_interV)
-                //     }
-
-                // } else {
-
-                //     set_data({
-                //         wallet: {
-                //             totalEarnings: res2.data?.wallet?.totalEarnings,
-                //             walletAddress: ''
-                //         }
-                //     })
-                //     setLoading(false)
-                // }
-
-
 
                 setLoading(false)
 

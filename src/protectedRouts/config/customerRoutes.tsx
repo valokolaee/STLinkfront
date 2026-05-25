@@ -8,29 +8,53 @@ import Login from '../../pages/pagesUser/Login';
 import Profile from '../../pages/pagesUser/Profile';
 import Register from '../../pages/pagesUser/Register';
 import Blog from '../../pages/pagesPublic/news/Blog/Blog';
-import { RouteConfig } from '../types/routes';
+import { IRouteConfig } from '../types/IRouteConfig';
 import Skeleton from '../../pages/pagesUser/monitoring/Skeleton';
-import Withdraw from '../../pages/pagesUser/Wallets/Wallet/actions/Withdraw';
-import Wallets from '../../pages/pagesUser/components/wallets';
+ import Wallets from '../../pages/pagesUser/components/wallets';
 import Wallet from '../../pages/pagesUser/Wallets/Wallet';
 import Devices from '../../pages/pagesUser/components/devices';
 import AddWallet from '../../pages/pagesUser/AddWallet';
 import Device from '../../pages/pagesUser/Devices/Device';
+import { CustomerLayout } from '../layouts/CustomerLayout';
+import { ProtectedRoute } from '../components/ProtectedRoute';
+import { DashboardOutlined, DeveloperBoard, MonitorSharp, NewspaperOutlined, RequestPageOutlined, WalletOutlined } from '@mui/icons-material';
+import { ProfileOutlined } from '@ant-design/icons';
+import Withdraw from '../../pages/pagesUser/withdraw';
 
 
 
-export const customerMainRoutes='/cu'
-export const customerRoutes: RouteConfig[] = [
 
-  { path: '/dashboard', element: <Dashboard />},// allowedRoles: ['customer'], redirectTo: '/login', },
-  { path: '/profile', element: <Profile />},// allowedRoles: ['customer'], redirectTo: '/login', },
-  { path: '/monitoring', element: <Skeleton />},// allowedRoles: ['customer'], redirectTo: '/login', },
-  { path: '/withdraw', element: <Withdraw />},// allowedRoles: ['customer'], redirectTo: '/login', },
-  { path: '/wallets', element: <Wallets />},// allowedRoles: ['customer'], redirectTo: '/login', },
-  { path: '/wallet/:id"', element: <Wallet />},// allowedRoles: ['customer'], redirectTo: '/login', },
-  { path: '/addWallet', element: <AddWallet />},// allowedRoles: ['customer'], redirectTo: '/login', },
-  { path: '/devices', element: <Devices />},// allowedRoles: ['customer'], redirectTo: '/login', },
-  { path: '/device/:id"', element: <Device />},// allowedRoles: ['customer'], redirectTo: '/login', },
 
+export const customerMainRoutes = '/cu'
+const customerRoutes: IRouteConfig[] = [
+  { path: '/dashboard', element: <Dashboard />, sideBar: { label: 'Dashboard', icon: <DashboardOutlined /> }, },
+  { path: '/profile', element: <Profile />, sideBar: { label: 'Profile', icon: <ProfileOutlined /> }, },
+  { path: '/monitoring', element: <Skeleton />, sideBar: { label: 'Monitoring', icon: <MonitorSharp /> }, },
+  { path: '/withdraw', element: <Withdraw />, sideBar: { label: 'Withdraw', icon: <RequestPageOutlined /> }, },
+  { path: '/wallets', element: <Wallets />, sideBar: { label: 'Wallets', icon: <WalletOutlined /> }, },
+  { path: '/wallet/:id"', element: <Wallet /> },
+  { path: '/addWallet', element: <AddWallet /> },
+  { path: '/devices', element: <Devices />, sideBar: { label: 'Devices', icon: <DeveloperBoard /> }, },
+  { path: '/device/:id"', element: <Device /> },
 ];
 
+
+
+
+
+
+export default {
+  path: customerMainRoutes,
+  element: (
+    <ProtectedRoute allowedRoles={['customer']}>
+      <CustomerLayout />
+    </ProtectedRoute>
+  ),
+  children: customerRoutes.map(route => ({
+    path: route.path.replace('/', ''),
+    element: route.element,
+    allowedRoles: ['customer'],
+    redirectTo: '/login',
+    sideBar: route.sideBar
+  })),
+}

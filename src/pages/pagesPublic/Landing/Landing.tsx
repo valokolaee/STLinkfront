@@ -7,7 +7,7 @@ import CommonQuestions from './components/CommonQuestions/CommonQuestions'
 const Landing = () => {
     return (
         <div
-            // className='overflow-y-scroll relative flex flex-col'
+            className='overflow-y-scroll h-full  relative flex flex-col'
         >
             <HeroSection/>
             {/* 

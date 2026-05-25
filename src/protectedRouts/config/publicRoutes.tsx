@@ -8,14 +8,15 @@ import Login from '../../pages/pagesUser/Login';
 import Profile from '../../pages/pagesUser/Profile';
 import Register from '../../pages/pagesUser/Register';
 import Blog from '../../pages/pagesPublic/news/Blog/Blog';
-import { RouteConfig } from '../types/routes';
-import Unauthorized from '../components/unauthorized';
+import { IRouteConfig } from '../types/IRouteConfig';
+import Unauthorized from '../components/Unauthorized';
 
 // Public routes (accessible to everyone)
-export const publicRoutes: RouteConfig[] = [
+ const publicRoutes: IRouteConfig[] = [
   {
     path: '/',
-    element: <Landing />,
+    element: <Login />,
+    // element: <Landing />,
   },
   {
     path: '/login',
@@ -51,3 +52,7 @@ export const publicRoutes: RouteConfig[] = [
 ];
 
 
+export default publicRoutes.map(route => ({
+     path: route.path,
+     element: route.element,
+   }))

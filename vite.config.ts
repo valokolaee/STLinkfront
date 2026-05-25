@@ -40,7 +40,8 @@ export default defineConfig({
     strictPort: true,
     proxy: {
       '/api': {
-        target: 'https://w.bankon.click',
+        // target: 'https://w.bankon.click',
+        target: 'lirfr.michael.mom',
         changeOrigin: true,
         secure: false,
         rewrite: (path) => path.replace(/^\/api/, ''),

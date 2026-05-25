@@ -32,7 +32,7 @@ export interface IConfirmProps {
     cancelText?: string;
     description?: string;
     title: string;
-    confirm: () => void;
+    confirm?: () => void;
     children?: React.ReactNode;
 
 }

@@ -90,14 +90,9 @@ export default ({ onSucceed, wr }: ICreateWithdrawProps) => {
                          <span>Date: {requestedAt?.toLocaleString()}</span>
                     </Flex>
 
-                    {wr?.status !== 'pending' ? <DeleteOutlineTwoTone className={'text-gray-700'} /> :
-                         <CConfirm confirm={_delete} title="Delete this request?">
-                              <DeleteOutlineTwoTone className={"text-red-700"} />
-                         </CConfirm>
-                    }
 
 
-                    {/* {_finalized && <>
+                    {_finalized && <>
                          {_isManager ?
                               <>
                                    {wr?.status === 'approved' ?
@@ -139,7 +134,7 @@ export default ({ onSucceed, wr }: ICreateWithdrawProps) => {
                                    }
                               </>}
 
-                    </>} */}
+                    </>}
 
                </Flex>
 
