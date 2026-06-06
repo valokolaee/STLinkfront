@@ -9,6 +9,7 @@ import WebService, { IWebServiceFuncs } from '../../../../webService';
 import { miningDevices } from '../../../../webService/ApiUrls/apis';
 import IDeviceReqRes from '../../../../webService/ApiUrls/apis/IDeviceApi';
 import CWhiteLabel from '../../../../components/ui/CWhiteLabel';
+import CSubmitBtn from '../../../../components/ui/CSubmitBtn';
 
 export default ({ onSucceed }: { onSucceed?: (res: any) => void }) => {
   const refWebService = useRef<IWebServiceFuncs>()
@@ -19,6 +20,7 @@ export default ({ onSucceed }: { onSucceed?: (res: any) => void }) => {
 
   const onFinish: FormProps<FieldType>['onFinish'] = async (values) => {
     const res = await refWebService?.current?.callApi<IDeviceReqRes['create']['res']>(miningDevices.create(values as IDeviceReqRes['create']['req']))
+console.log(res);
 
     if (res?.success) {
       onSucceed!(res.data)
@@ -94,7 +96,7 @@ export default ({ onSucceed }: { onSucceed?: (res: any) => void }) => {
         </Form.Item>
 
         <Form.Item label={null} className='none'>
-          <CButton title='Submit' />
+          <CSubmitBtn title='Submit' />
         </Form.Item>
 
 

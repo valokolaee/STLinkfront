@@ -7,13 +7,13 @@ import { appDispatch } from '../store';
 
 export const setUserTotal = (data: IUser | undefined) => {
     appDispatch(SET_USER(data!));
-    setUserAvatar(data?.profileImage!)
+    setUserAvatar(data?.profileImageUrl!)
     setUserLogo(data?.logoUrl!)
 };
 export const setUser = (data: IUser | undefined) => {
     appDispatch(SET_USER(data!));
-    if (data?.profileImage) {
-        setUserAvatar(data.profileImage)
+    if (data?.profileImageUrl) {
+        setUserAvatar(data.profileImageUrl)
     }
 };
 

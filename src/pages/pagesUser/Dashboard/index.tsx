@@ -1,16 +1,15 @@
 import { Flex } from "antd"
+import axios from "axios"
+import { useEffect, useRef } from "react"
 import useIsMobile from "../../../hooks/useIsMobile"
+import IMiningSession from "../../../interfaces/IMiningSession"
+import { useAppSelector } from "../../../redux/hooks"
+import WebService, { config, IWebServiceFuncs } from "../../../webService"
+import apis, { pan } from "../../../webService/ApiUrls/apis"
+import IReqRes from "../../../webService/ApiUrls/apis/IReqRes"
 import Desktop from "./compo/desktop"
 import Mobile from "./compo/mobile"
-import { useEffect, useRef, useState } from "react"
-import WebService, { config, IWebServiceFuncs } from "../../../webService"
-import { useAppSelector } from "../../../redux/hooks"
-import IMiningSession from "../../../interfaces/IMiningSession"
-import IReqRes from "../../../webService/ApiUrls/apis/IReqRes"
-import IMiningWallet from "../../../interfaces/IMiningWallet"
-import apis, { pan } from "../../../webService/ApiUrls/apis"
-import axios from "axios"
-import OneWallet from "../../../components/OneWallet"
+import Create from "../components/devices/create"
 var _inter =
     setInterval(async () => { }, 1000)
 export default () => {
@@ -60,12 +59,12 @@ export default () => {
 
 
 
-    // useEffect(() => {
-    //     _txt()
-    //     // if (_session) {
-    //     //     _newSession()
-    //     // }
-    // }, [])
+    useEffect(() => {
+        // _txt()
+        // if (_session) {
+        // _newSession()
+        // }
+    }, [])
 
 
 
@@ -75,7 +74,7 @@ export default () => {
 
         if (res?.success) {
 
-            _createEarning(res.data!)
+            // _createEarning(res.data!)
         }
     }
 
@@ -98,6 +97,10 @@ export default () => {
                 stop
             </button> */}
             {/* <OneWallet /> */}
+
+
+            {/* <Create/> */}
+            <button onClick={_newSession}>hit me</button>
             {_isMobile ? <Mobile /> : <Desktop />}
             <WebService ref={refWebService} />
 

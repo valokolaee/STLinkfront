@@ -20,8 +20,8 @@ export default ({ children, childrenV, className, duration=500 }: {
   }, [])
   const _width = useIsMobile() ? 'w-screen' : 'w-full '
   return (
-    <Flex className={' h-full w-full  border-solids ' + className} vertical >
-      <div className='w-full justify-center items-center  '>
+    <Flex className={' h-full w-full  border-solidc overflow-scroll' + className} vertical >
+      <div className='w-full justify-centerd items-centerd border-solidm  '>
 
         {!!!_children && <Flex
           className={`animate-bottom-to-top-vanish   items-center   relative  flex flex-col    justify-center ${className} `}

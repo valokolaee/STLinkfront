@@ -1,4 +1,6 @@
 import { UserRole } from "../protectedRouts/types/auth";
+import IAgent from "./IAgent";
+import ICustomer from "./ICustomer";
 
 export default interface IUser {
     id?: number;
@@ -8,7 +10,7 @@ export default interface IUser {
     passwordHash?: string;
     roleId?: number;
     role?:  UserRole;
-    clientType?: 'individual' | 'financial_entities' | 'business';
+    // clientType?: 'individual' | 'financial_entities' | 'business';
     referralCode?: string | null;
     referrer?: number | null;
     rankId?: number | null;
@@ -18,6 +20,11 @@ export default interface IUser {
     createdAt?: Date;
     token?: string;
     
+
+
+    customer?: ICustomer;
+    agent?: IAgent;
+
 }
 
 

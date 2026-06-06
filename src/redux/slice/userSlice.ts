@@ -24,7 +24,7 @@ const userSlice = createSlice({
       state.username = action.payload.username;
       state.email = action.payload.email;
       state.token = action.payload.token;
-      state.clientType = action.payload.clientType;
+      // state.clientType = action.payload.clientType;
       state.id = action.payload.id;
       state.createdAt = action.payload.createdAt;
       // state.pass = action.payload.pass;
@@ -36,7 +36,7 @@ const userSlice = createSlice({
     },
     SET_USER_AVATAR: (state, action: PayloadAction<string>) => {
 
-      state.profileImage = action.payload;
+      state.profileImageUrl = action.payload;
     },
   },
 });

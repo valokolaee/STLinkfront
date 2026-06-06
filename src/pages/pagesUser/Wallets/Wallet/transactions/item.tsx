@@ -1,7 +1,5 @@
-import OneWallet from "../../../../../components/OneWallet";
 import { formatCurrency } from "../../../../../components/OneWallet/Wallet";
 import ITransaction from "../../../../../interfaces/ITransaction";
-import IWithdrawalRequest from "../../../../../interfaces/IWithdrawalRequest";
 
 export default ({ amount, createdAt, creatorId, fromWalletId, toWalletId, withdrawRequestId, confirmedAt, confirmorId, desc, type, id, thisWalletId }: ITransactionItem) =>
     <div key={id} className="transaction-item">

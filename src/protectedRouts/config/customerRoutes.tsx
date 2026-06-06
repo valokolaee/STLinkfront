@@ -1,31 +1,25 @@
 // config/routes.ts
-import Layout from '../../components/layout';
-import WithdrawManagement from '../../pages/pagesAdmin/withdrawManagement';
-import Landing from '../../pages/pagesPublic/Landing/Landing';
-import Dashboard from '../../pages/pagesUser/Dashboard';
-import Home from '../../pages/pagesUser/Home';
-import Login from '../../pages/pagesUser/Login';
-import Profile from '../../pages/pagesUser/Profile';
-import Register from '../../pages/pagesUser/Register';
-import Blog from '../../pages/pagesPublic/news/Blog/Blog';
-import { IRouteConfig } from '../types/IRouteConfig';
-import Skeleton from '../../pages/pagesUser/monitoring/Skeleton';
- import Wallets from '../../pages/pagesUser/components/wallets';
-import Wallet from '../../pages/pagesUser/Wallets/Wallet';
-import Devices from '../../pages/pagesUser/components/devices';
-import AddWallet from '../../pages/pagesUser/AddWallet';
-import Device from '../../pages/pagesUser/Devices/Device';
-import { CustomerLayout } from '../layouts/CustomerLayout';
-import { ProtectedRoute } from '../components/ProtectedRoute';
-import { DashboardOutlined, DeveloperBoard, MonitorSharp, NewspaperOutlined, RequestPageOutlined, WalletOutlined } from '@mui/icons-material';
 import { ProfileOutlined } from '@ant-design/icons';
+import { DashboardOutlined, DeveloperBoard, MonitorSharp, RequestPageOutlined, WalletOutlined } from '@mui/icons-material';
+import AddWallet from '../../pages/pagesUser/AddWallet';
+import Devices from '../../pages/pagesUser/components/devices';
+import Wallets from '../../pages/pagesUser/components/wallets';
+import Dashboard from '../../pages/pagesUser/Dashboard';
+import Device from '../../pages/pagesUser/Devices/Device';
+import Skeleton from '../../pages/pagesUser/monitoring/Skeleton';
+import Profile from '../../pages/pagesUser/Profile';
+import Wallet from '../../pages/pagesUser/Wallets/Wallet';
 import Withdraw from '../../pages/pagesUser/withdraw';
+import { ProtectedRoute } from '../components/ProtectedRoute';
+import { CustomerLayout } from '../layouts/CustomerLayout';
+import { IRouteConfig } from '../types/IRouteConfig';
 
 
 
 
 
 export const customerMainRoutes = '/cu'
+
 const customerRoutes: IRouteConfig[] = [
   { path: '/dashboard', element: <Dashboard />, sideBar: { label: 'Dashboard', icon: <DashboardOutlined /> }, },
   { path: '/profile', element: <Profile />, sideBar: { label: 'Profile', icon: <ProfileOutlined /> }, },

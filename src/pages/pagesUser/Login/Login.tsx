@@ -207,10 +207,18 @@ const Login = () => {
         <Form.Item>
           <CSubmitBtn />
         </Form.Item>
+ 
+        
         <WebService ref={refWebService} />
 
       </Form>
+      <CText text={`Don't have Id?`} className="block mt-5 " />
 
+
+      <CLink
+        to={'/register'}
+        title="register"
+      />
     </div>
   );
 };

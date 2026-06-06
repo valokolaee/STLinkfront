@@ -1,15 +1,13 @@
 import { Flex } from "antd";
 import { useEffect, useRef, useState } from "react";
-import { useLocation, useParams } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 import { formatCurrency } from "../../../../components/OneWallet/Wallet";
 import IMiningWallet from "../../../../interfaces/IMiningWallet";
 import WebService, { IWebServiceFuncs } from "../../../../webService";
 import { miningWallet } from "../../../../webService/ApiUrls/apis";
 import IResponse from "../../../../webService/ApiUrls/apis/IResponse";
-import Transactions from "./transactions";
-import { safeInt } from "../../../../utils/text.utils";
-import OneWallet from "../../../../components/OneWallet";
 import Actions from "./actions";
+import Transactions from "./transactions";
 
 export default () => {
     const refWebService = useRef<IWebServiceFuncs>()

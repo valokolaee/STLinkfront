@@ -163,7 +163,7 @@ const Profile: React.FC = () => {
         </Form.Item> */}
 
 
-        <Form.Item
+        {/* <Form.Item
           label={<label style={{ color: "white" }}>Client Type</label>}
           name="clientType"
           rules={[{ required: true, message: 'Please input your client type!' }]}
@@ -175,7 +175,7 @@ const Profile: React.FC = () => {
             <Select.Option value="business">Business</Select.Option>
 
           </Select>
-        </Form.Item>
+        </Form.Item> */}
 
         <Form.Item  >
           <CSubmitBtn />

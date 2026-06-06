@@ -5,7 +5,7 @@ import IResponse from "./IResponse";
 
 export default interface IRegisterReq extends ILoginReq {
     username: string;
-    clientType: 'individual' | 'financial_entities' | 'business';
+    // clientType: 'individual' | 'financial_entities' | 'business';
 }
 
 export interface IRegisterRes extends IResponse<IUser> {

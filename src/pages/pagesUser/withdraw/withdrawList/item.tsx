@@ -96,51 +96,6 @@ export default ({ onSucceed, wr }: ICreateWithdrawProps) => {
                          </CConfirm>
                     }
 
-
-                    {/* {_finalized && <>
-                         {_isManager ?
-                              <>
-                                   {wr?.status === 'approved' ?
-                                        <Flex className="text-green-700 cursor-pointer" onClick={_paid}>
-                                             Payment Done
-                                             <CheckCircleSharp />
-                                        </Flex>
-                                        :
-                                        <Flex vertical>
-                                             {wr?.status === 'pending' ?
-                                                  <button
-                                                       onClick={_processing} className={`bg-green-500   ${className}`}>start processing</button>
-                                                  :
-                                                  <>
-                                                       <button
-                                                            onClick={wr?.status === 'rejected' ? undefined : _approve} className={`rounded-b-none  bg-green-500  text-white border-b-0 ${className}`}>approve</button>
-                                                       <button
-                                                            onClick={wr?.status === 'rejected' ? undefined : _reject} className={`rounded-t-none  bg-red-500 border-t-0 ${className}`}>reject</button>
-                                                  </>
-                                             }
-                                        </Flex>
-
-                                   }
-                              </>
-                              :
-                              <>
-                                   {wr?.status === 'pending' && <>
-                                        <Flex vertical>
-                                             <CConfirm confirm={_delete} title="Delete this request?">
-                                                  <DeleteOutlineTwoTone className="text-red-700" />
-                                             </CConfirm>
-
-                                             {!_editMode ? <EditNoteOutlined className="text-green-700" onClick={_toggleEditModeOn} />
-                                                  :
-                                                  <CancelOutlined className="text-red-900" onClick={_toggleEditModeOff} />}
-                                        </Flex>
-
-                                   </>
-                                   }
-                              </>}
-
-                    </>} */}
-
                </Flex>
 
                {_editMode && <Create wr={wr} onSucceed={onSucceed} />}

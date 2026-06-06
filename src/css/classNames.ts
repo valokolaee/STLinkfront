@@ -10,7 +10,7 @@ export const cardAndSelected = (isSelected: boolean) => `${card} ${isSelected ? 
 
 
 
-export const formContainer = "flex flex-col items-center justify-center w-full h-screen  "
+export const formContainer = "flex flex-col items-center justify-center w-full h-screenc  "
 
 
 

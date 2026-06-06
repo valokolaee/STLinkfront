@@ -46,7 +46,7 @@ export interface User {
   logo_url?: string;
   profile_image?: string;
   csv_url?: string;
-  clientType?: 'individual' | 'financial_entities' | 'business';
+  // clientType?: 'individual' | 'financial_entities' | 'business';
   createdAt?: string;
   updatedAt?: string;
 }

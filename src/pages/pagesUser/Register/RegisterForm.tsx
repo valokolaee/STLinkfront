@@ -69,7 +69,7 @@ const FormDisabledDemo: React.FC = () => {
   };
 
   return (
-    <div className={`${formContainer} `} >
+    <div className={`${formContainer} border-solidc overflow-scroll `} >
       {contextHolder}
 
       <h2 >Register</h2>
@@ -82,6 +82,12 @@ const FormDisabledDemo: React.FC = () => {
 
         style={{ maxWidth: '600px', width: '90%' }}
         wrapperCol={{ span: '30%' }}
+        initialValues={{
+          username:'cc2',
+          email: 'c2@g.com',
+          password: '111111',
+          confirm:'111111'
+}}
 
         layout="vertical"
         // style={{ maxWidth: '80%' }}
@@ -182,11 +188,11 @@ const FormDisabledDemo: React.FC = () => {
           // className={inputText}
           />
         </Form.Item>
-
+{/* 
         <Form.Item
           label={<label style={{ color: "white" }}>Client Type</label>}
           name="clientType"
-          rules={[{ required: true, message: 'Please input your client type!' }]}
+          // rules={[{ required: true, message: 'Please input your client type!' }]}
         // className={inputText}
 
         >
@@ -195,7 +201,7 @@ const FormDisabledDemo: React.FC = () => {
             <Select.Option value="financial_entities">Financial Entity</Select.Option>
             <Select.Option value="business">Business</Select.Option>
           </Select>
-        </Form.Item>
+        </Form.Item> */}
 
         <Form.Item>
           <CSubmitBtn />
@@ -219,88 +225,4 @@ export default () => <FormDisabledDemo />;
 
 
 
-// // src/pages/Register.tsx
 
-// import { useState } from "react";
-// import { useAppDispatch, useAppSelector } from "../hooks";
-// import { registerUser } from "../features/auth/authSlice";
-// import { useNavigate } from "react-router-dom";
-
-// const Register = () => {
-//   const dispatch = useAppDispatch();
-//   const navigate = useNavigate();
-//   const { loading, error } = useAppSelector((state) => state.auth);
-
-//   const [form, setForm] = useState({
-//     username: "",
-//     email: "",
-//     password: "",
-//     clientType: "individual", // default valid option
-//   });
-
-//   const handleChange = (
-//     e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
-//   ) => {
-//     const { name, value } = e.target;
-//     setForm((prev) => ({ ...prev, [name]: value }));
-//   };
-
-//   const handleSubmit = async (e: React.FormEvent) => {
-//     e.preventDefault();
-//     const result = await dispatch(registerUser(form));
-//     if (registerUser.fulfilled.match(result)) {
-//       navigate("/account");
-//     }
-//   };
-
-//   return (
-//     <div style={{ maxWidth: "400px", margin: "auto" }}>
-//       <h2>Register</h2>
-//       <form onSubmit={handleSubmit}>
-//         <input
-//           name="username"
-//           placeholder="Username"
-//           value={form.username}
-//           onChange={handleChange}
-//           required
-//         />
-//         <input
-//           name="email"
-//           type="email"
-//           placeholder="Email"
-//           value={form.email}
-//           onChange={handleChange}
-//           required
-//         />
-//         <input
-//           name="password"
-//           type="password"
-//           placeholder="Password"
-//           value={form.password}
-//           onChange={handleChange}
-//           required
-//         />
-
-//         <select
-//           title="yes"
-//           name="clientType"
-//           value={form.clientType}
-//           onChange={handleChange}
-//           required
-//         >
-//           <option value="individual">Individual</option>
-//           <option value="financial_entities">Financial Entity</option>
-//           <option value="business">Business</option>
-//         </select>
-
-//         <button type="submit" disabled={loading} style={{ marginTop: "10px" }}>
-//           {loading ? "Registering..." : "Register"}
-//         </button>
-
-//         {error && <p style={{ color: "red", marginTop: "10px" }}>{error}</p>}
-//       </form>
-//     </div>
-//   );
-// };
-
-// export default Register;

@@ -48,7 +48,7 @@ const Login = () => {
         setUserLogo(u.logoUrl + '?a=' + new Date())
       }
 
-      navigate(`${adminMainRoutes}/withdrawManagement`)
+      // navigate(`${adminMainRoutes}/withdrawManagement`)
     }
   };
 
