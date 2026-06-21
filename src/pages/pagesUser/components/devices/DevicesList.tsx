@@ -1,17 +1,13 @@
-import { PlusCircleOutlined } from "@ant-design/icons"
-import { Flex } from "antd"
 import { useEffect, useRef, useState } from "react"
-import CModal from "../../../../components/ui/CModal"
+import { card } from "../../../../css/classNames"
 import IMiningDevice from "../../../../interfaces/IMiningDevice"
+import IMiningWallet from "../../../../interfaces/IMiningWallet"
 import { useAppSelector } from "../../../../redux/hooks"
 import WebService, { IWebServiceFuncs } from "../../../../webService"
-import { miningDevices } from "../../../../webService/ApiUrls/apis"
-import Create from "./create"
-import Item from "./item"
+import apis, { panel } from "../../../../webService/ApiUrls/apis"
 import IReqRes from "../../../../webService/ApiUrls/apis/IReqRes"
-import IMiningWallet from "../../../../interfaces/IMiningWallet"
+import Item from "./item"
 import TinyItem from "./TinyItem"
-import { card } from "../../../../css/classNames"
 
 export default ({ flashMode }: { flashMode?: boolean }) => {
     const refWebService = useRef<IWebServiceFuncs>()
@@ -20,12 +16,11 @@ export default ({ flashMode }: { flashMode?: boolean }) => {
     const [_devices, set_devices] = useState<IMiningDevice[]>([])
 
     const _loadWallets = async () => {
-        const res = await refWebService?.current?.callApi<IReqRes<IMiningWallet>['getAllBy']['res']>(miningDevices.getAllBy({ userId: _savedUser.id! }))
-        if (res?.success) {
+        const res = await refWebService?.current?.callApi<IReqRes<IMiningWallet>['getAllBy']['res']>(apis.miningDevices.getAllBy({ userId: _savedUser.id! }))
 
-            set_devices(res?.data! || [])
-        }
-        console.log(res);
+        if (res?.success) { set_devices(res?.data! || []) }
+
+        // console.log(res);
     }
 
     useEffect(() => {

@@ -1,15 +1,14 @@
 import { PlusCircleOutlined } from "@ant-design/icons"
 import { Flex } from "antd"
 import { useEffect, useRef, useState } from "react"
-import CModal from "../../../../components/ui/CModal"
+import CBottomDrawer from "../../../../components/ui/CBottomDrawer"
 import IMiningDevice from "../../../../interfaces/IMiningDevice"
+import IMiningWallet from "../../../../interfaces/IMiningWallet"
 import { useAppSelector } from "../../../../redux/hooks"
 import WebService, { IWebServiceFuncs } from "../../../../webService"
-import { miningDevices } from "../../../../webService/ApiUrls/apis"
-import Create from "./create"
-import Item from "./item"
+import apis, { panel } from "../../../../webService/ApiUrls/apis"
 import IReqRes from "../../../../webService/ApiUrls/apis/IReqRes"
-import IMiningWallet from "../../../../interfaces/IMiningWallet"
+import Create from "./create"
 import DevicesList from "./DevicesList"
 
 export default () => {
@@ -19,7 +18,7 @@ export default () => {
     const [_devices, set_devices] = useState<IMiningDevice[]>([])
 
     const _loadWallets = async () => {
-        const res = await refWebService?.current?.callApi<IReqRes<IMiningWallet>['getAllBy']['res']>(miningDevices.getAllBy({ userId: _savedUser.id! }))
+        const res = await refWebService?.current?.callApi<IReqRes<IMiningWallet>['getAllBy']['res']>(apis.miningDevices.getAllBy({ userId: _savedUser.id! }))
         if (res?.success) {
             set_devices(res?.data!)
         }
@@ -44,16 +43,7 @@ export default () => {
     }
     return (
         <div className="w-full">
-            {/* <Flex className="w-full">
-                <CModal onClose={_hide} btn={<PlusCircleOutlined style={{ fontSize: '200%', color: 'white' }} onClick={_show} />}>
-                    <Create onSucceed={_newCreated} />
-                </CModal>
-                <div className="m-3 w-full bg-gray-500 p-2 rounded-lg">
-                    {`${_devices?.length} devices`}
-                </div>
-            </Flex> */}
             <DevicesList />
-            {/* {_devices?.map((item) => <Item {...item} key={item.id} />)} */}
             <WebService ref={refWebService} />
         </div>
     )

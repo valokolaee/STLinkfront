@@ -9,7 +9,6 @@ import apis, { pan } from "../../../webService/ApiUrls/apis"
 import IReqRes from "../../../webService/ApiUrls/apis/IReqRes"
 import Desktop from "./compo/desktop"
 import Mobile from "./compo/mobile"
-import Create from "../components/devices/create"
 var _inter =
     setInterval(async () => { }, 1000)
 export default () => {
@@ -18,6 +17,8 @@ export default () => {
 
     const refWebService = useRef<IWebServiceFuncs>()
     const _savedUser = useAppSelector((s) => s.userSlice)
+    // console.log('_savedUser',_savedUser);
+
     // const [_session, set_session] = useState<IMiningSession | undefined>(undefined)
     // const [_data, set_data] = useState<IR1>({ currency: '', totalEarning: 0 })
 
@@ -26,7 +27,7 @@ export default () => {
     // }, [_session])
 
 
-    const url = 'https://localhost:3002/api/mining-devicesReport/report-earning'
+    const url = 'https://localhost:3002/mx/mining-devicesReport/report-earning'
 
     const _createEarning = async (_session: IMiningSession) => {
 
@@ -34,8 +35,8 @@ export default () => {
         _inter = setInterval(async () => {
 
             const bodyFormData = {
-                imei: '230061000000008',
-                amount: Math.random(),//Joi.number().positive().required(),
+                imei: '123456789012345678901234567890',
+                // amount: Math.random(),//Joi.number().positive().required(),
                 currency: 'USDT',//,Joi.string().min(2).max(10).required(),
                 ipAddress: '192.0.2.146',//Joi.string().ip({ version: ['ipv4', 'ipv6'] }).optional(),
                 timestamp: new Date(),//Joi.date().iso().optional().default(() => new Date()),
@@ -70,11 +71,11 @@ export default () => {
 
     const _newSession = async () => {
         _clearInterval()
-        const res = await refWebService.current?.callApi<IReqRes<IMiningSession>['create']['res']>(apis.miningSession.create({ deviceId: 1, }))
+        const res = await refWebService.current?.callApi<IReqRes<IMiningSession>['create']['res']['data']>(apis.miningSession.create({ deviceId: 1, }))
 
         if (res?.success) {
 
-            // _createEarning(res.data!)
+            _createEarning(res.data!)
         }
     }
 
@@ -100,7 +101,7 @@ export default () => {
 
 
             {/* <Create/> */}
-            <button onClick={_newSession}>hit me</button>
+            {/* {process.env.NODE_ENV && <button onClick={_newSession}>hit me</button>} */}
             {_isMobile ? <Mobile /> : <Desktop />}
             <WebService ref={refWebService} />
 

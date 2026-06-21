@@ -1,20 +1,18 @@
+import { RightCircleTwoTone } from '@ant-design/icons';
+import { Flex } from 'antd';
 import { useEffect, useRef, useState } from 'react';
 import CModal from '../../../../../../components/ui/CModal';
+import CWhiteLabel from '../../../../../../components/ui/CWhiteLabel';
+import IMiningDevice from '../../../../../../interfaces/IMiningDevice';
+import { ISelect } from '../../../../../../interfaces/ISelect';
 import { useAppSelector } from '../../../../../../redux/hooks';
 import WebService, { IWebServiceFuncs } from '../../../../../../webService';
-import Box from '../Box';
-import DeviceTable from './DeviceTable';
-import { RiceBowlOutlined } from '@mui/icons-material';
-import { RightCircleFilled, RightCircleTwoTone } from '@ant-design/icons';
-import { Flex } from 'antd';
-import Item from './item';
-import IMiningDevice from '../../../../../../interfaces/IMiningDevice';
+import { panel } from '../../../../../../webService/ApiUrls/apis';
 import IReqRes from '../../../../../../webService/ApiUrls/apis/IReqRes';
-import { miningDevices } from '../../../../../../webService/ApiUrls/apis';
-import StatusTag from './StatusTag';
-import { ISelect } from '../../../../../../interfaces/ISelect';
-import CWhiteLabel from '../../../../../../components/ui/CWhiteLabel';
+import Box from '../Box';
 import Loading from '../Loading';
+import DeviceTable from './DeviceTable';
+import StatusTag from './StatusTag';
 
 
 
@@ -34,7 +32,7 @@ export default ({ onSelect, selectedItem }: ISelect<IMiningDevice>) => {
 
     const _loadDevices = (initial: boolean) => async () => {
         setLoading(true)
-        const res = await refWebService?.current?.callApi<IReqRes<IMiningDevice>['getAllBy']['res']>(miningDevices.getAllBy({ userId: _savedUser.id! }))
+        const res = await refWebService?.current?.callApi<IReqRes<IMiningDevice>['getAllBy']['res']>(panel.miningDevices.getAllBy({ userId: _savedUser.id! }))
         if (res?.success) {
             set_devices(res?.data!)
             if (res?.data!.length > 0 && initial) {

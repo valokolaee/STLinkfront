@@ -29,6 +29,10 @@ const userSlice = createSlice({
       state.createdAt = action.payload.createdAt;
       // state.pass = action.payload.pass;
       state.role = action.payload.role;
+
+      state.customer = action.payload.customer;
+      state.agent = action.payload.agent;
+
     },
     SET_USER_LOGO: (state, action: PayloadAction<string>) => {
       state.logoUrl = action.payload;

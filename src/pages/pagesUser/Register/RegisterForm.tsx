@@ -18,6 +18,9 @@ import IRegisterReq, { IRegisterRes } from '../../../webService/ApiUrls/apis/IRe
 import { formContainer, inputText } from '../../../css/classNames';
 import CSubmitBtn from '../../../components/ui/CSubmitBtn';
 import { DownOutlined } from '@ant-design/icons';
+import { customerMainRoutes } from '../../../protectedRouts/config/customerRoutes';
+import { customer_dashboard } from '../../../protectedRouts/config/customerRoutes/objects';
+import loginResAnalyzer from '../LoginCustomer/loginResAnalyzer';
 
 
 const FormDisabledDemo: React.FC = () => {
@@ -35,17 +38,20 @@ const FormDisabledDemo: React.FC = () => {
     console.log(values);
     values = { ...values, confirm: undefined }
     const x = await refWebService?.current?.callApi<IRegisterRes>(apis.auth.register(values));
+    loginResAnalyzer(x!,navigate)
 
     // console.log('xxx', x);
 
 
-    if (x?.success) {
-      setUser(x.data as IUser)
-      setUserAvatar('')
-      // navigate('/dashboard')
-    } else {
-      openNotification(x?.message || 'Registration failed')
-    }
+    // if (x?.success) {
+    //   setUser(x.data as IUser)
+    //   setUserAvatar('')
+    //   navigate(`${customerMainRoutes}${customer_dashboard.path}`)
+    //   // navigate(`${customerMainRoutes}${customer_dashboard.path}`)
+
+    // } else {
+    //   openNotification(x?.message || 'Registration failed')
+    // }
 
 
   };
@@ -83,14 +89,13 @@ const FormDisabledDemo: React.FC = () => {
         style={{ maxWidth: '600px', width: '90%' }}
         wrapperCol={{ span: '30%' }}
         initialValues={{
-          username:'cc2',
-          email: 'c2@g.com',
+          username:'cvc2',
+          email: 'cv2@g.com',
           password: '111111',
           confirm:'111111'
 }}
 
         layout="vertical"
-        // style={{ maxWidth: '80%' }}
         autoComplete='off'
       >
 

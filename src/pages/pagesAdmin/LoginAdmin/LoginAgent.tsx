@@ -14,6 +14,7 @@ import ILoginReq, { ILoginRes } from "../../../webService/ApiUrls/apis/ILogin";
 import IReqRes from "../../../webService/ApiUrls/apis/IReqRes";
 import ILoginAgentReq, { ILoginAgentRes } from '../../../webService/ApiUrls/apis/ILoginAgent';
 import { adminMainRoutes } from '../../../protectedRouts/config/adminRoutes';
+import { admin_withdraws } from '../../../protectedRouts/config/adminRoutes/objects';
 const Login = () => {
   const refWebService = useRef<IWebServiceFuncs>()
 
@@ -48,7 +49,7 @@ const Login = () => {
         setUserLogo(u.logoUrl + '?a=' + new Date())
       }
 
-      // navigate(`${adminMainRoutes}/withdrawManagement`)
+      navigate(`${adminMainRoutes}${admin_withdraws.path}`)
     }
   };
 

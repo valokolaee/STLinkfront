@@ -40,12 +40,21 @@ export default ({ children, childrenV, className, duration=500 }: {
             </SvgWrapper>
           </Flex>
 
+          {_children && (
+            <Flex
+              vertical
+              className={`animate-bottom-to-top w-full border-solidc ${className}`}
+              style={{ animationDuration: `${duration}ms` }}
+            >
+              {_children}
+            </Flex>
+          )}
           {/* {_children && <Flex
            
             className={`animate-bottom-to-top  w-full   border-solid      ${className}`}
             style={{ animationDuration: `${duration}ms`, }} */}
           {/* > */}
-            {_children}
+            {/* {_children} */}
           {/* </Flex>} */}
         </Flex>
       </div>

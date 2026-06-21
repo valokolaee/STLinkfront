@@ -20,7 +20,6 @@ import mdlr from './ModelApiGenerator';
 
 
 
-export const miningDevices = ApiObjectGenerator<IDevice>('mining-devices')
 export const deviceEarnings = ApiObjectGenerator<IDeviceEarning>('device-earnings')
 export const miningWallet = ApiObjectGenerator<IMiningWallet>('mining-wallet')
 export const userWallet = ApiObjectGenerator<IUserWallet>('user-wallet')
@@ -41,15 +40,12 @@ export const panel = {
   folderUrl: 'panel',
   login(body: ILoginAgentReq) { return mdlr({ axiosType: 'post', apiUrl: 'login', folderUrl: 'auth', body, api: 'panel' }) },
   getMe: mdlr({ axiosType: 'get', apiUrl: 'me', folderUrl: 'auth', api: 'panel' }),
+  miningDevices: ApiObjectGenerator<IDevice>('mining-devices', 'panel'),
+  users: ApiObjectGenerator<IUser>('users', 'panel'),
 }
 
-// POST https://localhost:3002/panel/auth/login
 
 export default {
-
-
-
-
 
 
   auth: {
@@ -72,8 +68,8 @@ export default {
     updateAvatar(body: any) { return mdlr({ axiosType: 'put', apiUrl: 'avatar', folderUrl: 'users', body }) },
     updateLogo(body: any) { return mdlr({ axiosType: 'put', apiUrl: 'logo', folderUrl: 'users', body }) },
   },
+  miningDevices: ApiObjectGenerator<IDevice>('mining-devices', 'api'),
 
-  miningDevices,
   deviceEarnings,
   miningWallet,
   withdrawalRequest,

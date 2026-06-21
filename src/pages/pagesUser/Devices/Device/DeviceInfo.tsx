@@ -10,8 +10,8 @@ export default () => {
     const location = useLocation();
     const receivedData = location.state;
     const { createdAt, deviceName, deviceModel, firmwareVersion, id, imei, } = receivedData || {}
+    // console.log('location', location);
 
-    const className = ''
     return (
         <Flex className="absoluteh border-solidn w-full px-2 mt-2">
 

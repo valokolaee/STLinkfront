@@ -4,23 +4,23 @@ import WithdrawManagement from '../../pages/pagesAdmin/withdrawManagement';
 import Landing from '../../pages/pagesPublic/Landing/Landing';
 import Dashboard from '../../pages/pagesUser/Dashboard';
 import Home from '../../pages/pagesUser/Home';
-import Login from '../../pages/pagesUser/Login';
-import Profile from '../../pages/pagesUser/Profile';
+ import Profile from '../../pages/pagesUser/Profile';
 import Register from '../../pages/pagesUser/Register';
 import Blog from '../../pages/pagesPublic/news/Blog/Blog';
 import { IRouteConfig } from '../types/IRouteConfig';
 import Unauthorized from '../components/Unauthorized';
+import LoginCustomer from '../../pages/pagesUser/LoginCustomer';
 
 // Public routes (accessible to everyone)
  const publicRoutes: IRouteConfig[] = [
   {
     path: '/',
-    element: <Login />,
+    element: <LoginCustomer />,
     // element: <Landing />,
   },
   {
     path: '/login',
-    element: <Login />,
+    element: <LoginCustomer />,
   },
   {
     path: '/register',

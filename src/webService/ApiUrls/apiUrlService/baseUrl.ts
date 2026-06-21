@@ -1,5 +1,5 @@
 import { numString } from "mrv-utils";
-import { API, ASSET, BASE_URL, LOCAL_HOST ,PANEL} from "../../../config/env.config";
+import { API, ASSET, BASE_URL, LOCAL_HOST, PANEL } from "../../../config/env.config";
 // all 
 const baseUrl = BASE_URL// "https://w.bankon.click/";
 export const localhost = LOCAL_HOST// "https://localhost:3002/";
@@ -9,6 +9,6 @@ const asset = ASSET//'asset/'
 export const csvUrler = (nameOrCode: numString) => `${baseUrl}${asset}data/report/${nameOrCode}.csv`
 // https://w.bankon.click/asset/data/reportu/royal_kmn.csv
 
-export default `${process.env.NODE_ENV === 'development' ? localhost : baseUrl}${api}`;
+export default `${process.env.NODE_ENV === 'development' ? localhost : baseUrl}`;
 // export default `${localhost}${api}`; 
 // export default `${baseUrl}${api}`; 

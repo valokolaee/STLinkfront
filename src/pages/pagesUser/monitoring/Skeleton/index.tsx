@@ -45,7 +45,7 @@ const Skeleton: React.FC = () => {
 
                 if (res2?.success) {
                     const _calculatedAt = res2?.data?.lastEarnings![0]?.calculatedAt
-                    // console.log(dateDifference(new Date(), _calculatedAt));
+                    console.log(dateDifference(new Date(), _calculatedAt));
 
                     const _status: IMiningDevice['status'] = (dateDifference(new Date(), _calculatedAt) > 300 || dateDifference(new Date(), _calculatedAt) < 0) ? 'offline' : 'active'
 

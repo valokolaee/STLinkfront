@@ -7,12 +7,20 @@ import { shadowX, shadowY } from "../../../css/classNames";
 import { IRouteConfig } from "../../../protectedRouts/types/IRouteConfig";
 
 export default ({ path, sideBar }: IRouteConfig) => {
-  const { icon,label}=sideBar||{}
+  const { icon, label } = sideBar || {}
 
   const location = useLocation();
-  const isActive = location.pathname?.toLocaleLowerCase() === path?.toLocaleLowerCase();
+  // console.log('location', location.pathname?.toLocaleLowerCase().split('/')[1], path?.toLocaleLowerCase());
 
-  
+  let locString = ''
+  try {
+    locString = location.pathname?.toLocaleLowerCase()?.split('/')[2]
+  } catch (error) {
+
+  }
+  const isActive = locString === path?.toLocaleLowerCase();
+
+
   return (
     <div className={`sidebar-item ${isActive ? 'sidebar-item--active' : ''} ${'shadowY'}`}>
       <Link to={path!} className="sidebar-item__link">

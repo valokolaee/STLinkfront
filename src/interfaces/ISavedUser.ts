@@ -3,6 +3,6 @@ import ICustomer from "./ICustomer";
 import IUser from "./IUser";
 
 export default interface ISavedUser extends IUser {
-    agent?: IAgent;
-    customer?: ICustomer
+    // agent?: IAgent;
+    // customer?: ICustomer
 }

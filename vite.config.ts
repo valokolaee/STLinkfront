@@ -41,7 +41,7 @@ export default defineConfig({
     proxy: {
       '/api': {
         // target: 'https://w.bankon.click',
-        target: 'lirfr.michael.mom',
+        target: 'https://lirfr.michael.mom/',
         changeOrigin: true,
         secure: false,
         rewrite: (path) => path.replace(/^\/api/, ''),

@@ -4,56 +4,8 @@ import AppRouterList from './AppRouterList';
 
 export const AppRouter = () => {
 
-  
-  const router = createBrowserRouter(
-    AppRouterList
-    // [
-    // // Public routes
-    // ...publicRoutes.map(route => ({
-    //   path: route.path,
-    //   element: route.element,
-    // })),
 
-    // ...publicAdminRoutes.map(route => ({
-    //   path: route.path,
-    //   element: route.element,
-    // })),
-
-
-    // // Customer routes with layout
-    // {
-    //   path: customerMainRoutes,
-    //   element: (
-    //     <ProtectedRoute allowedRoles={['customer']}>
-    //       <CustomerLayout />
-    //     </ProtectedRoute>
-    //   ),
-    //   children: customerRoutes.map(route => ({
-    //     path: route.path.replace('/', ''),
-    //     element: route.element,
-    //     allowedRoles: ['customer'],
-    //     redirectTo: '/login'
-    //   })),
-    // },
-
-
-    // // Admin routes with layout
-    // {
-    //   path: adminMainRoutes,
-    //   element: (
-    //     <ProtectedRoute allowedRoles={['admin']}>
-    //       <AdminLayout />
-    //     </ProtectedRoute>
-    //   ),
-    //   children: adminRoutes.map(route => ({
-    //     path: route.path.replace('/', ''),
-    //     element: route.element,
-    //   })),
-    // },
-
-
-    // ]
-  );
+  const router = createBrowserRouter(AppRouterList);
 
   return <RouterProvider router={router} />;
 };
