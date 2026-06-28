@@ -96,7 +96,7 @@ export default () => {
         <Dropdown menu={{ items }} >
             <Space>
                 {_user.username || ''}
-                <CAvatar url={_user.profileImage!} />
+                <CAvatar url={_user.profileImageUrl!} />
             </Space>
         </Dropdown>
     );

@@ -1,4 +1,4 @@
-import { formatCurrency } from "../../../../../components/OneWallet/Wallet";
+import formatCurrency from "../../../../../utils/formatCurrency";
 import ITransaction from "../../../../../interfaces/ITransaction";
 
 export default ({ amount, createdAt, creatorId, fromWalletId, toWalletId, withdrawRequestId, confirmedAt, confirmorId, desc, type, id, thisWalletId }: ITransactionItem) =>

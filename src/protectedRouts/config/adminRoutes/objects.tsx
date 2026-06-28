@@ -5,7 +5,7 @@ import WithdrawManagement from '../../../pages/pagesAdmin/withdrawManagement';
 import Device from '../../../pages/pagesUser/Devices/Device';
 import Create from '../../../pages/pagesAdmin/DevicesManagement/create';
 import UsersManagement from '../../../pages/pagesAdmin/UsersManagement';
- 
+
 
 
 
@@ -16,9 +16,9 @@ export const admin_devices = { path: '/devices', element: <DevicesManagement />,
 export const admin_device = { path: '/device', element: <Device /> }
 export const admin_add_device = { path: '/addDevice', element: <Create /> }
 export const admin_rolls = { path: '/rolls', element: <DevicesManagement />, sideBar: { label: 'Rolls & Permissions', icon: <DeveloperBoard /> }, }
-export const admin_roll = { path: '/roll/:id', element: <DevicesManagement /> }
+export const admin_roll = { path: '/roll', element: <DevicesManagement /> }
 export const admin_users = { path: '/users', element: <UsersManagement />, sideBar: { label: 'Users', icon: <DeveloperBoard /> }, }
-export const admin_user = { path: '/user/:id', element: <DevicesManagement /> }
+export const admin_user = { path: '/user', element: <DevicesManagement /> }
 export const admin_reports = { path: '/reports', element: <DevicesManagement />, sideBar: { label: 'Reports', icon: <DeveloperBoard /> }, }
-export const admin_report = { path: '/report/:id', element: <DevicesManagement /> }
+export const admin_report = { path: '/report', element: <DevicesManagement /> }
 

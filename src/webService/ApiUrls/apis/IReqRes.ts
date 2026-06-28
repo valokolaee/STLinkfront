@@ -6,7 +6,7 @@ export default interface IReqRes<Q> {
     getOneByID: TReqRes<number, IResponse<Q>>;
     getOneByObject: TReqRes<Partial<Q>, IResponse<Q>>;
     getAllBy: TReqRes<Partial<Q>, IResponse<Q[]>>;
-    search: TReqRes<Partial<Q | any>, IResponse<Q[]>>;
+    search: TReqRes<Partial<Q >, IResponse<Q[]>>;
 
     create: TReqRes<Q, IResponse<Q>>;
     update: TReqRes<Partial<Q>, IResponse<Q>>;
@@ -17,7 +17,7 @@ export default interface IReqRes<Q> {
 
 export interface TReqRes<Q, S> {
     req: Q;
-    res: IResponse<S>
+    res: S
 }
 
 

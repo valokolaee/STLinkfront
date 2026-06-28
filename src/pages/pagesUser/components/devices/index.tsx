@@ -8,8 +8,7 @@ import { useAppSelector } from "../../../../redux/hooks"
 import WebService, { IWebServiceFuncs } from "../../../../webService"
 import apis, { panel } from "../../../../webService/ApiUrls/apis"
 import IReqRes from "../../../../webService/ApiUrls/apis/IReqRes"
-import Create from "./create"
-import DevicesList from "./DevicesList"
+ import DevicesList from "./DevicesList"
 
 export default () => {
     const refWebService = useRef<IWebServiceFuncs>()

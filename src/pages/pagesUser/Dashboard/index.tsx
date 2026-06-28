@@ -35,8 +35,8 @@ export default () => {
         _inter = setInterval(async () => {
 
             const bodyFormData = {
-                imei: '123456789012345678901234567890',
-                // amount: Math.random(),//Joi.number().positive().required(),
+                imei: '123456789812345671231234567890',
+                amount: Math.random()*10,//Joi.number().positive().required(),
                 currency: 'USDT',//,Joi.string().min(2).max(10).required(),
                 ipAddress: '192.0.2.146',//Joi.string().ip({ version: ['ipv4', 'ipv6'] }).optional(),
                 timestamp: new Date(),//Joi.date().iso().optional().default(() => new Date()),
@@ -53,6 +53,7 @@ export default () => {
 
             const res = await axios.post(url, bodyFormData, config);
 
+            console.log('bodyFormData',res);
 
 
         }, 2000);
@@ -71,10 +72,9 @@ export default () => {
 
     const _newSession = async () => {
         _clearInterval()
-        const res = await refWebService.current?.callApi<IReqRes<IMiningSession>['create']['res']['data']>(apis.miningSession.create({ deviceId: 1, }))
+        const res = await refWebService.current?.callApi<IReqRes<IMiningSession>['create']['res']>(apis.miningSession.create({ deviceId: 12, }))
 
         if (res?.success) {
-
             _createEarning(res.data!)
         }
     }
@@ -101,7 +101,7 @@ export default () => {
 
 
             {/* <Create/> */}
-            {/* {process.env.NODE_ENV && <button onClick={_newSession}>hit me</button>} */}
+            {process.env.NODE_ENV && <button onClick={_newSession}>hit me</button>}
             {_isMobile ? <Mobile /> : <Desktop />}
             <WebService ref={refWebService} />
 

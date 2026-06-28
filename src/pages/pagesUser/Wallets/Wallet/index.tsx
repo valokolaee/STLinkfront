@@ -1,32 +1,44 @@
 import { Flex } from "antd";
 import { useEffect, useRef, useState } from "react";
 import { useLocation } from "react-router-dom";
-import { formatCurrency } from "../../../../components/OneWallet/Wallet";
 import IMiningWallet from "../../../../interfaces/IMiningWallet";
 import WebService, { IWebServiceFuncs } from "../../../../webService";
-import { miningWallet } from "../../../../webService/ApiUrls/apis";
+import { miningWallet, userWallet } from "../../../../webService/ApiUrls/apis";
 import IResponse from "../../../../webService/ApiUrls/apis/IResponse";
 import Actions from "./actions";
 import Transactions from "./transactions";
+import formatCurrency from "../../../../utils/formatCurrency";
+import IUserWallet from "../../../../interfaces/IUserWallet";
 
 export default () => {
     const refWebService = useRef<IWebServiceFuncs>()
     const location = useLocation();
     const receivedData = location.state;
-    const { imei } = receivedData || {}
 
-    const [_miningWallet, set_miningWallet] = useState<IMiningWallet | undefined>();
+    const wallet: IWalletNavigatedData = receivedData?.wallet || {}
+
+    const [_miningWallet, set_miningWallet] = useState<IMiningWallet | IUserWallet | undefined>();
     const { availableBalance, totalEarnings, currency, walletAddress, pendingBalance, withdrawnAmount } = _miningWallet || {}
 
     const _loadTheWallet = async () => {
 
-        if (!!imei) {
-            const res = await refWebService.current?.callApi<IResponse<IMiningWallet>>(miningWallet.getOneByObject!({ walletAddress: imei, }))
+        if (!!wallet) {
+
+
+            var res: IResponse<IMiningWallet | IUserWallet> | undefined = {}
+
+            if (wallet?.type === 'miningWallet') {
+                res = await refWebService.current?.callApi<IResponse<IMiningWallet>>(miningWallet?.getOneByID!(wallet?.id))
+            } else {
+                res = await refWebService.current?.callApi<IResponse<IUserWallet>>(userWallet?.getOneByID!(wallet?.id))
+            }
+
             if (res?.success) {
-                set_miningWallet(res.data)
+                set_miningWallet(res?.data)
             } else {
 
             }
+
         } else {
 
         }
@@ -56,7 +68,8 @@ export default () => {
             </Flex>
             <Flex flex={10} className="overflow-scroll" vertical>
                 {/* <OneWallet/> */}
-                <Transactions address={imei!} walletId={3} />
+                *hard coded*
+                <Transactions walletId={3} />
             </Flex>
         </Flex>
 
@@ -64,4 +77,11 @@ export default () => {
 
 
     </>
+}
+
+
+
+export interface IWalletNavigatedData {
+    id: number;
+    type: 'miningWallet' | 'wallet'
 }

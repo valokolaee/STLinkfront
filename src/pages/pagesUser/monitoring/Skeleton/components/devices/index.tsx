@@ -7,12 +7,13 @@ import IMiningDevice from '../../../../../../interfaces/IMiningDevice';
 import { ISelect } from '../../../../../../interfaces/ISelect';
 import { useAppSelector } from '../../../../../../redux/hooks';
 import WebService, { IWebServiceFuncs } from '../../../../../../webService';
-import { panel } from '../../../../../../webService/ApiUrls/apis';
+import apis, { panel } from '../../../../../../webService/ApiUrls/apis';
 import IReqRes from '../../../../../../webService/ApiUrls/apis/IReqRes';
 import Box from '../Box';
 import Loading from '../Loading';
 import DeviceTable from './DeviceTable';
 import StatusTag from './StatusTag';
+import { IModalActions } from '../../../../../../components/ui/CModal/IModal';
 
 
 
@@ -23,7 +24,7 @@ export default ({ onSelect, selectedItem }: ISelect<IMiningDevice>) => {
 
 
     const refWebService = useRef<IWebServiceFuncs>()
-    const refModalDevice = useRef<any>(null)
+    const refModalDevice = useRef<IModalActions>()
     const _savedUser = useAppSelector((s) => s.userSlice)
     const [_devices, set_devices] = useState<IMiningDevice[]>([])
     const [_loading, setLoading] = useState(false)
@@ -32,7 +33,7 @@ export default ({ onSelect, selectedItem }: ISelect<IMiningDevice>) => {
 
     const _loadDevices = (initial: boolean) => async () => {
         setLoading(true)
-        const res = await refWebService?.current?.callApi<IReqRes<IMiningDevice>['getAllBy']['res']>(panel.miningDevices.getAllBy({ userId: _savedUser.id! }))
+        const res = await refWebService?.current?.callApi<IReqRes<IMiningDevice>['getAllBy']['res']>(apis.miningDevices.getAllBy({ userId: _savedUser.id! }))
         if (res?.success) {
             set_devices(res?.data!)
             if (res?.data!.length > 0 && initial) {
@@ -50,7 +51,7 @@ export default ({ onSelect, selectedItem }: ISelect<IMiningDevice>) => {
 
     const _set_device = (d?: IMiningDevice) => {
         onSelect!(d)
-        refModalDevice.current.hide()
+        refModalDevice.current?.hide()
     }
 
 

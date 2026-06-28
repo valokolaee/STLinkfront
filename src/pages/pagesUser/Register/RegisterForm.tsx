@@ -22,6 +22,9 @@ import { customerMainRoutes } from '../../../protectedRouts/config/customerRoute
 import { customer_dashboard } from '../../../protectedRouts/config/customerRoutes/objects';
 import loginResAnalyzer from '../LoginCustomer/loginResAnalyzer';
 
+const username_length = 3
+const password_length = 6
+
 
 const FormDisabledDemo: React.FC = () => {
   const refWebService = useRef<IWebServiceFuncs>()
@@ -38,7 +41,7 @@ const FormDisabledDemo: React.FC = () => {
     console.log(values);
     values = { ...values, confirm: undefined }
     const x = await refWebService?.current?.callApi<IRegisterRes>(apis.auth.register(values));
-    loginResAnalyzer(x!,navigate)
+    loginResAnalyzer(x!, navigate)
 
     // console.log('xxx', x);
 
@@ -89,11 +92,11 @@ const FormDisabledDemo: React.FC = () => {
         style={{ maxWidth: '600px', width: '90%' }}
         wrapperCol={{ span: '30%' }}
         initialValues={{
-          username:'cvc2',
+          username: 'cvc2',
           email: 'cv2@g.com',
           password: '111111',
-          confirm:'111111'
-}}
+          confirm: '111111'
+        }}
 
         layout="vertical"
         autoComplete='off'
@@ -110,10 +113,10 @@ const FormDisabledDemo: React.FC = () => {
             },
             ({ getFieldValue }) => ({
               validator(_, value) {
-                if (!value || getFieldValue('username').length >= 3) {
+                if (!value || getFieldValue('username').length >= username_length) {
                   return Promise.resolve();
                 }
-                return Promise.reject(new Error("username length must be at least 3 characters long"));
+                return Promise.reject(new Error(`username length must be at least ${username_length} characters long`));
               },
             }),
           ]}
@@ -152,10 +155,10 @@ const FormDisabledDemo: React.FC = () => {
             },
             ({ getFieldValue }) => ({
               validator(_, value) {
-                if (!value || getFieldValue('password').length >= 6) {
+                if (!value || getFieldValue('password').length >= password_length) {
                   return Promise.resolve();
                 }
-                return Promise.reject(new Error("password length must be at least 6 characters long"));
+                return Promise.reject(new Error(`password length must be at least ${password_length} characters long`));
               },
             }),
           ]} hasFeedback
@@ -193,7 +196,7 @@ const FormDisabledDemo: React.FC = () => {
           // className={inputText}
           />
         </Form.Item>
-{/* 
+        {/* 
         <Form.Item
           label={<label style={{ color: "white" }}>Client Type</label>}
           name="clientType"

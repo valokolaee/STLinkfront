@@ -8,11 +8,10 @@ import './Modal.css';
 export default forwardRef(({ btn, className, children, open, mat, }: IModal, ref) => {
     useImperativeHandle(ref, () => { return { show, hide }; });
 
-    const [isModalOpen, setIsModalOpen] = useState(false);
+    const [isModalOpen, setIsModalOpen] = useState(open);
 
     const show = () => {
-        console.log('show devices modal');
-
+ 
         setIsModalOpen(true);
     };
 

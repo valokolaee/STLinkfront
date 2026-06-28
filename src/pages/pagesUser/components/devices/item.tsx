@@ -5,14 +5,21 @@ import { card } from "../../../../css/classNames";
 import { useNavigate } from 'react-router-dom';
 import { customerMainRoutes } from "../../../../protectedRouts/config/customerRoutes";
 import { customer_device } from "../../../../protectedRouts/config/customerRoutes/objects";
+import { IWalletNavigatedData } from "../../Wallets/Wallet";
 
 export default (deviceInfo: IMiningDevice) => {
-    const { id, createdAt, deviceModel, deviceName, firmwareVersion, imei, status, totalRevenue,userId } = deviceInfo;
+    const { id, createdAt, deviceModel, deviceName, firmwareVersion, imei, status, totalRevenue, userId } = deviceInfo;
 
     const navigate = useNavigate();
-    const handleNavigate = () => { navigate(`${customerMainRoutes}${customer_device.path}`, { state: deviceInfo, }); };
+    const handleNavigate = () => {
+        navigate(`${customerMainRoutes}${customer_device.path}`, {
+            state: {
+                deviceInfo,
+                wallet: { id: deviceInfo.walletId, type: 'miningWallet' } as IWalletNavigatedData
+            }
+        });
+    };
 
-    // <Link to={`/Device/${id}/${imei}`} className={card + "cursor-pointer w-full  "}>
     return <Card onClick={handleNavigate} title={<Flex justify="space-between" className="cursor-pointer">
         {deviceName}
         <div className={status === 'active' ? "bg-green-500 rounded-full text-white px-2" : ''}>
@@ -25,5 +32,4 @@ export default (deviceInfo: IMiningDevice) => {
         <p>Created At: {createdAt?.toString()}</p>
 
     </Card>
-    // </Link>
 }
