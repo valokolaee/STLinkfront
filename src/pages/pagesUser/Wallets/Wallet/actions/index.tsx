@@ -1,11 +1,11 @@
 import { Flex } from "antd";
 import CButton from "../../../../../components/ui/CButton";
-import IMiningWallet from "../../../../../interfaces/IMiningWallet";
+import IDeviceEarningPot from "../../../../../interfaces/IDeviceEarningPot"
 import Transfer from "./transfer";
 import Withdraw from "./Withdraw";
 import IUserWallet from "../../../../../interfaces/IUserWallet";
 
-export default ({ }: IMiningWallet | IUserWallet) =>
+export default ({ }: IDeviceEarningPot | IUserWallet) =>
     <Flex vertical  >
 
 

@@ -35,8 +35,9 @@ export default () => {
         _inter = setInterval(async () => {
 
             const bodyFormData = {
-                imei: '123456789812345671231234567890',
-                amount: Math.random()*10,//Joi.number().positive().required(),
+                imei: '123456789012345678901234567890',
+                // imei: 'a23456789013345678901234567822',
+                amount: Math.random()*500,//Joi.number().positive().required(),
                 currency: 'USDT',//,Joi.string().min(2).max(10).required(),
                 ipAddress: '192.0.2.146',//Joi.string().ip({ version: ['ipv4', 'ipv6'] }).optional(),
                 timestamp: new Date(),//Joi.date().iso().optional().default(() => new Date()),
@@ -72,7 +73,7 @@ export default () => {
 
     const _newSession = async () => {
         _clearInterval()
-        const res = await refWebService.current?.callApi<IReqRes<IMiningSession>['create']['res']>(apis.miningSession.create({ deviceId: 12, }))
+        const res = await refWebService.current?.callApi<IReqRes<IMiningSession>['create']['res']>(apis.miningSession.create({ deviceId: 3, }))
 
         if (res?.success) {
             _createEarning(res.data!)

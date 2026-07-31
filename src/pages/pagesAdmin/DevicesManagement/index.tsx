@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom"
 import AddNewSvg from "../../../assets/icons/AddNewSvg"
 import SvgWrapper from "../../../components/ui/SvgWrapper"
 import IMiningDevice from "../../../interfaces/IMiningDevice"
-import IMiningWallet from "../../../interfaces/IMiningWallet"
+import IDeviceEarningPot from "../../../interfaces/IDeviceEarningPot"
 import { adminMainRoutes } from "../../../protectedRouts/config/adminRoutes"
 import { admin_add_device } from "../../../protectedRouts/config/adminRoutes/objects"
 import { useAppSelector } from "../../../redux/hooks"
@@ -19,7 +19,7 @@ export default () => {
     const [_devices, set_devices] = useState<IMiningDevice[]>([])
 
     const _loadWallets = async () => {
-        const res = await refWebService?.current?.callApi<IReqRes<IMiningWallet>['getAllBy']['res']>(panel.miningDevices.getAllBy({ userId: _savedUser.id! }))
+        const res = await refWebService?.current?.callApi<IReqRes<IDeviceEarningPot>['getAllBy']['res']>(panel.miningDevices.getAllBy({ userId: _savedUser.id! }))
         if (res?.success) { set_devices(res?.data!) }
         // console.log(res);
     }

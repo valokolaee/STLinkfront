@@ -11,14 +11,8 @@ export default (deviceInfo: IMiningDevice) => {
     const { id, createdAt, deviceModel, deviceName, firmwareVersion, imei, status, totalRevenue, userId } = deviceInfo;
 
     const navigate = useNavigate();
-    const handleNavigate = () => {
-        navigate(`${customerMainRoutes}${customer_device.path}`, {
-            state: {
-                deviceInfo,
-                wallet: { id: deviceInfo.walletId, type: 'miningWallet' } as IWalletNavigatedData
-            }
-        });
-    };
+    
+    const handleNavigate = () => { navigate(`${customerMainRoutes}${customer_device.path}`, { state: { deviceInfo, } }); };
 
     return <Card onClick={handleNavigate} title={<Flex justify="space-between" className="cursor-pointer">
         {deviceName}

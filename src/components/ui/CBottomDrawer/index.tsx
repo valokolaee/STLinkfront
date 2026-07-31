@@ -1,11 +1,11 @@
-import React, { useState } from 'react';
+import React, { forwardRef, useImperativeHandle, useState } from 'react';
 import type { DrawerProps, RadioChangeEvent } from 'antd';
 import { Button, Drawer, Radio, Space } from 'antd';
 
-export default ({ children, btn }: {
-  children?: React.ReactNode
-  btn?: React.ReactNode
-}) => {
+export default forwardRef(({ children, btn }: { children?: React.ReactNode; btn?: React.ReactNode }, ref) => {
+  useImperativeHandle(ref, () => { return { onClose } })
+
+
   const [open, setOpen] = useState(false);
   const [placement, setPlacement] = useState<DrawerProps['placement']>('left');
 
@@ -37,4 +37,8 @@ export default ({ children, btn }: {
       </div>
     </>
   );
-};
+})
+
+export interface IBottomDrawerFuncs{
+  onClose:()=>void
+}

@@ -3,12 +3,12 @@ import { Flex } from "antd"
 import { useEffect, useRef, useState } from "react"
 import CBottomDrawer from "../../../../components/ui/CBottomDrawer"
 import IMiningDevice from "../../../../interfaces/IMiningDevice"
-import IMiningWallet from "../../../../interfaces/IMiningWallet"
+import IDeviceEarningPot from "../../../../interfaces/IDeviceEarningPot"
 import { useAppSelector } from "../../../../redux/hooks"
 import WebService, { IWebServiceFuncs } from "../../../../webService"
 import apis, { panel } from "../../../../webService/ApiUrls/apis"
 import IReqRes from "../../../../webService/ApiUrls/apis/IReqRes"
- import DevicesList from "./DevicesList"
+import DevicesList from "./DevicesList"
 
 export default () => {
     const refWebService = useRef<IWebServiceFuncs>()
@@ -17,7 +17,7 @@ export default () => {
     const [_devices, set_devices] = useState<IMiningDevice[]>([])
 
     const _loadWallets = async () => {
-        const res = await refWebService?.current?.callApi<IReqRes<IMiningWallet>['getAllBy']['res']>(apis.miningDevices.getAllBy({ userId: _savedUser.id! }))
+        const res = await refWebService?.current?.callApi<IReqRes<IDeviceEarningPot>['getAllBy']['res']>(apis.miningDevices.getAllBy({ userId: _savedUser.id! }))
         if (res?.success) {
             set_devices(res?.data!)
         }
@@ -32,14 +32,7 @@ export default () => {
         set_open(false)
     }
 
-    const _show = () => {
-        set_open(true)
-    }
 
-    const _newCreated = (nd: IMiningDevice) => {
-        set_devices([nd, ..._devices])
-        _hide()
-    }
     return (
         <div className="w-full">
             <DevicesList />

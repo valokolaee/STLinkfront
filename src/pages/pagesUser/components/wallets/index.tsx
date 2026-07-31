@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from "react"
 import { useNavigate } from "react-router-dom"
 import CreateNewWallet from "../../../../assets/icons/CreateNewWallet"
-import CBottomDrawer from "../../../../components/ui/CBottomDrawer"
+import CBottomDrawer, { IBottomDrawerFuncs } from "../../../../components/ui/CBottomDrawer"
 import SvgWrapper from "../../../../components/ui/SvgWrapper"
 import IUserWallet from "../../../../interfaces/IUserWallet"
 import { useAppSelector } from "../../../../redux/hooks"
@@ -13,6 +13,7 @@ import FlashItem from "./FlashItem"
 import Item from "./item"
 
 export default ({ flashMode }: { flashMode?: boolean }) => {
+    const refBottomDrawer = useRef<IBottomDrawerFuncs>()
     const refWebService = useRef<IWebServiceFuncs>()
     const _savedUser = useAppSelector((s) => s.userSlice)
     const [_wallets, set_devices] = useState<IUserWallet[]>([])
@@ -47,20 +48,30 @@ export default ({ flashMode }: { flashMode?: boolean }) => {
 
     }
 
+
+    const hideCreateModal = () => {
+    refBottomDrawer.current?.onClose()
+}
+
     const _succeedCallback = (res: any, mode: 'add' | 'delete' | 'update') => {
-        switch (mode) {
-            case 'add':
-                _newCreated(res)
-                break;
-            case 'update':
-                _update(res)
-                break;
-            case 'delete':
-                // _delete(res)
-                break;
-            default:
-                break;
-        }
+        _loadWallets()
+        hideCreateModal()
+        // switch (mode) {
+        //     case 'add':
+        //         // _newCreated(res)
+        //         _loadWallets()
+        //         break;
+        //     case 'update':
+        //         _loadWallets()
+
+        //         // _update(res)
+        //         break;
+        //     case 'delete':
+        //         // _delete(res)
+        //         break;
+        //     default:
+        //         break;
+        // }
     }
 
 
@@ -83,30 +94,21 @@ export default ({ flashMode }: { flashMode?: boolean }) => {
     return (
 
         <div className="w-full relative   ">
-            {/* 
-            <Flex className="w-full">
 
-                <div className="m-3 w-full bg-gray-500 p-2 rounded-lg">
-                    {`${_devices?.length} wallets`}
-                </div>
-            </Flex> */}
-
-            {/* <div className="w-full h-full"> */}
             <div className='w-full grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 xl:grid-cols-3  items-center justify-items-center'>
                 {_wallets?.map((item) => <Item uw={item} key={item.id} onSucceed={_succeedCallback} />)}
             </div>
-            {/* <SvgWrapper className="absolute cursor-pointer  ">
-                <CreateNewWallet />
-            </SvgWrapper> */}
-
+        
+            
             <CBottomDrawer
+                ref={refBottomDrawer}
                 btn={
                     <SvgWrapper className=" w-14 fixed bottom-6 right-6 ">
                         <CreateNewWallet />
                     </SvgWrapper>
                 }
             >
-                <Create onSucceed={_newCreated} />
+                <Create onSucceed={_succeedCallback} />
             </CBottomDrawer>
             <WebService ref={refWebService} />
         </div>

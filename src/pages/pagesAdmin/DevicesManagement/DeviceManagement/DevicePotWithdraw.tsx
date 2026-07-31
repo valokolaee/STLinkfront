@@ -7,7 +7,7 @@ import WebService, { IWebServiceFuncs } from '../../../../webService';
 import { miningWallet, userWallet, withdrawalRequest } from '../../../../webService/ApiUrls/apis';
 import IReqRes from '../../../../webService/ApiUrls/apis/IReqRes';
 import IResponse from '../../../../webService/ApiUrls/apis/IResponse';
-import IMiningWallet from '../../../../interfaces/IMiningWallet';
+import IDeviceEarningPot from '../../../../interfaces/IDeviceEarningPot'
 import { useAppSelector } from '../../../../redux/hooks';
 import { safeFixed } from '../../../../utils/text.utils';
 import IUserWallet from '../../../../interfaces/IUserWallet';
@@ -15,13 +15,14 @@ import { CheckBoxOutlineBlank } from '@mui/icons-material';
 import { CheckCircleFilled } from '@ant-design/icons';
 import { safeParseFloat } from '../../../../utils/math.utils';
 import CSubmitBtn from '../../../../components/ui/CSubmitBtn';
+import { ICreateEdit } from '../../../pagesUser/withdraw/create';
 
-export default ({ onSucceed, wr }: ICreateWithdrawProps) => {
+export default ({ onSucceed, pot }: IDevicePotWithdraw) => {
   const [form] = Form.useForm();
   const refWebService = useRef<IWebServiceFuncs>()
   const _savedUser = useAppSelector((s) => s.userSlice)
-  const [_mining_wallet, set_mining_wallet] = useState<IMiningWallet>();
-  const [_mining_wallets, set_mining_wallets] = useState<IMiningWallet[]>([]);
+  const [_mining_wallet, set_mining_wallet] = useState<IDeviceEarningPot>();
+  const [_mining_wallets, set_mining_wallets] = useState<IDeviceEarningPot[]>([]);
   const [_user_wallets, set_user_wallets] = useState<IUserWallet[]>([]);
 
   interface FieldType extends IWithdrawalRequest {
@@ -32,7 +33,7 @@ export default ({ onSucceed, wr }: ICreateWithdrawProps) => {
     // console.log('c');
 
 
-    if (!!!wr) {
+    if (!!!pot) {
       const res = await refWebService?.current?.callApi<IResponse<any>>(withdrawalRequest.create(values as IWithdrawalRequest))
 
       if (res?.success) {
@@ -44,12 +45,12 @@ export default ({ onSucceed, wr }: ICreateWithdrawProps) => {
 
     } else {
 
-      const __wr: IWithdrawalRequest = { id: wr?.id!, ...values, }
+      const __wr: IWithdrawalRequest = { id: pot?.id!, ...values, }
 
       const res = await refWebService?.current?.callApi<IResponse<any>>(withdrawalRequest.update(__wr))
       if (res?.success) {
         form.resetFields();
-        onSucceed!({ ...wr, ...__wr }, 'update')
+        onSucceed!({ ...pot, ...__wr }, 'update')
       }
     }
 
@@ -63,7 +64,7 @@ export default ({ onSucceed, wr }: ICreateWithdrawProps) => {
 
 
   const _loadListOfMiningWallets = async () => {
-    const res = await refWebService?.current?.callApi<IReqRes<IMiningWallet>['getAllBy']['res']>(miningWallet.getAllBy({ userId: _savedUser.id! }))
+    const res = await refWebService?.current?.callApi<IReqRes<IDeviceEarningPot>['getAllBy']['res']>(miningWallet.getAllBy({ userId: _savedUser.id! }))
     if (res?.success) {
       set_mining_wallets(res?.data!)
     }
@@ -76,9 +77,9 @@ export default ({ onSucceed, wr }: ICreateWithdrawProps) => {
     }
   }
 
-  // useEffect(() => {
-  //   _loadListOfWallets()
-  // }, [])
+  useEffect(() => {
+    form.setFieldValue('miningWalletAddress', pot?.miningWalletAddress)
+  }, [])
 
   return (
 
@@ -90,16 +91,16 @@ export default ({ onSucceed, wr }: ICreateWithdrawProps) => {
       onFinishFailed={onFinishFailed}
       layout="vertical"
       initialValues={{
-        amount: wr?.amount,
-        userWalletAddress: wr?.userWalletAddress,
-        miningWalletAddress: wr?.miningWalletAddress,
+        amount: pot?.amount,
+        userWalletAddress: pot?.userWalletAddress,
+        miningWalletAddress: pot?.miningWalletAddress,
       }}
       autoComplete='off'
 
     >
 
 
-      <Form.Item
+      {/* <Form.Item
         name="miningWalletAddress"
         label='Mining Wallet Address'
         rules={[{ required: true, message: 'Please input your client type!' }]}
@@ -134,7 +135,7 @@ export default ({ onSucceed, wr }: ICreateWithdrawProps) => {
 
           </Select.Option>)}
         </Select>
-      </Form.Item>
+      </Form.Item> */}
 
 
 
@@ -177,12 +178,12 @@ export default ({ onSucceed, wr }: ICreateWithdrawProps) => {
         label="User WalletAddress"
         rules={[{ required: true, message: 'Please input your client type!' }]}
         style={style}
-        hidden={!!wr}
+        hidden={!!pot}
 
       >
         <Select onFocus={_loadListOfUserWallets}
           placeholder="User Wallet Address"
-          disabled={!!wr}
+          disabled={!!pot}
         >
           {_user_wallets.map((wl) =>
             <Select.Option key={wl.id} value={wl.walletAddress!}>
@@ -190,8 +191,6 @@ export default ({ onSucceed, wr }: ICreateWithdrawProps) => {
                 <Flex flex={1} >
                   {`${wl.nickname}  `}
                 </Flex>
-                {/* {wl.walletAddress} */}
-                {/* {`       Balance: ${safeFixed(wl.pendingBalance!, 2)} ${wl.currency}`} */}
               </Flex>
 
             </Select.Option>)}
@@ -203,14 +202,12 @@ export default ({ onSucceed, wr }: ICreateWithdrawProps) => {
         style={{ ...style, width: undefined }}
         className='none'
       >
-        {!!wr ?
+        {!!pot ?
           <button className='rounded-full px-0 py-0 p-0'>
             <CheckCircleFilled className='text-green-300 text-4xl' />
           </button>
           :
           <CSubmitBtn />
-
-          // <CButton title={'Submit Withdraw'} className='w-full' />
         }
       </Form.Item>
 
@@ -226,10 +223,8 @@ export default ({ onSucceed, wr }: ICreateWithdrawProps) => {
 const style = { margin: 5, width: '100%' }
 
 
-export interface ICreateWithdrawProps extends ICreateEdit {
-  wr?: IWithdrawalRequest;
+export interface IDevicePotWithdraw extends ICreateEdit {
+  pot?: Partial<IWithdrawalRequest>;
+
 }
 
-export interface ICreateEdit {
-  onSucceed?: (res: any, mode: 'add' | 'delete' | 'update') => void;
-} 

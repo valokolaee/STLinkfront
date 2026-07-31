@@ -51,12 +51,12 @@ export default ({ uw, onSucceed }: ICreateWallet) => {
             <Flex vertical className=" ">
 
                 <div className="flex justify-between items-center">
-                    <span className="text-gray-400">Total Earnings:</span>
+                    <span className="text-gray-400">Total:</span>
                     <strong className="text-green-400 text-lg">{totalEarnings}</strong>
                 </div>
 
                 <div className="flex justify-between items-center">
-                    <span className="text-gray-400">Available Balance:</span>
+                    <span className="text-gray-400">Available:</span>
                     <strong className="text-white text-lg">{availableBalance}</strong>
                 </div>
 

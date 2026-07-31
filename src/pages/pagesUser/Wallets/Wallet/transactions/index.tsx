@@ -1,43 +1,43 @@
-import { useEffect, useRef, useState } from "react";
-import IMiningWallet from "../../../../../interfaces/IMiningWallet";
+import { forwardRef, useEffect, useImperativeHandle, useRef, useState } from "react";
 import WebService, { IWebServiceFuncs } from "../../../../../webService";
 import IResponse from "../../../../../webService/ApiUrls/apis/IResponse";
 import IWithdrawalRequest from "../../../../../interfaces/IWithdrawalRequest";
-import { withdrawalRequest } from "../../../../../webService/ApiUrls/apis";
-import Item from "./item";
+import apis, { withdrawalRequest } from "../../../../../webService/ApiUrls/apis";
+import Item, { ITransactionItem } from "./item";
 import { list } from "./list";
 import ITransaction from "../../../../../interfaces/ITransaction";
 
-export default ({ address, walletId }: { address?: string; walletId: number }) => {
+export default forwardRef(({ potId, walletId }: ITransactionsComponent, ref) => {
+    useImperativeHandle(ref, () => { return { reload }; });
+
+
     const refWebService = useRef<IWebServiceFuncs>()
-    const [_transactions, set_transactions] = useState<ITransaction[]>(list);
+    const [_transactions, set_transactions] = useState<ITransaction[]>([]);
 
+    const reload = () => {
+        _loadTransactions()
+    }
 
-    const _loadWithdraws = async () => {
-        const res = await refWebService.current?.callApi<IResponse<ITransaction[]>>(withdrawalRequest.getAllBy({ miningWalletAddress: address }))
+    const _loadTransactions = async () => {
 
-        if (res?.success) {
-            set_transactions(res.data!)
-        }
+        const res = await refWebService.current?.callApi<IResponse<ITransaction[]>>(apis?.transactions?.getAllBy({ fromDevicePotId: potId, fromWalletId: walletId, toWalletId: walletId }))
 
+        if (res?.success) { set_transactions(res?.data!) }
 
     }
-    // useEffect(() => {
-    //     _loadWithdraws()
-    // }, [])
+
+
+    useEffect(() => { _loadTransactions() }, [])
 
 
     return <>
-        <div className="transaction-history">
+        <div className="transaction-history border-solidc">
             <h2>Transaction History</h2>
-            {_transactions.length === 0 ? (
+            {(_transactions?.length === 0 || !Array.isArray(_transactions!)) ? (
                 <p className="no-transactions">No transactions yet</p>
             ) : (
                 <div className="transactions-list">
-                    {_transactions.map((transaction) => (
-                        <Item {...transaction} thisWalletId={walletId} />
-
-                    ))}
+                    {_transactions?.map((transaction) => (<Item {...transaction} theIds={{ potId, walletId }} key={transaction.id} />))}
                 </div>
             )}
         </div>
@@ -46,7 +46,7 @@ export default ({ address, walletId }: { address?: string; walletId: number }) =
             <div className="stats">
                 <div className="stat-item">
                     <span className="stat-label">Total Transactions:</span>
-                    <span className="stat-value">{_transactions.length}</span>
+                    <span className="stat-value">{_transactions?.length}</span>
                 </div>
                 <div className="stat-item">
                     <span className="stat-label">Currency:</span>
@@ -56,14 +56,16 @@ export default ({ address, walletId }: { address?: string; walletId: number }) =
         </div>
 
 
-        {/* {
-            _withdrawalRequest!?.length > 0 ?
-                <> {_withdrawalRequest?.map((item) => <Item {...item} thisWalletId={walletId} key={item.id} />)}</>
-                :
-                <strong className="border-solidb w-full text-center pt-10 ">
-                    No Transactions Submitted under this Wallet
-                </strong>
-        } */}
         <WebService ref={refWebService} />
     </>
+}
+)
+
+export interface ITransactionsComponent {
+    potId?: number;
+    walletId?: number;
+}
+export interface ITransactionsComponentFuncs {
+    reload?: () => void;
+
 }

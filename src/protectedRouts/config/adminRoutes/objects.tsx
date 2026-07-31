@@ -1,10 +1,10 @@
+import { DashboardOutlined, DeveloperBoard, RequestPageOutlined } from '@mui/icons-material';
 import Dashboard from '../../../pages/pagesAdmin/Dashboard';
 import DevicesManagement from '../../../pages/pagesAdmin/DevicesManagement';
-import { DashboardOutlined, DeveloperBoard, RequestPageOutlined } from '@mui/icons-material';
-import WithdrawManagement from '../../../pages/pagesAdmin/withdrawManagement';
-import Device from '../../../pages/pagesUser/Devices/Device';
 import Create from '../../../pages/pagesAdmin/DevicesManagement/create';
+import DeviceManagement from '../../../pages/pagesAdmin/DevicesManagement/DeviceManagement';
 import UsersManagement from '../../../pages/pagesAdmin/UsersManagement';
+import WithdrawManagement from '../../../pages/pagesAdmin/withdrawManagement';
 
 
 
@@ -13,7 +13,7 @@ import UsersManagement from '../../../pages/pagesAdmin/UsersManagement';
 export const admin_dashboard = { path: '/dashboard', element: <Dashboard />, sideBar: { label: 'Dashboard', icon: <DashboardOutlined /> }, }
 export const admin_withdraws = { path: '/withdraws', element: <WithdrawManagement />, sideBar: { label: 'Withdraws', icon: <RequestPageOutlined /> }, }
 export const admin_devices = { path: '/devices', element: <DevicesManagement />, sideBar: { label: 'Devices', icon: <DeveloperBoard /> }, }
-export const admin_device = { path: '/device', element: <Device /> }
+export const admin_device = { path: '/device', element: <DeviceManagement /> }
 export const admin_add_device = { path: '/addDevice', element: <Create /> }
 export const admin_rolls = { path: '/rolls', element: <DevicesManagement />, sideBar: { label: 'Rolls & Permissions', icon: <DeveloperBoard /> }, }
 export const admin_roll = { path: '/roll', element: <DevicesManagement /> }

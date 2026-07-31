@@ -1,3 +1,6 @@
+import IDeviceEarningPot from "./IDeviceEarningPot";
+import IDevicePotAssignment from "./IDevicePotAssignment";
+
 export default interface IMiningDevice   {
     id?: number;
     userId?: number;
@@ -15,5 +18,8 @@ export default interface IMiningDevice   {
     location?: string | null;
     createdAt?: Date;
     updatedAt?: Date | null;
-    softDeleted?:boolean;
+    softDeleted?: boolean;
+    assignment?: IDevicePotAssignment[];
+    currentPot?: IDeviceEarningPot;
+
 }

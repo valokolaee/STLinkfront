@@ -1,56 +1,50 @@
-import { Flex } from "antd";
+import { useLocation } from "react-router-dom";
+import SvgWrapper from "../../../../components/ui/SvgWrapper";
 import IMiningDevice from "../../../../interfaces/IMiningDevice";
-import Wallet from "../../Wallets/Wallet";
-
-export default ({ }: IMiningDevice) =>
-    <>
-        {/* <Flex vertical className="w-full h-full border-solid0">
-            <Flex > */}
-
-        <DeviceInfo />
-        {/* </Flex>
-            <Flex flex={10} className="overflow-scroll" vertical> */}
-        <Wallet />
-        {/* </Flex>
-        </Flex> */}
-    </>
-
-
-
+import Transactions, { ITransactionsComponentFuncs } from "../../Wallets/Wallet/transactions";
 import DeviceInfo from "./DeviceInfo";
-
-const text = `
-  A dog is a type of domesticated animal.
-  Known for its loyalty and faithfulness,
-  it can be found as a welcome guest in many households across the world.
-`;
-
-// const App: React.FC = () => (
-//     <>
-//         <Divider titlePlacement="start">Default Size</Divider>
-//         <Collapse
-//             items={[{ key: '1', label: 'This is default size panel header', children: <p>{text}</p> }]}
-//         />
-//         <Divider titlePlacement="start">Small Size</Divider>
-//         <Collapse
-//             size="small"
-//             items={[{ key: '1', label: 'This is small size panel header', children: <p>{text}</p> }]}
-//         />
-//         <Divider titlePlacement="start">Large Size</Divider>
-//         <Collapse
-//             size="large"
-//             items={[{ key: '1', label: 'This is large size panel header', children: <p>{text}</p> }]}
-//         />
-//     </>
-// );
-
-// export default App;
+import DevicePot from "./DevicePot";
+import { useRef } from "react";
+import { InputFocusOptions } from "antd/es/input/Input";
+import { Flex } from "antd";
+import CreateWithdraw from "./CreateWithdraw";
+import WebService from "../../../../webService";
 
 
-{/*
-    Created:2025-10-30T12:24:55.000Z
-    Device:ROSE8
-    Model:STX-Miner-Pro
-    Firmware:
-    IMEI:230061000000008
-    */}
+export default () => {
+    const refTransactions = useRef<ITransactionsComponentFuncs>(null)
+
+    const location = useLocation();
+    const receivedData: IMiningDevice = location?.state?.deviceInfo;
+    // console.log('receivedData', receivedData);
+
+    const { createdAt, deviceName, deviceModel, firmwareVersion, id, imei, assignment } = receivedData || {}
+
+
+    const _reload = () => { refTransactions.current?.reload!() }
+
+    return <div className="px-2">
+
+        <div className="lg:sticky lg:top-4 bg-black px-5">
+
+
+            <DeviceInfo {...receivedData} />
+
+            <Flex className="  w-full  mt-2 border-solidc" >
+
+
+
+                <DevicePot {...receivedData} />
+                <CreateWithdraw pot={{ id }} onSucceed={_reload} />
+
+            </Flex>
+
+        </div>
+
+        <Transactions potId={id} ref={refTransactions} />
+
+    </div>
+
+
+
+}

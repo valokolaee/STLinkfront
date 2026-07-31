@@ -5,12 +5,15 @@ import { card, cardAndSelected } from "../../../css/classNames";
 import { useNavigate } from 'react-router-dom';
 import { admin_device } from "../../../protectedRouts/config/adminRoutes/objects";
 import { adminMainRoutes } from "../../../protectedRouts/config/adminRoutes";
+import IUser from "../../../interfaces/IUser";
 
 export default (device: IMiningDevice) => {
-    const { id, createdAt, deviceModel, deviceName, firmwareVersion, imei, status, totalRevenue, userId } = device;
+    const { id, createdAt, deviceModel, currentPot, deviceName, firmwareVersion, imei, status, totalRevenue, assignment, } = device;
 
+    const owner: IUser = currentPot?.owner || {}
     const navigate = useNavigate();
     const handleNavigate = () => { navigate(`${adminMainRoutes}${admin_device.path.replace(':id', '')}`, { state: device, }); };
+    console.log('device. .....', device);
 
 
     return <div className={cardAndSelected(false)}>
@@ -22,7 +25,8 @@ export default (device: IMiningDevice) => {
                 {status}
             </div>
         </Flex>} variant="borderless" className="m-2"  >
-            <p>userId: {userId}</p>
+
+            <p>userId: {owner?.username}</p>
 
             <p>IMei: {imei}</p>
             <p>Device Model: {deviceModel}</p>

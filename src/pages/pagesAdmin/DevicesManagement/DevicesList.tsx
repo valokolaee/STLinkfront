@@ -1,13 +1,13 @@
 import { useEffect, useRef, useState } from "react"
 import { card } from "../../../css/classNames"
 import IMiningDevice from "../../../interfaces/IMiningDevice"
-import IMiningWallet from "../../../interfaces/IMiningWallet"
 import { useAppSelector } from "../../../redux/hooks"
 import WebService, { IWebServiceFuncs } from "../../../webService"
 import IReqRes from "../../../webService/ApiUrls/apis/IReqRes"
 import Item from "./item"
 import TinyItem from "./TinyItem"
 import { panel } from "../../../webService/ApiUrls/apis"
+import IDeviceEarningPot from "../../../interfaces/IDeviceEarningPot"
 
 export default ({ flashMode }: { flashMode?: boolean }) => {
     const refWebService = useRef<IWebServiceFuncs>()
@@ -16,12 +16,12 @@ export default ({ flashMode }: { flashMode?: boolean }) => {
     const [_devices, set_devices] = useState<IMiningDevice[]>([])
 
     const _loadWallets = async () => {
-        const res = await refWebService?.current?.callApi<IReqRes<IMiningWallet>['getAllBy']['res']>(panel.miningDevices.getAll())
+        const res = await refWebService?.current?.callApi<IReqRes<IDeviceEarningPot>['getAllBy']['res']>(panel.miningDevices.getAll())
         if (res?.success) {
 
             set_devices(res?.data! || [])
         }
-        console.log(res);
+        // console.log(res);
     }
 
     useEffect(() => {
@@ -46,9 +46,10 @@ export default ({ flashMode }: { flashMode?: boolean }) => {
 
     return (
         <div className={`${card} `}>
-            {flashMode ?
-                _devices.slice(0, 5)?.map((item) => <TinyItem {...item} key={item.id} />)
-                : _devices?.map((item) => <Item {...item} key={item.id} />)}
+            
+            {_devices?.map((item) => <Item {...item} key={item.id} />)}
+            
+            
             <WebService ref={refWebService} />
         </div>
     )

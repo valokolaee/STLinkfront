@@ -5,13 +5,11 @@ import WebService, { IWebServiceFuncs } from "../../../webService"
 import { withdrawalRequest } from "../../../webService/ApiUrls/apis"
 import IReqRes from "../../../webService/ApiUrls/apis/IReqRes"
 
-import Item from "./withdrawList/item"
-import Create from "./create"
+import AddNewSvg from "../../../assets/icons/AddNewSvg"
 import CBottomDrawer from "../../../components/ui/CBottomDrawer"
 import SvgWrapper from "../../../components/ui/SvgWrapper"
-import CreateNewWallet from "../../../assets/icons/CreateNewWallet"
-import AddNewSvg from "../../../assets/icons/AddNewSvg"
-import { card, shadowX, shadowY } from "../../../css/classNames"
+import Create from "./create"
+import Item from "./withdrawList/item"
 import TinyItem from "./withdrawList/tinyItem"
 
 export default ({ flashMode }: { flashMode?: boolean }) => {

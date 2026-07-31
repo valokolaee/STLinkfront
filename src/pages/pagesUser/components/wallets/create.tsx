@@ -19,20 +19,15 @@ export default ({ onSucceed, uw }: ICreateWallet) => {
 
   const onFinish: FormProps<FieldType>['onFinish'] = async (values) => {
 
-    values = { userId: _savedUser.id!, ...values }
-
-
     if (!!!uw) {
       const res = await refWebService?.current?.callApi<IReqRes<IUserWallet>['create']['res']>(userWallet.create(values as IUserWallet))
 
       if (res?.success) {
         onSucceed!(res.data, 'add')
         form.resetFields();
-
       }
 
     } else {
-
 
       const res = await refWebService?.current?.callApi<IReqRes<IUserWallet>['update']['res']>(userWallet.update({ id: uw.id, ...values } as IUserWallet))
 

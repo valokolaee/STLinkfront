@@ -7,21 +7,21 @@ import WebService, { IWebServiceFuncs } from '../../../../webService';
 import { miningWallet, userWallet, withdrawalRequest } from '../../../../webService/ApiUrls/apis';
 import IReqRes from '../../../../webService/ApiUrls/apis/IReqRes';
 import IResponse from '../../../../webService/ApiUrls/apis/IResponse';
-import IMiningWallet from '../../../../interfaces/IMiningWallet';
-import { useAppSelector } from '../../../../redux/hooks';
+ import { useAppSelector } from '../../../../redux/hooks';
 import { safeFixed } from '../../../../utils/text.utils';
 import IUserWallet from '../../../../interfaces/IUserWallet';
 import { CheckBoxOutlineBlank } from '@mui/icons-material';
 import { CheckCircleFilled } from '@ant-design/icons';
 import { safeParseFloat } from '../../../../utils/math.utils';
 import CSubmitBtn from '../../../../components/ui/CSubmitBtn';
+import IDeviceEarningPot from '../../../../interfaces/IDeviceEarningPot';
 
 export default ({ onSucceed, wr }: ICreateWithdrawProps) => {
   const [form] = Form.useForm();
   const refWebService = useRef<IWebServiceFuncs>()
   const _savedUser = useAppSelector((s) => s.userSlice)
-  const [_mining_wallet, set_mining_wallet] = useState<IMiningWallet>();
-  const [_mining_wallets, set_mining_wallets] = useState<IMiningWallet[]>([]);
+  const [_mining_wallet, set_mining_wallet] = useState<IDeviceEarningPot>();
+  const [_mining_wallets, set_mining_wallets] = useState<IDeviceEarningPot[]>([]);
   const [_user_wallets, set_user_wallets] = useState<IUserWallet[]>([]);
 
   interface FieldType extends IWithdrawalRequest {
@@ -63,7 +63,7 @@ export default ({ onSucceed, wr }: ICreateWithdrawProps) => {
 
 
   const _loadListOfMiningWallets = async () => {
-    const res = await refWebService?.current?.callApi<IReqRes<IMiningWallet>['getAllBy']['res']>(miningWallet.getAllBy({ userId: _savedUser.id! }))
+    const res = await refWebService?.current?.callApi<IReqRes<IDeviceEarningPot>['getAllBy']['res']>(miningWallet.getAllBy({ userId: _savedUser.id! }))
     if (res?.success) {
       set_mining_wallets(res?.data!)
     }
@@ -120,14 +120,16 @@ export default ({ onSucceed, wr }: ICreateWithdrawProps) => {
 
             // className='border-solid px-0 py-0 p-0 m-0'
 
-            key={wl.id} value={wl.walletAddress!} >
+            key={wl.id}
+            // value={wl.walletAddress!}
+          >
             <Flex
               // className='border-solid my-0'
               flex={1}
             // onClick={() => { set_mining_wallet(wl) }}
             >
               <Flex flex={1} >
-                {wl.walletAddress}
+                {/* {wl.walletAddress} */}
               </Flex>
               Balance:      {safeFixed(wl.availableBalance!, 2)} {wl.currency}
             </Flex>

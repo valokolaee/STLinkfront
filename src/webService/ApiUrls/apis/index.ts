@@ -1,13 +1,14 @@
 import IDevice from '../../../interfaces/IDevice';
 import IDeviceAlert from '../../../interfaces/IDeviceAlert';
-import IDeviceEarning from '../../../interfaces/IDeviceEarning';
-import IDeviceSpecification from '../../../interfaces/IDeviceSpecification';
+import IDeviceEarningPot from '../../../interfaces/IDeviceEarningPot';
+ import IDeviceSpecification from '../../../interfaces/IDeviceSpecification';
 import IMiningDevice from '../../../interfaces/IMiningDevice';
 import IMiningSession from '../../../interfaces/IMiningSession';
-import IMiningWallet from '../../../interfaces/IMiningWallet';
+
 import IPermission from '../../../interfaces/IPermission';
 import IRole from '../../../interfaces/IRole';
 import IRolePermission from '../../../interfaces/IRolePermission';
+import ITransaction from '../../../interfaces/ITransaction';
 import IUser from '../../../interfaces/IUser';
 import IUserSession from '../../../interfaces/IUserSession';
 import IUserWallet from '../../../interfaces/IUserWallet';
@@ -20,8 +21,9 @@ import mdlr from './ModelApiGenerator';
 
 
 
-export const deviceEarnings = ApiObjectGenerator<IDeviceEarning>('device-earnings')
-export const miningWallet = ApiObjectGenerator<IMiningWallet>('mining-wallet')
+export const deviceEarnings = ApiObjectGenerator<IDeviceEarningPot>('device-earnings')
+const transactions = ApiObjectGenerator<ITransaction>('transactions')
+export const miningWallet = ApiObjectGenerator<IDeviceEarningPot>('mining-wallet')
 export const userWallet = ApiObjectGenerator<IUserWallet>('user-wallet')
 export const withdrawalRequest = ApiObjectGenerator<IWithdrawalRequest>('withdrawal-request')
 
@@ -32,7 +34,8 @@ export const permission = ApiObjectGenerator<IPermission>('permission')
 export const rolePermissionRequest = ApiObjectGenerator<IRolePermission>('role-permission')
 export const roleRequest = ApiObjectGenerator<IRole>('role')
 export const userSession = ApiObjectGenerator<IUserSession>('user-session')
-export const monitor = ApiObjectGenerator<IMiningDevice>('monitor','api')
+
+export const monitor = ApiObjectGenerator<IMiningDevice>('monitor', 'api')
 export const pan = ApiObjectGenerator<IMiningDevice>('pan', 'panel')
 
 
@@ -68,8 +71,8 @@ export default {
     updateAvatar(body: any) { return mdlr({ axiosType: 'put', apiUrl: 'avatar', folderUrl: 'users', body }) },
     updateLogo(body: any) { return mdlr({ axiosType: 'put', apiUrl: 'logo', folderUrl: 'users', body }) },
   },
-  miningDevices: ApiObjectGenerator<IDevice>('mining-devices', 'api'),
 
+  miningDevices: ApiObjectGenerator<IDevice>('mining-devices'),
   deviceEarnings,
   miningWallet,
   withdrawalRequest,
@@ -80,7 +83,8 @@ export default {
   rolePermissionRequest,
   roleRequest,
   userSession,
-  monitor
+  monitor,
+  transactions
 };
 
 

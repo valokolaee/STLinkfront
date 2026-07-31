@@ -1,8 +1,8 @@
 import IDeviceAlert from "../../../../interfaces/IDeviceAlert";
-import IDeviceEarning from "../../../../interfaces/IDeviceEarning";
+import IDeviceEarning from "../../../../interfaces/IDeviceEarningPot";
 import IDeviceMetric from "../../../../interfaces/IDeviceMetric";
 import IMiningSession from "../../../../interfaces/IMiningSession";
-import IMiningWallet from "../../../../interfaces/IMiningWallet";
+import IMiningWallet from "../../../../interfaces/IDeviceEarningPot
 
 
 export interface IMonitorData {
