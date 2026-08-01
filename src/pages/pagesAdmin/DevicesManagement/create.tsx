@@ -62,13 +62,13 @@ export default ({ onSucceed }: { onSucceed?: (res: any) => void }) => {
         // wrapperCol={{ span: '50%' }}
         // // layout="vertical"
         autoComplete='off'
-        initialValues={{
-          // userId: selectedUser?.id,
-          deviceName: 'ccc',
-          imei: '123456789012345678901234567890',
-          deviceModel: 'd23r23',
-          serialNumber: 'sfd'
-        }}
+        // initialValues={{
+        //   // userId: selectedUser?.id,
+        //   deviceName: 'ccc',
+        //   imei: '123456789012345678901234567890',
+        //   deviceModel: 'd23r23',
+        //   serialNumber: 'sfd'
+        // }}
       >
 
         <Form.Item

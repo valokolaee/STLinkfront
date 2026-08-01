@@ -102,7 +102,7 @@ export default () => {
 
 
             {/* <Create/> */}
-            {process.env.NODE_ENV && <button onClick={_newSession}>hit me</button>}
+            {/* {process.env.NODE_ENV && <button onClick={_newSession}>hit me</button>} */}
             {_isMobile ? <Mobile /> : <Desktop />}
             <WebService ref={refWebService} />
 

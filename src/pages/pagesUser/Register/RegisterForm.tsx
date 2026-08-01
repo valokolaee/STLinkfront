@@ -91,13 +91,7 @@ const FormDisabledDemo: React.FC = () => {
 
         style={{ maxWidth: '600px', width: '90%' }}
         wrapperCol={{ span: '30%' }}
-        initialValues={{
-          username: 'cvc2',
-          email: 'cv2@g.com',
-          password: '111111',
-          confirm: '111111'
-        }}
-
+        
         layout="vertical"
         autoComplete='off'
       >
